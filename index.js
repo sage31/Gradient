@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function handleCredentialResponse(response) {
     //document.getElementById("credents").innerHTML = response.credential;
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
@@ -80,5 +79,4 @@ function createAccount(email) {
     y5.innerHTML = year5;
 
 
->>>>>>> 85697037fed5382f3e015ebd6a368ba5330d4bcb
 }
