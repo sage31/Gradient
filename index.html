@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="StyleSheet1.css" />
+
+    SCU Crushes
+</head>
+
+<body>
+    
+    <div id="login">
+        </br></br></br>
+
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <script>
+            function handleCredentialResponse(response) {
+                console.log("Encoded JWT ID token: " + response.credential);
+            }
+            window.onload = function () {
+                google.accounts.id.initialize({
+                    client_id: "1027041338776-rnkfcob43vlom4ld70b5q4ang8bv0klq.apps.googleusercontent.com",
+                    callback: handleCredentialResponse
+                });
+                google.accounts.id.renderButton(
+                    document.getElementById("buttonDiv"),
+                    { theme: "outline", size: "large" }  // customization attributes
+                );
+                google.accounts.id.prompt(); // also display the One Tap dialog
+            }
+        </script>
+        
+        <div id="buttonDiv"></div>
+        <div id="g_id_onload"
+             data-client_id="1027041338776-rnkfcob43vlom4ld70b5q4ang8bv0klq.apps.googleusercontent.com"
+             data-callback="handleCredentialResponse">
+        </div>
+        <script>
+            function handleCredentialResponse(response) {
+                // decodeJwtResponse() is a custom function defined by you
+                // to decode the credential response.
+                const responsePayload = decodeJwtResponse(response.credential);
+
+                console.log("ID: " + responsePayload.sub);
+                console.log('Full Name: ' + responsePayload.name);
+                console.log('Given Name: ' + responsePayload.given_name);
+                console.log('Family Name: ' + responsePayload.family_name);
+                console.log("Image URL: " + responsePayload.picture);
+                console.log("Email: " + responsePayload.email);
+            }
+        </script>
+        </br></br>
+    </div>
+    <footer> <h5>Made by Stephen Dean and Anish Shanmuganathan</h5>
+    </footer>
+
+</body>
+
+</html>
