@@ -1,6 +1,6 @@
 ﻿@font-face {
     font-family: product-sans;
-    src: url('fonts/Product Sans Regular.ttf');
+    src: 'fonts/Product Sans Regular.ttf';
 }
 
 .loginButton {
