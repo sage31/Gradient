@@ -35,3 +35,8 @@ h5 {
     color: red;
     font-family: product-sans;
 }
+
+.center{
+    justify-content: center;
+	align-items: center;
+}
