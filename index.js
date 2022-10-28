@@ -1,4 +1,4 @@
-email;
+let email = "";
 function handleCredentialResponse(response) {
     //document.getElementById("credents").innerHTML = response.credential;
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
