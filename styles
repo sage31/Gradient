@@ -18,7 +18,9 @@ body {
 
 #login {
     text-align: center;
+	align-items: center;
     font-family: product-sans;
+	justify-content: center;
   
 
     
