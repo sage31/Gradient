@@ -30,6 +30,8 @@
 	  <script>
           function handleCredentialResponse(response) {
               document.getElementById("credents").innerHTML = response.credential;
+              const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
+              alert(dataToken.email);
      // decodeJwtResponse() is a custom function defined by you
      // to decode the credential response.
      /*const responsePayload = decodeJwtResponse(response.credential);
