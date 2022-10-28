@@ -24,10 +24,12 @@
          data-shape="rectangular"
          data-logo_alignment="left">
       </div>
-	  
+	  <div id="credents">
+
+      </div>
 	  <script>
           function handleCredentialResponse(response) {
-              alert(response.credential);
+              document.getElementById(credents).innerHTML = response.credential;
      // decodeJwtResponse() is a custom function defined by you
      // to decode the credential response.
      /*const responsePayload = decodeJwtResponse(response.credential);
