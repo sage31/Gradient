@@ -1,24 +1,18 @@
+email;
 function handleCredentialResponse(response) {
     //document.getElementById("credents").innerHTML = response.credential;
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
     document.getElementById("credents").innerHTML = dataToken.email + " " + dataToken.given_name
         + " " + dataToken.family_name;
-
+    email = dataToken.email;
+    //if the user is not in the database already, create an account
     createAccount(dataToken.email);
-    // decodeJwtResponse() is a custom function defined by you
-    // to decode the credential response.
-    /*const responsePayload = decodeJwtResponse(response.credential);
 
-    console.log("ID: " + responsePayload.sub);
-    console.log('Full Name: ' + responsePayload.name);
-    console.log('Given Name: ' + responsePayload.given_name);
-    console.log('Family Name: ' + responsePayload.family_name);
-    console.log("Image URL: " + responsePayload.picture);
-    console.log("Email: " + responsePayload.email);
-    */
+
 }
 
 function createAccount(email) {
+    
     document.getElementById("accountForm").style.visibility = "visible";
     let year1 = new Date().getFullYear();
     let year2 = year1 + 1;
@@ -37,4 +31,13 @@ function createAccount(email) {
     y5 = document.getElementById("y5");
     y5.innerHTML = year5;
 
+}
+
+function addUserToDataBase() {
+    userYear = document.getElementById('year').value;
+    firstName = document.getElementById('firstName').value;
+    lastName = document.getElementById('lastName').value;
+
+    alert("first name: " + firstName + " year: " + userYear + " lastName: " + lastName + " email: " + email);
+    //add them to the database with this information
 }
