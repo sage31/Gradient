@@ -25,15 +25,14 @@
          data-logo_alignment="left">
       </div>
 	  <div id="credents">
-          asdfasdf
       </div>
 	  <script>
           function handleCredentialResponse(response) {
-              document.getElementById("credents").innerHTML = response.credential;
+              //document.getElementById("credents").innerHTML = response.credential;
               const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
-              alert(dataToken.email);
-              alert(dataToken.given_name);
-              alert(dataToken.family_name);
+              document.getElementById("credents").innerHTML = dataToken.email + " " + dataToken.given_name
+                  + " " + dataToken.family_name;
+              
      // decodeJwtResponse() is a custom function defined by you
      // to decode the credential response.
      /*const responsePayload = decodeJwtResponse(response.credential);
