@@ -19,7 +19,7 @@ function handleCredentialResponse(response) {
 }
 
 function createAccount(email) {
-    document.getElementById("accountForm").visibility = visible;
+    document.getElementById("accountForm").style.visibility = visible;
     let year1 = new Date().getFullYear();
     let year2 = year1 + 1;
     let year3 = year2 + 1;
