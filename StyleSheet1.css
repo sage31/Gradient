@@ -19,6 +19,8 @@ body {
 #login {
     text-align: center;
     font-family: product-sans;
+    justify-content:center;
+    align-items:center;
 
     
 }
