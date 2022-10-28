@@ -8,48 +8,51 @@
 </head>
 
 <body>
-    
+
     <div id="login">
         <script src="https://accounts.google.com/gsi/client" async defer></script>
-      <div id="g_id_onload"
-         data-client_id="1027041338776-rnkfcob43vlom4ld70b5q4ang8bv0klq.apps.googleusercontent.com"
-         data-auto_prompt="false"
-		 data-callback="handleCredentialResponse">
-      </div>
-      <div class="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="sign_in_with"
-         data-shape="rectangular"
-         data-logo_alignment="left">
-      </div>
-	  <div id="credents">
-      </div>
-	  <script>
-          function handleCredentialResponse(response) {
-              //document.getElementById("credents").innerHTML = response.credential;
-              const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
-              document.getElementById("credents").innerHTML = dataToken.email + " " + dataToken.given_name
-                  + " " + dataToken.family_name;
-              
-     // decodeJwtResponse() is a custom function defined by you
-     // to decode the credential response.
-     /*const responsePayload = decodeJwtResponse(response.credential);
 
-     console.log("ID: " + responsePayload.sub);
-     console.log('Full Name: ' + responsePayload.name);
-     console.log('Given Name: ' + responsePayload.given_name);
-     console.log('Family Name: ' + responsePayload.family_name);
-     console.log("Image URL: " + responsePayload.picture);
-     console.log("Email: " + responsePayload.email);
-     */
-  }
-</script>
+        <div id="g_id_onload"
+             data-client_id="1027041338776-rnkfcob43vlom4ld70b5q4ang8bv0klq.apps.googleusercontent.com"
+             data-auto_prompt="false"
+             data-callback="handleCredentialResponse">
+        </div>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-size="large"
+             data-theme="outline"
+             data-text="sign_in_with"
+             data-shape="rectangular"
+             data-logo_alignment="left">
+        </div>
+        <div id="credents">
+        </div>
+
+        <form style="display:none">
+            <select name="gradClass" id="year">
+                <option id="none">Please select a year</option>
+                <option id="y1"></option>
+                <option id="y2"></option>
+                <option id="y3"></option>
+                <option id="y4"></option>
+                <option id="y5"></option>
+            </select>
+
+            <input id="firstName" placeholder="John"/>
+            <input id="lastName" placeholder="Applebee"/>
+            
+        </form>
+
+        <button id="createAcc" onclick="document.getElementById('year').value)"> click me </button>
+
+        
+
+
     </div>
-    <footer> <h5>Made by Stephen Dean and Anish Shanmuganathan</h5>
+    <footer>
+        <h5>Made by Stephen Dean and Anish Shanmuganathan</h5>
     </footer>
-
+    
 </body>
 
 </html>
