@@ -34,13 +34,14 @@ function createAccount(email) {
 
 function addUserToDataBase() {
     import { initializeApp } from "firebase/app";
+    import { getDatabase, ref, set } from "firebase/database";
     const firebaseConfig = {
         databaseURL: "https://scucrushes-a9663-default-rtdb.firebaseio.com/",
     };
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
 
-    import { getDatabase,ref, set } from "firebase/database";
+    
     
     
     userYear = document.getElementById('year').value;
