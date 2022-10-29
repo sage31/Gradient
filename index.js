@@ -1,15 +1,24 @@
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+const firebaseConfig = {
+    databaseURL: "https://scucrushes-a9663-default-rtdb.firebaseio.com/",
+};
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+
+
 var email = "";
 function handleCredentialResponse(response) {
     //document.getElementById("credents").innerHTML = response.credential;
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
-    document.getElementById("credents").innerHTML = dataToken.email + " " + dataToken.given_name
-        + " " + dataToken.family_name;
     email = dataToken.email;
     //if the user is not in the database already, create an account
     createAccount(dataToken.email);
 
 
 }
+
 
 function createAccount(email) {
     
@@ -34,10 +43,25 @@ function createAccount(email) {
 }
 
 function addUserToDataBase() {
+    import { ref, set } from "firebase/database";
+    
+    
     userYear = document.getElementById('year').value;
-    firstName = document.getElementById('firstName').value;
-    lastName = document.getElementById('lastName').value;
-
+    fName = document.getElementById('firstName').value;
+    lName = document.getElementById('lastName').value;
+    set(ref(database, 'users/' + email), {
+        firstName: fName,
+        lastName: lName,
+        year: userYear
+    });
+    /*
     alert("first name: " + firstName + " year: " + userYear + " lastName: " + lastName + " email: " + email);
-    //add them to the database with this information
+    
+    fetch("http://localhost:3066/datasend", {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json",
+        },
+        body: JSON.stringify({ email: email, firstName: firstName, lastName: lastName, year: year }),
+    */
 }
