@@ -33,12 +33,28 @@ function createAccount(email) {
 }
 
 function addUserToDataBase() {
+    // Import the functions you need from the SDKs you need
     import { initializeApp } from "firebase/app";
+    import { getAnalytics } from "firebase/analytics";
     import { getDatabase, ref, set } from "firebase/database";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
-        databaseURL: "https://scucrushes-a9663-default-rtdb.firebaseio.com/",
+        apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo",
+        authDomain: "scucrushes-a9663.firebaseapp.com",
+        databaseURL: "https://scucrushes-a9663-default-rtdb.firebaseio.com",
+        projectId: "scucrushes-a9663",
+        storageBucket: "scucrushes-a9663.appspot.com",
+        messagingSenderId: "1027917905596",
+        appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
+        measurementId: "G-CFJTYX3MYW"
     };
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
     const database = getDatabase(app);
 
     
