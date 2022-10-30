@@ -1,8 +1,8 @@
-import { initializeApp } from 
-import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js'
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
-import { getDatabase, ref, set } from ;
+//import { initializeApp } from 
+//import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js'
+//import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
+//import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+//import { getDatabase, ref, set } from ;
 var firebase = require ("https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js");
 var data = require("https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js");
 
