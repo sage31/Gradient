@@ -67,7 +67,7 @@ function addUserToDataBase() {
     // Initialize Firebase
     
 
-    
+    alert();
     
     
     userYear = document.getElementById('year').value;
