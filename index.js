@@ -1,10 +1,10 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
+import { initializeApp } from 
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js'
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
-
-
+import { getDatabase, ref, set } from ;
+var firebase = require ("https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js");
+var data = require("https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js");
 
 const firebaseConfig = {
     apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo",
@@ -17,14 +17,21 @@ const firebaseConfig = {
     measurementId: "G-CFJTYX3MYW"
 };
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const database = getDatabase(app);
+const app = firebase.initializeApp(firebaseConfig);
+
+const database = data.getDatabase(app);
 
 var email = "";
 
 
 
+function handleCredentialResponse(response) {
+    //document.getElementById("credents").innerHTML = response.credential;
+    const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
+    email = dataToken.email;
+    //if the user is not in the database already, create an account
+    createAccount(dataToken.email);
+}
 
 export function createAccount(email) {
     
