@@ -75,11 +75,9 @@
             appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
             measurementId: "G-CFJTYX3MYW"
         };
-
+        export const app = initializeApp(firebaseConfig);
         window.moduleSet = set;
         window.moduleRef = ref;
-        export const app = initializeApp(firebaseConfig);
-
         window.database = getDatabase(app);
     </script>
     <script src="index.js"></script>
