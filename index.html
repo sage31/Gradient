@@ -8,9 +8,7 @@
 </head>
 
 <body>
-    <script type="module">
-        
-    </script>
+
 
     <div id="login">
         <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -63,6 +61,17 @@
         <h5>Made by Stephen Dean and Anish Shanmuganathan</h5>
     </footer>
     <script src="index.js" type="module"></script>
+    <script>
+        export function handleCredentialResponse(response) {
+            //document.getElementById("credents").innerHTML = response.credential;
+            const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
+            email = dataToken.email;
+            //if the user is not in the database already, create an account
+            createAccount(dataToken.email);
+
+
+        }
+    </script>
 
 </body>
 

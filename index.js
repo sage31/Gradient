@@ -24,15 +24,7 @@ const database = getDatabase(app);
 var email = "";
 
 
-export function handleCredentialResponse(response) {
-    //document.getElementById("credents").innerHTML = response.credential;
-    const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
-    email = dataToken.email;
-    //if the user is not in the database already, create an account
-    createAccount(dataToken.email);
 
-
-}
 
 export function createAccount(email) {
     
