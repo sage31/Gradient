@@ -25,6 +25,17 @@
              data-shape="rectangular"
              data-logo_alignment="center">
         </div>
+        <script>
+            function handleCredentialResponse(response) {
+                //document.getElementById("credents").innerHTML = response.credential;
+                const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
+                email = dataToken.email;
+                //if the user is not in the database already, create an account
+                createAccount(dataToken.email);
+
+
+            }
+        </script>
 
         <div id="accountForm" style="visibility:hidden">
             <p>
