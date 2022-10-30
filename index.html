@@ -77,9 +77,10 @@
         };
 
         window.moduleSet = set;
+        window.moduleRef = ref;
         export const app = initializeApp(firebaseConfig);
 
-        export const database = getDatabase(app);
+        window.database = getDatabase(app);
     </script>
     <script src="index.js"></script>
     <footer>

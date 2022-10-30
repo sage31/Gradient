@@ -39,7 +39,7 @@ function addUserToDataBase() {
     userYear = document.getElementById('year').value;
     fName = document.getElementById('firstName').value;
     lName = document.getElementById('lastName').value;
-    window.moduleSet(ref(database, 'users/' + email), {
+    window.moduleSet(window.moduleRef(window.database, 'users/' + email), {
         firstName: fName,
         lastName: lName,
         year: userYear
