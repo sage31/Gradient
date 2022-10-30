@@ -1,26 +1,3 @@
-//import { initializeApp } from 
-//import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js'
-//import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
-//import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
-//import { getDatabase, ref, set } from ;
-var firebase = require("https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js");
-var data = require("https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js");
-
-const firebaseConfig = {
-    apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo",
-    authDomain: "scucrushes-a9663.firebaseapp.com",
-    databaseURL: "https://scucrushes-a9663-default-rtdb.firebaseio.com",
-    projectId: "scucrushes-a9663",
-    storageBucket: "scucrushes-a9663.appspot.com",
-    messagingSenderId: "1027917905596",
-    appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
-    measurementId: "G-CFJTYX3MYW"
-};
-
-const app = firebase.initializeApp(firebaseConfig);
-
-const database = data.getDatabase(app);
-
 var email = "";
 
 
@@ -56,18 +33,7 @@ function createAccount(email) {
 }
 
 function addUserToDataBase() {
-    // Import the functions you need from the SDKs you need
-  
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    
-    // Initialize Firebase
-    
-
-    alert();
+   
     
     
     userYear = document.getElementById('year').value;
