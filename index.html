@@ -11,6 +11,18 @@
 
 
     <div id="login">
+        <script src="index.js" type="module"></script>
+        <script>
+            function handleCredentialResponse(response) {
+                //document.getElementById("credents").innerHTML = response.credential;
+                const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
+                email = dataToken.email;
+                //if the user is not in the database already, create an account
+                createAccount(dataToken.email);
+
+
+            }
+        </script>
         <script src="https://accounts.google.com/gsi/client" async defer></script>
 
         <div id="g_id_onload"
@@ -60,18 +72,7 @@
     <footer>
         <h5>Made by Stephen Dean and Anish Shanmuganathan</h5>
     </footer>
-    <script src="index.js" type="module"></script>
-    <script>
-        export function handleCredentialResponse(response) {
-            //document.getElementById("credents").innerHTML = response.credential;
-            const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
-            email = dataToken.email;
-            //if the user is not in the database already, create an account
-            createAccount(dataToken.email);
-
-
-        }
-    </script>
+   
 
 </body>
 
