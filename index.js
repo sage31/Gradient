@@ -33,7 +33,7 @@ function handleCredentialResponse(response) {
     createAccount(dataToken.email);
 }
 
-export function createAccount(email) {
+function createAccount(email) {
     
     document.getElementById("accountForm").style.visibility = "visible";
     let year1 = new Date().getFullYear();
@@ -55,7 +55,7 @@ export function createAccount(email) {
 
 }
 
-export function addUserToDataBase() {
+function addUserToDataBase() {
     // Import the functions you need from the SDKs you need
   
     // TODO: Add SDKs for Firebase products that you want to use
