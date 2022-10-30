@@ -44,6 +44,7 @@ function addUserToDataBase() {
         lastName: lName,
         year: userYear
     });
+
     /*
     alert("first name: " + firstName + " year: " + userYear + " lastName: " + lastName + " email: " + email);
     
