@@ -8,7 +8,15 @@
 </head>
 
 <body>
-    <script src="index.js" type="module"></script>
+    <script src="index.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js'
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+    </script>
+
     <div id="login">
         <script src="https://accounts.google.com/gsi/client" async defer></script>
 
@@ -25,17 +33,6 @@
              data-shape="rectangular"
              data-logo_alignment="center">
         </div>
-        <script>
-            function handleCredentialResponse(response) {
-                //document.getElementById("credents").innerHTML = response.credential;
-                const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
-                email = dataToken.email;
-                //if the user is not in the database already, create an account
-                createAccount(dataToken.email);
-
-
-            }
-        </script>
 
         <div id="accountForm" style="visibility:hidden">
             <p>

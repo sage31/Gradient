@@ -1,13 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
 
-// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js'
-
-// Add Firebase products that you want to use
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
-
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo",
@@ -25,6 +16,8 @@ const analytics = getAnalytics(app);
 const database = getDatabase(app);
 
 var email = "";
+
+
 function handleCredentialResponse(response) {
     //document.getElementById("credents").innerHTML = response.credential;
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
@@ -34,7 +27,6 @@ function handleCredentialResponse(response) {
 
 
 }
-
 
 function createAccount(email) {
     
