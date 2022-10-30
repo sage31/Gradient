@@ -1,6 +1,13 @@
-import { initializeApp } from "./node_modules/firebase/app";
-import { getAnalytics } from "./node_modules/firebase/analytics";
-import { getDatabase, ref, set } from "./node_modules/firebase/database";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
+
+// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js'
+
+// Add Firebase products that you want to use
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo",
@@ -12,6 +19,10 @@ const firebaseConfig = {
     appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
     measurementId: "G-CFJTYX3MYW"
 };
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const database = getDatabase(app);
 
 var email = "";
 function handleCredentialResponse(response) {
@@ -57,9 +68,7 @@ function addUserToDataBase() {
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const database = getDatabase(app);
+    
 
     
     
