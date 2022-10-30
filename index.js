@@ -1,3 +1,9 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js'
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+
 
 
 const firebaseConfig = {
@@ -18,7 +24,7 @@ const database = getDatabase(app);
 var email = "";
 
 
-function handleCredentialResponse(response) {
+export function handleCredentialResponse(response) {
     //document.getElementById("credents").innerHTML = response.credential;
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
     email = dataToken.email;
@@ -28,7 +34,7 @@ function handleCredentialResponse(response) {
 
 }
 
-function createAccount(email) {
+export function createAccount(email) {
     
     document.getElementById("accountForm").style.visibility = "visible";
     let year1 = new Date().getFullYear();
@@ -50,7 +56,7 @@ function createAccount(email) {
 
 }
 
-function addUserToDataBase() {
+export function addUserToDataBase() {
     // Import the functions you need from the SDKs you need
   
     // TODO: Add SDKs for Firebase products that you want to use
