@@ -35,11 +35,11 @@ function createAccount(email) {
 function addUserToDataBase() {
    
     
-    
+    let id = email.substring(0, email.indexOf('@'));
     userYear = document.getElementById('year').value;
     fName = document.getElementById('firstName').value;
     lName = document.getElementById('lastName').value;
-    window.moduleSet(window.moduleRef(window.database, 'users/' + email), {
+    window.moduleSet(window.moduleRef(window.database, 'users/' + id), {
         firstName: fName,
         lastName: lName,
         year: userYear
