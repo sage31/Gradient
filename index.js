@@ -36,10 +36,12 @@ function addUserToDataBase() {
    
     
     let id = email.substring(0, email.indexOf('@'));
+    alert("id");
     userYear = document.getElementById('year').value;
     fName = document.getElementById('firstName').value;
     lName = document.getElementById('lastName').value;
     window.moduleSet(window.moduleRef(window.database, 'users/' + id), {
+        userEmail: email,
         firstName: fName,
         lastName: lName,
         year: userYear
