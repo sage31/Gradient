@@ -8,9 +8,11 @@ function handleCredentialResponse(response) {
     
     if (email.substring(email.indexOf('@') != "@scu.edu")) {
         document.getElementById("emailErr").innerHTML += "You must use an SCU email to register an account.";
+        document.getElementyById("emailErr").style.visibility = "visible";
     }
   
     else {
+        document.getElementyById("emailErr").style.visibility = "hidden";
         moduleRef.once('window.database', 'users/' + email.substring(0, email.indexOf('@')), data => {
             if (data.exists()) {
                 alert("you have an account with us.")
