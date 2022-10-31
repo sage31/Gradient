@@ -15,7 +15,8 @@ function handleCredentialResponse(response) {
         const dbref = window.moduleRef(window.database);
         window.moduleGet(window.modChild(dbref, "users/" + email.substring(0, email.indexOf('@')))).then((snapshot) => {
             if (snapshot.exists()) {
-                alert("you have an account");
+                alert("You have an account");
+                //sign them in
             }
             else {
                 document.getElementById("accountForm").style.visibility = "visible";
