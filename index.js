@@ -13,7 +13,7 @@ function handleCredentialResponse(response) {
     else {
         document.getElementById("emailErr").style.visibility = "hidden";
         const dbref = window.moduleRef(window.database);
-        window.moduleGet(modChild(dbref, "users/" + email.substring(0, email.indexOf('@')))).then((snapshot) => {
+        window.moduleGet(window.modChild(dbref, "users/" + email.substring(0, email.indexOf('@')))).then((snapshot) => {
             if (snapshot.exists()) {
                 alert("you have an account");
             }
