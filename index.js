@@ -5,17 +5,14 @@ var email = "";
 function handleCredentialResponse(response) {
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
     email = dataToken.email;
-    alert(dataToken.email);
-    alert(email);
-    alert(dataToken.email.substring(email.indexOf('@')));
     if (email.substring(email.indexOf('@')) != "@scu.edu") {
         document.getElementById("emailErr").innerHTML += "You must use an SCU email to register an account.";
         document.getElementById("emailErr").style.visibility = "visible";
     }
   
     else {
-        document.getElementyById("emailErr").style.visibility = "hidden";
-        moduleRef.once('window.database', 'users/' + email.substring(0, email.indexOf('@')), data => {
+        document.getElementById("emailErr").style.visibility = "hidden";
+        window.moduleRef.once('window.database', 'users/' + email.substring(0, email.indexOf('@')), data => {
             if (data.exists()) {
                 alert("you have an account with us.")
             }
