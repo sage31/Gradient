@@ -1,46 +1,49 @@
-﻿@font-face {
-    font-family: product-sans;
-    src: "fonts/Product Sans Regular.ttf";
-}
-
-.loginButton {
-    background: #ffadee;
-    border-radius: 20px;
-    padding: 10px 14px;
-    color: #ffffff;
-    display: inline-block;
-    font: normal bold 13px/1 "Product Sans Regular", product-sans;
-    text-align: center;
+﻿.loginButton {
+  background: #ffadee;
+  border-radius: 20px;
+  padding: 10px 14px;
+  color: #ffffff;
+  display: inline-block;
+  font: normal bold 13px/1 "Product Sans Regular", product-sans;
+  text-align: center;
 }
 body {
-    background-color: lightpink;
+  background-color: #faaca8;
+  background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
 }
 
 #login {
-    text-align: center;
-	align-items: center;
-    font-family: product-sans;
-	justify-content: center;
-  
-
-    
+  text-align: center;
+  align-items: center;
+  font-family: product-sans;
+  justify-content: center;
 }
 hr {
-    margin: auto 220px
+  margin: auto 220px;
 }
 
 h5 {
-    
-    -webkit-text-stroke-color: black;
-    padding-top: 220px;
-    margin: 0;
-    text-align: center;
-    color: red;
-    font-family: product-sans;
+  -webkit-text-stroke-color: black;
+  padding-top: 220px;
+  margin: 0;
+  text-align: center;
+  color: red;
+  font-family: product-sans;
+  font-family: "Prompt", sans-serif;
+  background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.googleButton{
-	
+#title {
+  font-family: "Prompt", sans-serif;
+  background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 6em;
+  text-align: center;
 }
 
-
+.g_id_signin {
+  display: inline-block;
+}
