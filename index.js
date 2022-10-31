@@ -5,12 +5,28 @@ var email = "";
 function handleCredentialResponse(response) {
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
     email = dataToken.email;
-    createAccount(dataToken.email);
+    
+    if (email.substring(email.indexOf('@') != "@scu.edu")) {
+        document.getElementById("emailErr").innerHTML = "You must use an SCU email to register an account.";
+    }
+  
+    else {
+        moduleRef.once('window.database', 'users/' + email.substring(0, email.indexOf('@')), data => {
+            if (data.exists()) {
+                alert("you have an account with us.")
+            }
+            else {
+                document.getElementById("accountForm").style.visibility = "visible";
+                createAccount(dataToken.email);
+            }
+        });
+        
+    }
 }
 
 function createAccount(email) {
     
-    document.getElementById("accountForm").style.visibility = "visible";
+    
     let year1 = new Date().getFullYear();
     let year2 = year1 + 1;
     let year3 = year2 + 1;
