@@ -51,9 +51,8 @@ function createAccount(email) {
 
 function addUserToDataBase() {
    
-    
+    document.getElementById("accountForm").style.visibility = "hidden";
     let id = email.substring(0, email.indexOf('@'));
-    alert("id");
     userYear = document.getElementById('year').value;
     fName = document.getElementById('firstName').value;
     lName = document.getElementById('lastName').value;
@@ -63,4 +62,5 @@ function addUserToDataBase() {
         lastName: lName,
         year: userYear
     });
+
 }
