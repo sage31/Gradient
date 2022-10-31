@@ -5,7 +5,8 @@ var email = "";
 function handleCredentialResponse(response) {
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
     email = dataToken.email;
-    
+    alert(dataToken.email);
+
     if (email.substring(email.indexOf('@') != "@scu.edu")) {
         document.getElementById("emailErr").innerHTML += "You must use an SCU email to register an account.";
         document.getElementById("emailErr").style.visibility = "visible";
