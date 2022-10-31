@@ -70,7 +70,7 @@
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
         import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
         import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
-        import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js'
+        import { getDatabase, ref, set, get, child } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js'
 
         const firebaseConfig = {
             apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo",
@@ -86,6 +86,7 @@
         window.moduleGet = get;
         window.moduleSet = set;
         window.moduleRef = ref;
+        window.modChild = child;
         window.database = getDatabase(app);
     </script>
     <script src="index.js"></script>
