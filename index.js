@@ -12,9 +12,10 @@ function handleCredentialResponse(response) {
   
     else {
         document.getElementById("emailErr").style.visibility = "hidden";
-        window.moduleRef('window.database', 'users/' + email.substring(0, email.indexOf('@')), data => {
-            if (data.exists()) {
-                alert("you have an account with us.")
+        const dbref = window.moduleRef(window.database);
+        window.moduleGet(child(dbref, "users/" + email.substring(0, email.indexOf('@')))).then((snapshot) => {
+            if (snapshot.exists()) {
+                alert("you have an account");
             }
             else {
                 document.getElementById("accountForm").style.visibility = "visible";
