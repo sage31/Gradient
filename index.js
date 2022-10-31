@@ -12,7 +12,7 @@ function handleCredentialResponse(response) {
   
     else {
         document.getElementById("emailErr").style.visibility = "hidden";
-        window.moduleRef.once('window.database', 'users/' + email.substring(0, email.indexOf('@')), data => {
+        window.moduleRef.on('window.database', 'users/' + email.substring(0, email.indexOf('@')), data => {
             if (data.exists()) {
                 alert("you have an account with us.")
             }
