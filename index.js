@@ -3,10 +3,8 @@ var email = "";
 
 
 function handleCredentialResponse(response) {
-    //document.getElementById("credents").innerHTML = response.credential;
     const dataToken = JSON.parse(atob(response.credential.split('.')[1]));
     email = dataToken.email;
-    //if the user is not in the database already, create an account
     createAccount(dataToken.email);
 }
 
@@ -46,15 +44,4 @@ function addUserToDataBase() {
         lastName: lName,
         year: userYear
     });
-
-    /*
-    alert("first name: " + firstName + " year: " + userYear + " lastName: " + lastName + " email: " + email);
-    
-    fetch("http://localhost:3066/datasend", {
-        method: "POST",
-        headers: {
-            "Content-Type" : "application/json",
-        },
-        body: JSON.stringify({ email: email, firstName: firstName, lastName: lastName, year: year }),
-    */
 }

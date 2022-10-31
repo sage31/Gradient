@@ -1,0 +1,39 @@
+<html>
+<head>
+    SCUCrushes
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+
+
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+        import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js'
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo",
+            authDomain: "scucrushes-a9663.firebaseapp.com",
+            databaseURL: "https://scucrushes-a9663-default-rtdb.firebaseio.com",
+            projectId: "scucrushes-a9663",
+            storageBucket: "scucrushes-a9663.appspot.com",
+            messagingSenderId: "1027917905596",
+            appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
+            measurementId: "G-CFJTYX3MYW"
+        };
+        export const app = initializeApp(firebaseConfig);
+        window.moduleSet = set;
+        window.moduleRef = ref;
+        window.database = getDatabase(app);
+    </script>
+    <script src="main.js"></script>
+</body>
+
+
+
+
+
+</html>
