@@ -1,5 +1,6 @@
 var email = "";
-
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+const auth = window.getAuth(window.app);
 
 
 function handleCredentialResponse(response) {
@@ -21,6 +22,7 @@ function handleCredentialResponse(response) {
             else {
                 document.getElementById("accountForm").style.visibility = "visible";
                 createAccount(dataToken.email);
+                window.createUser(auth, email);
             }
         });
         

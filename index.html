@@ -3,9 +3,11 @@
 <head>
 
     <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@600&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
 </head>
 
 <body>
@@ -30,6 +32,13 @@
              data-shape="rectangular"
              data-width="240"
              data-logo_alignment="center">
+        </div>
+
+        <div id="signinTest">
+            <button id="signin" onclick="window.signIn(window.auth, window.provider)">
+                test sign in
+            </button>
+
         </div>
 
         <div id="emailErr" style="visibility:hidden">
@@ -68,8 +77,8 @@
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
-        import { getAuth } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
-        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+        import { getAuth, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
+        //import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
         import { getDatabase, ref, set, get, child } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js'
 
         const firebaseConfig = {
@@ -82,12 +91,35 @@
             appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
             measurementId: "G-CFJTYX3MYW"
         };
-        export const app = initializeApp(firebaseConfig);
+        window.auth = getAuth(window.app);
+        window.app = initializeApp(firebaseConfig);
         window.moduleGet = get;
         window.moduleSet = set;
         window.moduleRef = ref;
         window.modChild = child;
         window.database = getDatabase(app);
+        window.provider = new GoogleAuthProvider();
+
+        const auth = getAuth();
+        window.signIn(auth,provider) = signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+
     </script>
     <script src="index.js"></script>
     <footer>
