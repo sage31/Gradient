@@ -4,12 +4,12 @@
   padding: 10px 14px;
   color: #ffffff;
   display: inline-block;
-  font: normal bold 13px/1 "Product Sans Regular", product-sans;
   text-align: center;
 }
 body {
-  background-color: #faaca8;
-  background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+    background-color: #faaca8;
+    background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+    font-family: "Prompt", sans-serif;
 }
 
 #login {
