@@ -91,13 +91,14 @@
             appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
             measurementId: "G-CFJTYX3MYW"
         };
-        window.auth = getAuth(window.app);
+        
         window.app = initializeApp(firebaseConfig);
         window.moduleGet = get;
         window.moduleSet = set;
         window.moduleRef = ref;
         window.modChild = child;
         window.database = getDatabase(app);
+        window.auth = getAuth(window.app);
         window.provider = new GoogleAuthProvider();
 
         window.signIn = signInWithPopup;
