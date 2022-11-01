@@ -1,6 +1,5 @@
 var email = "";
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-const auth = window.getAuth(window.app);
+
 
 
 function handleCredentialResponse(response) {

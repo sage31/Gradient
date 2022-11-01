@@ -35,7 +35,7 @@
         </div>
 
         <div id="signinTest">
-            <button id="signin" onclick="window.signIn(window.auth, window.provider)">
+            <button id="signin" onclick="testfunc()">
                 test sign in
             </button>
 
@@ -77,7 +77,7 @@
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
-        import { getAuth, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
         //import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
         import { getDatabase, ref, set, get, child } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js'
 
@@ -100,9 +100,15 @@
         window.database = getDatabase(app);
         window.provider = new GoogleAuthProvider();
 
-        const auth = getAuth();
-        window.signIn(auth,provider) = signInWithPopup(auth, provider)
-            .then((result) => {
+        window.signIn = signInWithPopup;
+
+
+    </script>
+
+    <script>
+        function testfunc() {
+            window.signIn(window.auth, window.provider)
+                .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
@@ -119,7 +125,7 @@
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
             });
-
+        }
     </script>
     <script src="index.js"></script>
     <footer>
