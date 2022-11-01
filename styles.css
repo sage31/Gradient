@@ -47,3 +47,24 @@ h5 {
 .g_id_signin {
   display: inline-block;
 }
+
+.customButton {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-weight: normal;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.customButton:hover {
+        cursor: pointer;
+        background-color: #EBEBEB;
+        opacity: 1;
+        transition: 1s;
+        color: #000000;
+
+}
