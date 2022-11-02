@@ -14,6 +14,7 @@ body {
 
 #login {
   height: 300px;
+  margin: auto;
   width:33%;
   background-color: #ffffff;
   border-radius: 20px;
