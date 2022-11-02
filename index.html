@@ -14,7 +14,7 @@
 <body>
 
 
-<h1 id="title">SCUCrushes</h1>
+    <h1 id="title">SCUCrushes</h1>
 
     <div id="login">
         <div>
@@ -22,7 +22,7 @@
             <button class="customButton" onclick="testfunc()">Login with Google</button>
         </div>
         <div id="emailErr" style="visibility:hidden">
-            
+
         </div>
         <div id="accountForm" style="visibility:hidden">
             <p>
@@ -67,7 +67,7 @@
             appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
             measurementId: "G-CFJTYX3MYW"
         };
-        
+
         window.app = initializeApp(firebaseConfig);
         window.moduleGet = get;
         window.moduleSet = set;
@@ -88,25 +88,27 @@
         function testfunc() {
             window.signIn(window.auth, window.provider)
                 .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = window.gap.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
-                const user = result.user;
-                // ...
-            }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = window.gap.credentialFromError(error);
-                // ...
-            });
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    const credential = window.gap.credentialFromResult(result);
+                    const token = credential.accessToken;
+                    // The signed-in user info.
+                    const user = result.user;
+                    // ...
+                }).catch((error) => {
+                    // Handle Errors here.
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // The email of the user's account used.
+                    const email = error.customData.email;
+                    // The AuthCredential type that was used.
+                    const credential = window.gap.credentialFromError(error);
+                    // ...
+                });
         }
     </script>
     <script src="index.js"></script>
+
+    <br><br><br>
     <footer>
         <h5>Made by Stephen Dean, Anish Shanmuganathan, and Ethan Clawsie</h5>
     </footer>
