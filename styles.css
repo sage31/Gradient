@@ -13,6 +13,8 @@ body {
 }
 
 #login {
+  background-color: #ffffff;
+  border-radius: 20px;
   text-align: center;
   align-items: center;
   font-family: product-sans;
@@ -24,7 +26,6 @@ hr {
 
 h5 {
   -webkit-text-stroke-color: black;
-  padding-top:50px;
   margin: 0;
   text-align: center;
   color: red;
