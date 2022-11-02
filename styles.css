@@ -1,55 +1,51 @@
-﻿.loginButton {
-  background: #ffadee;
-  border-radius: 20px;
-  padding: 10px 14px;
-  color: #ffffff;
-  display: inline-block;
-  text-align: center;
-}
-body {
+﻿body {
     background-color: #faaca8;
     background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
-    
 }
 
 #login {
-  height: 300px;
-  margin: auto;
-  width:300px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  text-align: center;
-  align-items: center;
-  font-family: product-sans;
-  justify-content: center;
+    position: relative;
+    top: -50px;
+    box-shadow: 0px 0px 3px 0px;
+    height: 150px;
+    margin: auto;
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 1px;
+    text-align: center;
+    align-items: center;
+    font-family: "Prompt";
+    font-weight: 600;
+    justify-content: center;
 }
+
 hr {
-  margin: auto 220px;
+    margin: auto 220px;
 }
 
 h5 {
-  -webkit-text-stroke-color: black;
-  margin: 0;
-  text-align: center;
-  color: red;
-  font-family: product-sans;
-  font-family: "Prompt", sans-serif;
-  background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-color: black;
+    margin: 0;
+    text-align: center;
+    color: red;
+    font-family: product-sans;
+    font-family: "Prompt", sans-serif;
+    background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #title {
-  font-family: "Prompt", sans-serif;
-  background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 8em;
-  text-align: center;
+    font-family: "Prompt", sans-serif;
+    background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 8em;
+    text-align: center;
 }
 
 .g_id_signin {
-  display: inline-block;
+    display: inline-block;
 }
 
 
@@ -66,10 +62,10 @@ h5 {
     transition: 0.5s;
 }
 
-.customButton:hover {
-    cursor: pointer;
-    background-color: #EBEBEB;
-    opacity: 1;
-    transition: 1s;
-    color: #484848;
-} 
+    .customButton:hover {
+        cursor: pointer;
+        background-color: #EBEBEB;
+        opacity: 1;
+        transition: 1s;
+        color: #484848;
+    }
