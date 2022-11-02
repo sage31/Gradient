@@ -44,11 +44,6 @@ h5 {
     text-align: center;
 }
 
-.g_id_signin {
-    display: inline-block;
-}
-
-
 .customButton {
     border: 1px solid #C1C1C1;
     border-radius: 45.3px;
@@ -62,10 +57,10 @@ h5 {
     transition: 0.5s;
 }
 
-    .customButton:hover {
-        cursor: pointer;
-        background-color: #EBEBEB;
-        opacity: 1;
-        transition: 1s;
-        color: #484848;
-    }
+.customButton:hover {
+    cursor: pointer;
+    background-color: #EBEBEB;
+    opacity: 1;
+    transition: 1s;
+    color: #484848;
+}
