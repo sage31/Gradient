@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@600&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -16,27 +17,10 @@
 <h1 id="title">SCUCrushes</h1>
 
     <div id="login">
-
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-        <div id="g_id_onload"
-             data-client_id="1027041338776-rnkfcob43vlom4ld70b5q4ang8bv0klq.apps.googleusercontent.com"
-             data-auto_prompt="false"
-             data-callback="handleCredentialResponse">
-        </div>
-        <div class="g_id_signin"
-             data-type="standard"
-             data-size="large"
-             data-theme="outline"
-             data-text="sign_in_with"
-             data-shape="rectangular"
-             data-width="240"
-             data-logo_alignment="center">
-        </div>
-
-        
+        <div>
+            <img class="left" width="20px" alt="Google logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" style="margin-top:7px; margin-right:8px" />
             <button class="customButton large" onclick="testfunc()">Login with Google</button>
-
+        </div>
         <div id="emailErr" style="visibility:hidden">
             
         </div>
@@ -65,10 +49,6 @@
             </br>
             <button id="createAcc" onclick="addUserToDataBase()"> Continue </button>
         </div>
-
-
-
-
     </div>
 
     <script type="module">
