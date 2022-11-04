@@ -1,7 +1,6 @@
-window.database // reference to the database
-window.moduleSet // function to set data
-window.moduleRef // function to read data
-
+window.database; // reference to the database
+window.moduleSet; // function to set data
+window.moduleRef; // function to read data
 
 /*
  

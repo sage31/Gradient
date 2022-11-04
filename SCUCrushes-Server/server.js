@@ -7,6 +7,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.post("/sendx", (req, res) => {
-  const x = req.body.x;
+  const x = "testing";
   res.send({ x });
 });
