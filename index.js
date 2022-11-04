@@ -28,7 +28,6 @@ function login() {
 			const user = result.user;
 			if(user.email.substring(user.email.indexOf('@')) != "@scu.edu"){
 				document.getElementById("note").style.color = "red";
-				document.getElementById("note").style.font-weight = "bold";
 				
 			}
 			else{
