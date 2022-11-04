@@ -20,48 +20,46 @@ y5.innerHTML = year5;
 
 function login() {
 	window.signIn(window.auth, window.provider)
-		.then((result) => {
-			// This gives you a Google Access Token. You can use it to access the Google API.
-			const credential = window.gap.credentialFromResult(result);
-			const token = credential.accessToken;
-			// The signed-in user info.
-			const user = result.user;
-			if(user.email.substring(user.email.indexOf('@')) != "@scu.edu"){
-				document.getElementById("note").style.color = "red";
-				
-			}
-			else{
-				const dbref = window.moduleRef(window.database);
-				window.moduleGet(
-					window.modChild(
-					  dbref,
-					  "users/" + user.uid)
-					)
-				  
-				  .then((snapshot) => {
-					if (snapshot.exists()) {
-					  //sign them in
-					} else {
-					  document.getElementById("accountForm").style.display = "block";
-					  document.getElementById("gButton").style.display = "none";
-					  document.getElementById("note").style.display = "none";
-					}
-				  )}
-			
-			// ...
-			}
-		})
-		.catch((error) => {
-			// Handle Errors here.
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			// The email of the user's account used.
-			const email = error.customData.email;
-			// The AuthCredential type that was used.
-			const credential = window.gap.credentialFromError(error);
-			// ...
-		});
+	.then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+	
+	if(user.email.substring(user.email.indexOf('@')) != "@scu.edu"){
+		document.getElementById("note").style.color = "red";
 	}
+	else{
+		const dbref = window.moduleRef(window.database);
+		window.moduleGet(
+			window.modChild(
+			  dbref,
+			  "users/" + user.uid)
+			)
+		  .then((snapshot) => {
+			if (snapshot.exists()) {
+			  //sign them in
+			} else {
+			  document.getElementById("accountForm").style.display = "block";
+			  document.getElementById("gButton").style.display = "none";
+			  document.getElementById("note").style.display = "none";
+			}
+		  });
+	
+	// ...
+	}
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+}
 
 
 
