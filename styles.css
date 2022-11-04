@@ -1,6 +1,13 @@
 ﻿body {
     background-color: #faaca8;
     background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+    height: 100vh;
+}
+footer{
+    clear: both;
+    position: relative;
+    bottom:-222px;
+    text-align:center;
 }
 
 #login {
