@@ -5,9 +5,10 @@
 }
 footer{
     clear: both;
-    position: relative;
-    bottom:-200px;
-    text-align:center;
+    position: absolute;
+    bottom: -69px;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 #login {
