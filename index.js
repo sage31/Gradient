@@ -16,7 +16,7 @@ y4.innerHTML = year4;
 y5 = document.getElementById("y5");
 y5.innerHTML = year5;
 
-function testfunc() {
+function login() {
 	window.signIn(window.auth, window.provider)
 		.then((result) => {
 			// This gives you a Google Access Token. You can use it to access the Google API.
@@ -24,7 +24,9 @@ function testfunc() {
 			const token = credential.accessToken;
 			// The signed-in user info.
 			const user = result.user;
-			alert(user.email);
+			if(user.email.substring(user.email.indexOf('@')) != "@scu.edu"){
+				alert("You must use an SCU email address");
+			}
 			// ...
 		}).catch((error) => {
 			// Handle Errors here.
