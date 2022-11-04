@@ -4,7 +4,7 @@ let year2 = year1 + 1;
 let year3 = year2 + 1;
 let year4 = year3 + 1;
 let year5 = year4 + 1;
-
+sendx();
 y1 = document.getElementById("y1");
 y1.innerHTML = year1;
 y2 = document.getElementById("y2");
@@ -82,4 +82,19 @@ function addUserToDataBase() {
     lastName: lName,
     year: userYear,
   });
+}
+
+function sendx() {
+  var x = "test test test";
+  fetch("http://localhost:4042/sendx", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ x }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert(JSON.stringify(data));
+    });
 }
