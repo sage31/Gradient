@@ -33,13 +33,12 @@ function login() {
 			}
 			else{
 				const dbref = window.moduleRef(window.database);
-				window
-				  .moduleGet(
+				window.moduleGet(
 					window.modChild(
 					  dbref,
 					  "users/" + user.uid)
 					)
-				  )
+				  
 				  .then((snapshot) => {
 					if (snapshot.exists()) {
 					  //sign them in
@@ -48,10 +47,12 @@ function login() {
 					  document.getElementById("gButton").style.display = "none";
 					  document.getElementById("note").style.display = "none";
 					}
-			}
+				  )}
 			
 			// ...
-		}).catch((error) => {
+			}
+		})
+		.catch((error) => {
 			// Handle Errors here.
 			const errorCode = error.code;
 			const errorMessage = error.message;
@@ -61,8 +62,8 @@ function login() {
 			const credential = window.gap.credentialFromError(error);
 			// ...
 		});
-		}
-}
+	}
+
 
 
 function handleCredentialResponse(response) {
