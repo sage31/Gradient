@@ -60,7 +60,9 @@ function login() {
 			const credential = window.gap.credentialFromError(error);
 			// ...
 		});
+		}
 }
+
 
 function handleCredentialResponse(response) {
   const dataToken = JSON.parse(atob(response.credential.split(".")[1]));
@@ -120,6 +122,6 @@ function sendx() {
   })
     .then((response) => response.json())
     .then((data) => {
-      alert(JSON.stringify(data));
+      document.getElementById("infobox").innerHTML = JSON.stringify(data);
     });
 }
