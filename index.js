@@ -109,7 +109,7 @@ function addUserToDataBase() {
   });
 }
 
-/*
+
 function sendx() {
   var x = "test test test";
   fetch("http://localhost:4042/sendx", {
@@ -124,4 +124,4 @@ function sendx() {
       document.getElementById("infobox").innerHTML = JSON.stringify(data);
     });
 }
-*/
+
