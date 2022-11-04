@@ -44,8 +44,9 @@ function login() {
 					if (snapshot.exists()) {
 					  //sign them in
 					} else {
-					  document.getElementById("accountForm").style.visibility = "visible";
-					  createAccount(user.uid);
+					  document.getElementById("accountForm").style.display = "block";
+					  document.getElementById("gButton").style.display = "none";
+					  document.getElementById("note").style.display = "none";
 					}
 			}
 			
@@ -97,7 +98,7 @@ function handleCredentialResponse(response) {
 function createAccount(email) {}
 
 function addUserToDataBase() {
-  document.getElementById("accountForm").style.visibility = "visible";
+
   
   //user id/email will be set to a global variable in server
   userYear = document.getElementById("year").value;
