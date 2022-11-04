@@ -25,31 +25,32 @@
         </button>
         </br>
         <small id="note" style="font-weight:lighter">*You must use your SCU email address</small>
+		<div id="accountForm" style="display:none">
+			<p>
+				Please enter in the following information
+				to create an account.
+			</p>
+			<form>
+				<select name="gradClass" id="year">
+					<option id="none">Select your graduation year</option>
+					<option id="y1"></option>
+					<option id="y2"></option>
+					<option id="y3"></option>
+					<option id="y4"></option>
+					<option id="y5"></option>
+				</select>
+				</br>
+				<p>First Name</p>
+				<input id="firstName" placeholder="John" />
+				</br>
+				<p>Last Name</p>
+				<input id="lastName" placeholder="Applebee" />
+			</form>
+			</br>
+			<button id="createAcc" onclick="addUserToDataBase()"> Continue </button>
+		</div>
     </div>
-    <div id="accountForm" style="display:none">
-        <p>
-            Please enter in the following information
-            to create an account.
-        </p>
-        <form>
-            <select name="gradClass" id="year">
-                <option id="none">Select your graduation year</option>
-                <option id="y1"></option>
-                <option id="y2"></option>
-                <option id="y3"></option>
-                <option id="y4"></option>
-                <option id="y5"></option>
-            </select>
-            </br>
-            <p>First Name</p>
-            <input id="firstName" placeholder="John" />
-            </br>
-            <p>Last Name</p>
-            <input id="lastName" placeholder="Applebee" />
-        </form>
-        </br>
-        <button id="createAcc" onclick="addUserToDataBase()"> Continue </button>
-    </div>
+    
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
         import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'

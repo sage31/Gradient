@@ -25,7 +25,7 @@ function login() {
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
-	alert("hi");
+	
 	if(user.email.substring(user.email.indexOf('@')) != "@scu.edu"){
 		document.getElementById("note").style.color = "red";
 	}
