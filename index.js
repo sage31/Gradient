@@ -5,7 +5,6 @@ let year3 = year2 + 1;
 let year4 = year3 + 1;
 let year5 = year4 + 1;
 
-sendx();
 
 y1 = document.getElementById("y1");
 y1.innerHTML = year1;
@@ -22,11 +21,11 @@ function login() {
 	window.signIn(window.auth, window.provider)
 	.then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const credential = window.gap.credentialFromResult(result);
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
-	
+	alert("hi");
 	if(user.email.substring(user.email.indexOf('@')) != "@scu.edu"){
 		document.getElementById("note").style.color = "red";
 	}
@@ -54,7 +53,7 @@ function login() {
     const errorCode = error.code;
     const errorMessage = error.message;
     // The email of the user's account used.
-    const email = error.customData.email;
+    //const email = error.customData.email;
     // The AuthCredential type that was used.
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
