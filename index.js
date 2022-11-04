@@ -5,7 +5,6 @@ let year3 = year2 + 1;
 let year4 = year3 + 1;
 let year5 = year4 + 1;
 
-sendx();
 
 y1 = document.getElementById("y1");
 y1.innerHTML = year1;
