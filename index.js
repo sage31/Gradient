@@ -4,7 +4,9 @@ let year2 = year1 + 1;
 let year3 = year2 + 1;
 let year4 = year3 + 1;
 let year5 = year4 + 1;
+
 sendx();
+
 y1 = document.getElementById("y1");
 y1.innerHTML = year1;
 y2 = document.getElementById("y2");
@@ -25,8 +27,28 @@ function login() {
 			// The signed-in user info.
 			const user = result.user;
 			if(user.email.substring(user.email.indexOf('@')) != "@scu.edu"){
-				alert("You must use an SCU email address");
+				document.getElementById("note").style.color = "red";
+				document.getElementById("note").style.font-weight = "bold";
+				
 			}
+			else{
+				const dbref = window.moduleRef(window.database);
+				window
+				  .moduleGet(
+					window.modChild(
+					  dbref,
+					  "users/" + user.uid)
+					)
+				  )
+				  .then((snapshot) => {
+					if (snapshot.exists()) {
+					  //sign them in
+					} else {
+					  document.getElementById("accountForm").style.visibility = "visible";
+					  createAccount(user.uid);
+					}
+			}
+			
 			// ...
 		}).catch((error) => {
 			// Handle Errors here.
@@ -62,9 +84,9 @@ function handleCredentialResponse(response) {
           alert("You have an account");
           //sign them in
         } else {
-          document.getElementById("accountForm").style.visibility = "visible";
-          createAccount(dataToken.email);
-          window.createUser(auth, email);
+          document.getElementById("accountForm").style.display = "block";
+		  document.getElementById("gButton").style.display = "none";
+		  document.getElementById("note").style.display = "none";
         }
       });
   }
@@ -73,8 +95,9 @@ function handleCredentialResponse(response) {
 function createAccount(email) {}
 
 function addUserToDataBase() {
-  document.getElementById("accountForm").style.visibility = "hidden";
-  let id = email.substring(0, email.indexOf("@"));
+  document.getElementById("accountForm").style.visibility = "visible";
+  
+  //user id/email will be set to a global variable in server
   userYear = document.getElementById("year").value;
   fName = document.getElementById("firstName").value;
   lName = document.getElementById("lastName").value;
