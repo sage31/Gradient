@@ -16,28 +16,28 @@ y4.innerHTML = year4;
 y5 = document.getElementById("y5");
 y5.innerHTML = year5;
 
-function login() {
-	window.signIn(window.auth, window.provider)
-		.then((result) => {
-			// This gives you a Google Access Token. You can use it to access the Google API.
-			const credential = window.gap.credentialFromResult(result);
-			const token = credential.accessToken;
-			// The signed-in user info.
-			const user = result.user;
-			if(user.email.substring(user.email.indexOf('@')) != "@scu.edu"){
-				alert("You must use an SCU email address");
-			}
-			// ...
-		}).catch((error) => {
-			// Handle Errors here.
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			// The email of the user's account used.
-			const email = error.customData.email;
-			// The AuthCredential type that was used.
-			const credential = window.gap.credentialFromError(error);
-			// ...
-		});
+function testfunc() {
+  window
+    .signIn(window.auth, window.provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = window.gap.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      alert(user.email);
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = window.gap.credentialFromError(error);
+      // ...
+    });
 }
 
 function handleCredentialResponse(response) {
@@ -97,6 +97,6 @@ function sendx() {
   })
     .then((response) => response.json())
     .then((data) => {
-      alert(JSON.stringify(data));
+      document.getElementById("infobox").innerHTML = JSON.stringify(data);
     });
 }
