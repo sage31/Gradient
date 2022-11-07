@@ -38,10 +38,6 @@ footer {
   padding-bottom: 10px;
 }
 
-hr {
-  margin: auto 220px;
-}
-
 h5 {
   -webkit-text-stroke-color: black;
   margin: 0;
@@ -84,4 +80,16 @@ h5 {
   opacity: 1;
   transition: 1s;
   color: #484848;
+}
+
+#createAcc{
+  background:    #e9a6ce;
+  border: 0px;
+  border-radius: 10px;
+  padding:       10px 45px;
+  font-family: "Prompt", sans-serif;
+  color:         #ffffff;
+  display:       inline-block;
+  font:          normal bold 17px/1 "Prompt", sans-serif;
+  text-align:    center;
 }
