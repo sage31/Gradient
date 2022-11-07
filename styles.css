@@ -9,17 +9,17 @@ body {
   overflow: auto;
 }
 footer {
-  background-color:black;
-  margin:10px;
   clear: both;
   height: auto;
-  width: auto;
   position: fixed;
   bottom: 0px;
   left: 50%;
   transform: translate(-50%);
   overflow: hidden;
-  padding:5px;
+  width: 100%;      
+  background: #333;
+  padding: 10px;
+  color: #fff;
 }
 #login {
   position: relative;
