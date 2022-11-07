@@ -110,7 +110,7 @@ function addUserToDataBase() {
 }
 
 function sendx(x) {
-  
+  alert(x);
   //variable that is being sent
   fetch("http://localhost:4042/sendx", {
     //"channel it is being sent to"
