@@ -4,7 +4,8 @@ let year2 = year1 + 1;
 let year3 = year2 + 1;
 let year4 = year3 + 1;
 let year5 = year4 + 1;
-sendx();
+var data;
+
 y1 = document.getElementById("y1");
 y1.innerHTML = year1;
 y2 = document.getElementById("y2");
@@ -25,10 +26,15 @@ function login() {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
-
+      sendx(result);
+      
+      /*
+      
       if (user.email.substring(user.email.indexOf("@")) != "@scu.edu") {
         document.getElementById("note").style.color = "red";
+        alert("You must use your SCU email");
       } else {
+        sendx(result);
         const dbref = window.moduleRef(window.database);
         window
           .moduleGet(window.modChild(dbref, "users/" + user.uid))
@@ -44,6 +50,7 @@ function login() {
 
         // ...
       }
+      */
     })
     .catch((error) => {
       // Handle Errors here.
