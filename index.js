@@ -1,3 +1,5 @@
+const { send } = require("process");
+
 var email = "";
 let year1 = new Date().getFullYear();
 let year2 = year1 + 1;
@@ -109,18 +111,17 @@ function addUserToDataBase() {
   });
 }
 
-function sendx(x) {
+function sendx() {
+  var x = "test";
   //variable that is being sent
   fetch("http://localhost:4042/sendx", {
     //"channel it is being sent to"
-
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ x }),
-
-    //What is being sent.
+    //What is being sent
   })
     .then((response) => response.json())
     .then((data) => {

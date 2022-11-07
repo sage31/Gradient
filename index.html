@@ -18,7 +18,7 @@
         </br>
         <span>LOGIN/CREATE AN ACCOUNT*</span>
         </br>
-        <button id="gButton" class="customButton" onclick="login()">
+        <button id="gButton" class="googleButton" onclick="login()">
             <img width="20px" alt="Google logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" style="position:relative; right:10px; top:5px;" />
             Sign in with Google
         </button>
@@ -30,20 +30,21 @@
 				to create an account.
 			</p>
 			<form>
-				<select name="gradClass" id="year">
-					<option id="none">Select your graduation year</option>
+				<p>First Name</p>
+				<input id="firstName" placeholder="John" />
+				</br>
+				<p>Last Name</p>
+				<input id="lastName" placeholder="Applebee" />
+                </br>
+                <p>Graduation Year</p>
+                <select name="gradClass" id="year">
+					<option id="none">Select graduation year</option>
 					<option id="y1"></option>
 					<option id="y2"></option>
 					<option id="y3"></option>
 					<option id="y4"></option>
 					<option id="y5"></option>
 				</select>
-				</br>
-				<p>First Name</p>
-				<input id="firstName" placeholder="John" />
-				</br>
-				<p>Last Name</p>
-				<input id="lastName" placeholder="Applebee" />
 			</form>
 			</br>
 			<button id="createAcc" onclick="addUserToDataBase()"> Continue </button>
