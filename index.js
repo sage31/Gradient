@@ -26,8 +26,8 @@ function login() {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
-      sendx(result);
-      
+      console.log(result);
+
       /*
       
       if (user.email.substring(user.email.indexOf("@")) != "@scu.edu") {
