@@ -104,15 +104,19 @@ function addUserToDataBase() {
 
 function sendx() {
   var x = "test test test";
+  //variable that is being sent
   fetch("http://localhost:4042/sendx", {
+    //"channel it is being sent to"
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ x }),
+    //What is being sent
   })
     .then((response) => response.json())
     .then((data) => {
       alert(JSON.stringify(data));
+      //Alerting the response from server.js
     });
 }
