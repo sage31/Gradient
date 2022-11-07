@@ -114,4 +114,19 @@ form {
   padding-top: 5px;
   padding-bottom: 25px;
 }
-
+input {
+  margin-bottom: 3vh;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  background-color: transparent;
+  outline: none;
+  color: black;
+  caret-color: black;
+  font-family: "Roboto", sans-serif;
+}
+input[type="text"]::placeholder {
+  text-align: center;
+  color: black;
+  font-family: "Roboto", sans-serif;
+}
