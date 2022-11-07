@@ -51,6 +51,7 @@ h5 {
   font-family: "Prompt", sans-serif;
   background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -58,6 +59,7 @@ h5 {
   font-family: "Prompt", sans-serif;
   background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 8em;
   text-align: center;
