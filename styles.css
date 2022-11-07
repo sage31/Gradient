@@ -1,12 +1,20 @@
 ﻿html{
   overflow: hidden;
   height: 100%;
+  /* new stuff*/
+  background: linear-gradient(134.72deg, #eb4b92 0%, #ca76e3 100%);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
 }
 body {
   background-color: #faaca8;
   background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
   height: 100%;
   overflow: auto;
+  text-align: center;
 }
 footer {
   clear: both;
@@ -93,3 +101,16 @@ h5 {
   font:          normal bold 17px/1 "Prompt", sans-serif;
   text-align:    center;
 }
+/* TODO: Add form styling */
+form {
+  background: transparent;
+  height: auto;
+  width: auto;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  -webkit-box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 10px;
+}
+
