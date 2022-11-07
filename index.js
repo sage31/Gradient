@@ -110,11 +110,7 @@ function addUserToDataBase() {
 }
 
 function sendx(x) {
-<<<<<<< HEAD
   alert(JSON.stringify({x}));
-=======
-  alert(x);
->>>>>>> 04c1b8a (Test)
   //variable that is being sent
   fetch("http://localhost:4042/sendx", {
     //"channel it is being sent to"
