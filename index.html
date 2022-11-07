@@ -46,8 +46,16 @@
 					<option id="y5"></option>
 				</select>
 			</form>
-			
-			<button id="createAcc" onclick="addUserToDataBase()"> Continue </button>
+			<div class="container">
+                <button id="btn" class="continue" onclick="addUserToDataBase()">
+                  <p id="btnText">Submit</p>
+                  <div class="check-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                      <path fill="transparent" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
 		</div>
     </div>
     
@@ -78,6 +86,12 @@
         window.signIn = signInWithPopup;
     </script>
     <script src="index.js"></script>
+    <script type="text/javascript">
+        btn.onclick = () => {
+          btnText.innerHTML = "Thanks";
+          btn.classList.add("active");
+        };
+      </script>
     <footer>
         <h5>Made by Stephen Dean, Anish Shanmuganathan, Ethan Clawsie, and Justin Fan</h5>
     </footer>
