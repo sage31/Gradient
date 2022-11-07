@@ -1,21 +1,25 @@
 ﻿html{
   overflow: hidden;
-  height:100%;
+  height: 100%;
 }
 body {
   background-color: #faaca8;
   background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
-  height: 100vh;
+  height: 100%;
+  overflow: auto;
 }
 footer {
+  background-color:black;
+  margin:10px;
   clear: both;
-  height: 5%;
+  height: auto;
   width: auto;
   position: fixed;
   bottom: 0px;
   left: 50%;
   transform: translate(-50%);
   overflow: hidden;
+  padding:5px;
 }
 #login {
   position: relative;
