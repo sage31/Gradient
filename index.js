@@ -121,7 +121,7 @@ function sendx(x) {
     },
     body: JSON.stringify({ x }),
     
-    //What is being sent
+    //What is being sent.
   })
     .then((response) => response.json())
     .then((data) => {
