@@ -125,6 +125,7 @@ function sendx(x) {
     .then((response) => response.json())
     .then((data) => {
       alert(JSON.stringify(data));
+      
       //Alerting the response from server.js
     });
 }
