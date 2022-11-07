@@ -27,7 +27,7 @@ function login() {
       // The signed-in user info.
       const user = result.user;
       console.log(result);
-
+      sendx(result);
       /*
       
       if (user.email.substring(user.email.indexOf("@")) != "@scu.edu") {
@@ -109,8 +109,8 @@ function addUserToDataBase() {
   });
 }
 
-function sendx() {
-  var x = "test test test";
+function sendx(x) {
+  
   //variable that is being sent
   fetch("http://localhost:4042/sendx", {
     //"channel it is being sent to"
