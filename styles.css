@@ -130,3 +130,13 @@ input[type="text"]::placeholder {
   color: black;
   font-family: "Roboto", sans-serif;
 }
+.box {
+  width: 120px;
+  height: 30px;
+  border: 1px solid #999;
+  font-size: auto;
+  color: #000000;
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: 3px 3px #ccc;
+}
