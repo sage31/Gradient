@@ -63,7 +63,7 @@ h5 {
   text-align: center;
 }
 
-.customButton {
+.googleButton {
   border: 1px solid #c1c1c1;
   border-radius: 45.3px;
   padding: 5px 20px 10px 30px;
@@ -76,7 +76,7 @@ h5 {
   transition: 0.5s;
 }
 
-.customButton:hover {
+.googleButton:hover {
   cursor: pointer;
   background-color: #ebebeb;
   opacity: 1;
