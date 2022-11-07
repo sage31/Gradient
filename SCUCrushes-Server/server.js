@@ -9,7 +9,8 @@ app.use(express.json());
 app.post("/sendx", (req, res) => {
   console.log(req.body.x);
   //"Printing" the information sent from the web
-  const x = "testing";
-  res.send({ x });
+  //const x = "testing";
+  const a = req.body.x;
+  res.send({a});
   //Sending a response to the web
 });
