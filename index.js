@@ -1,6 +1,6 @@
-//sendx();
+sendx();
 
-ar email = "";
+var email = "";
 let year1 = new Date().getFullYear();
 let year2 = year1 + 1;
 let year3 = year2 + 1;
@@ -114,7 +114,7 @@ function addUserToDataBase() {
 function sendx() {
   var x = "test test";
   //variable that is being sent
-  fetch("http://localhost:4042/sendx", {
+  fetch("https://Server-Test.ethancl.repl.co/sendx", {
     //"channel it is being sent to"
 
     method: "POST",
