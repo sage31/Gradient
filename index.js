@@ -95,22 +95,23 @@ function handleCredentialResponse(response) {
 }
 
 function formValidation(){
-//validate form to check if firstName and lastName are filled out
-//if not, alert user to fill out form
-//if so, call addUserToDataBase()
+  var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
+  var year = document.getElementById("year").value;
 
-//validate form to check if year is selected
-//if not, alert user to select year
-//if so, call addUserToDataBase()
-
+  if(firstName == "" || lastName == "" || year == ""){
+    alert("Please fill out all fields");
+  }else{
+    addUserToDataBase();
+  }
 }
 
 
 function addUserToDataBase() {
   //user id/email will be set to a global variable in server
-  userYear = document.getElementById("year").value;
-  fName = document.getElementById("firstName").value;
-  lName = document.getElementById("lastName").value;
+  var userYear = document.getElementById("year").value;
+  var fName = document.getElementById("firstName").value;
+  var lName = document.getElementById("lastName").value;
   window.moduleSet(window.moduleRef(window.database, "users/" + id), {
     userEmail: email,
     firstName: fName,
