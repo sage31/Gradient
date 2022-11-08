@@ -59,6 +59,10 @@ h5 {
   -webkit-text-fill-color: transparent;
 }
 
+small{
+  font-size:12px;
+}
+
 #title {
   font-family: "Prompt", sans-serif;
   background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
