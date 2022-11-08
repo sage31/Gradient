@@ -18,27 +18,26 @@
         </br>
         <span>LOGIN/CREATE AN ACCOUNT*</span>
         </br>
+        <small id="note" style="font-weight:lighter">*You must use your SCU email address</small>
+        <br>
         <button id="gButton" class="googleButton" onclick="login()">
             <img width="20px" alt="Google logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" style="position:relative; right:10px; top:5px;" />
             Sign in with Google
         </button>
         </br>
-        <small id="note" style="font-weight:lighter">*You must use your SCU email address</small>
-		<div id="accountForm" style="display:none">
-			<p>
-				Please enter in the following information
-				to create an account.
-			</p>
+        
+		<div id="accountForm" style="display:block">
+			<p>Enter Account Information</p>
 			<form>
 				<p>First Name</p>
-				<input id="firstName" placeholder="John" />
+				<input id="firstName" placeholder="First Name" onfocus="this.placeholder=''" onblur="this.placeholder='First Name'" />
 				</br>
 				<p>Last Name</p>
-				<input id="lastName" placeholder="Applebee" />
+				<input id="lastName" placeholder="Last Name" onfocus="this.placeholder=''" onblur="this.placeholder='Last Name'" />
                 </br>
                 <p>Graduation Year</p>
-                <select name="gradClass" id="year">
-					<option id="none">Select graduation year</option>
+                <select class = "box" name="gradClass" id="year">
+					<option id="none">Select Year</option>
 					<option id="y1"></option>
 					<option id="y2"></option>
 					<option id="y3"></option>
@@ -46,8 +45,16 @@
 					<option id="y5"></option>
 				</select>
 			</form>
-			</br>
-			<button id="createAcc" onclick="addUserToDataBase()"> Continue </button>
+			<div class="container">
+                <button id="btn" class="continue" onclick="addUserToDataBase()">
+                  <p id="btnText">Submit</p>
+                  <div class="check-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                      <path fill="transparent" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
 		</div>
     </div>
     
@@ -78,6 +85,12 @@
         window.signIn = signInWithPopup;
     </script>
     <script src="index.js"></script>
+    <script type="text/javascript">
+        btn.onclick = () => {
+          btnText.innerHTML = "Account Created";
+          btn.classList.add("active");
+        };
+      </script>
     <footer>
         <h5>Made by Stephen Dean, Anish Shanmuganathan, Ethan Clawsie, and Justin Fan</h5>
     </footer>
