@@ -78,6 +78,7 @@ h5 {
   color: #484848;
   font-family: "Prompt", sans-serif;
   font-weight: bold;
+  font-size: 16px;
   opacity: 1;
   transition: 0.5s;
 }
