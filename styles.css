@@ -148,7 +148,7 @@ input[type="text"]::placeholder {
     align-items: center;
 }
 
-button.continue{
+button{
     width: 270px;
     height: 80px;
     border: none;
