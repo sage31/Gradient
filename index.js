@@ -94,7 +94,17 @@ function handleCredentialResponse(response) {
   }
 }
 
-function createAccount(email) {}
+function formValidation(){
+//validate form to check if firstName and lastName are filled out
+//if not, alert user to fill out form
+//if so, call addUserToDataBase()
+
+//validate form to check if year is selected
+//if not, alert user to select year
+//if so, call addUserToDataBase()
+
+}
+
 
 function addUserToDataBase() {
   //user id/email will be set to a global variable in server
