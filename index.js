@@ -1,5 +1,3 @@
-sendx();
-
 var email = "";
 let year1 = new Date().getFullYear();
 let year2 = year1 + 1;
