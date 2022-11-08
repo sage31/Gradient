@@ -118,7 +118,7 @@ function sendx(x) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: { x },
+    body: JSON.stringify({x}),
     //What is being sent
   })
     .then((response) => response.json())
