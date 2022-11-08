@@ -111,8 +111,7 @@ function addUserToDataBase() {
   });
 }
 
-function sendx() {
-  var x = "test test";
+function sendx(x) {
   //variable that is being sent
   fetch("https://Server-Test.ethancl.repl.co/sendx", {
     //"channel it is being sent to"
@@ -121,7 +120,7 @@ function sendx() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ x }),
+    body: { x },
     //What is being sent
   })
     .then((response) => response.json())
