@@ -137,6 +137,13 @@ function sendx(x) {
       if(!data.verified){
         alert("Account cannot be created. You must use your SCU email address");
       }
+      else{
+        document.getElementById("accountForm").style.display = "block";
+        document.getElementById("gButton").style.display = "none";
+        document.getElementById("note").style.display = "none";
+      }
+
+
       //Alerting the response from server.js
     });
 }
