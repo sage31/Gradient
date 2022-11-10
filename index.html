@@ -26,7 +26,7 @@
       Sign in with Google
     </button>
 
-    <div id="accountForm" style="display:none;padding-top:1px;">
+    <div id="accountForm" style="display:block;padding-top:1px;">
       <p>Create Your Account</p>
       <form>
         <p style="margin-top:8px;margin-bottom:5px;">First Name</p>
@@ -45,7 +45,12 @@
           <option id="y4"></option>
           <option id="y5"></option>
         </select>
-      </br>
+      </form>
+
+      <button id="submit" onclick="addUser()">
+      Submit</button>
+
+      <div class="container" style="display:none;">
         <button id="btn" class="continue" onclick="addUser()">
           <p id="btnText">Submit</p>
           <div class="check-box">
@@ -54,10 +59,6 @@
             </svg>
           </div>
         </button>
-      </br>
-      </form>
-      <div class="container">
-        
       </div>
     </div>
   </div>
