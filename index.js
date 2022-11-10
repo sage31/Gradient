@@ -98,7 +98,7 @@ function addUser() {
   var firstName = document.getElementById("firstName").value;
   var lastName = document.getElementById("lastName").value;
   var year = document.getElementById("year").value;
-  
+
   if(firstName == "" || lastName == "" || year == "Select Year"){
     alert("Please fill out all fields");
   }else{
@@ -132,7 +132,7 @@ function sendx(x) {
     .then((data) => {
       //alert(JSON.stringify(data));
       if(!data.verified){
-        alert("Account cannot be created. You must use your SCU email address");
+        alert("Account cannot be created. You must use your SCU email address.");
       }
       else{
         document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
