@@ -92,7 +92,9 @@ function handleCredentialResponse(response) {
   }
 }
 
-function formValidation(){
+
+function addUser() {
+  //user id/email will be set to a global variable in server
   var firstName = document.getElementById("firstName").value;
   var lastName = document.getElementById("lastName").value;
   var year = document.getElementById("year").value;
@@ -100,14 +102,8 @@ function formValidation(){
   if(firstName == "" || lastName == "" || year == ""){
     alert("Please fill out all fields");
   }else{
-    addUserToDataBase();
-  }
-}
-
-
-function addUserToDataBase() {
-  //user id/email will be set to a global variable in server
-  var userYear = document.getElementById("year").value;
+      //send data here
+      var userYear = document.getElementById("year").value;
   var fName = document.getElementById("firstName").value;
   var lName = document.getElementById("lastName").value;
   window.moduleSet(window.moduleRef(window.database, "users/" + id), {
@@ -116,6 +112,8 @@ function addUserToDataBase() {
     lastName: lName,
     year: userYear,
   });
+  }
+  
 }
 
 function sendx(x) {
