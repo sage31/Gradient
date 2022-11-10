@@ -103,9 +103,12 @@ function addUser() {
     alert("Please fill out all fields");
   }else{
       //send data here
-      var userYear = document.getElementById("year").value;
-  var fName = document.getElementById("firstName").value;
-  var lName = document.getElementById("lastName").value;
+      let data = {
+        fName : firstName,
+        lName : lastName,
+        gradYear : year
+      };
+      sendData(data);
   window.moduleSet(window.moduleRef(window.database, "users/" + id), {
     userEmail: email,
     firstName: fName,
@@ -114,6 +117,26 @@ function addUser() {
   });
   }
   
+}
+
+function sendData(data){
+  fetch("https://Server-Test.ethancl.repl.co/sendData", {
+    //"channel it is being sent to"
+
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {data},
+    //What is being sent
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      //alert(JSON.stringify(data));
+      alert(data);
+
+      //Alerting the response from server.js
+    });
 }
 
 function sendx(x) {
