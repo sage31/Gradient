@@ -110,7 +110,7 @@ function addUser() {
     };
     sendData(data);
     document.getElementById("accountForm").style.display = "none";
-    document.getElementById("gButton").style.display = "block";
+    document.getElementById("gButton").style.display = "inline";
     document.getElementById("note").style.display = "block";
     document.getElementById("loginHeader").style.display = "block";
 
