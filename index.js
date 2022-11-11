@@ -154,14 +154,18 @@ function sendx(x) {
     .then((response) => response.json())
     .then((data) => {
       //alert(JSON.stringify(data));
-      if(!data.verified){
+      if(!data.ver){
         alert("Account cannot be created. You must use your SCU email address.");
       }
+
       else{
-        document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
-        document.getElementById("gButton").style.display = "none";
-        document.getElementById("note").style.display = "none";
-        document.getElementById("loginHeader").style.display = "none";
+        if(!data.accExists){
+          document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
+          document.getElementById("gButton").style.display = "none";
+          document.getElementById("note").style.display = "none";
+          document.getElementById("loginHeader").style.display = "none";
+        }
+        else alert("Account already exists");
       }
 
 
