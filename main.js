@@ -14,7 +14,7 @@ function keeploggedin() {
 }
 
 function opendata() {
-  x = "Opened main";
+  x = "Opened main html";
   fetch("https://Server-Test.ethancl.repl.co/opendata", {
     method: "POST",
     headers: {
