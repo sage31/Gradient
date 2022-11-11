@@ -24,7 +24,7 @@ function login() {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = window.gap.credentialFromResult(result);
       const token = credential.accessToken;
-      
+
       sendx(result);
       /*
       
@@ -92,34 +92,32 @@ function handleCredentialResponse(response) {
   }
 }
 
-
 function addUser() {
   //user id/email will be set to a global variable in server
   var firstName = document.getElementById("firstName").value;
   var lastName = document.getElementById("lastName").value;
   var year = document.getElementById("year").value;
 
-  if(firstName == "" || lastName == "" || year == "Select Year"){
+  if (firstName == "" || lastName == "" || year == "Select Year") {
     alert("Please fill out all fields");
-  }else{
-      //send data here
-      let data = {
-        fName : firstName,
-        lName : lastName,
-        gradYear : year
-      };
-      sendData(data);
-  window.moduleSet(window.moduleRef(window.database, "users/" + id), {
-    userEmail: email,
-    firstName: fName,
-    lastName: lName,
-    year: userYear,
-  });
+  } else {
+    //send data here
+    let data = {
+      fName: firstName,
+      lName: lastName,
+      gradYear: year,
+    };
+    sendData(data);
+    window.moduleSet(window.moduleRef(window.database, "users/" + id), {
+      userEmail: email,
+      firstName: fName,
+      lastName: lName,
+      year: userYear,
+    });
   }
-  
 }
 
-function sendData(data){
+function sendData(data) {
   fetch("https://Server-Test.ethancl.repl.co/sendData", {
     //"channel it is being sent to"
 
@@ -127,9 +125,9 @@ function sendData(data){
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({data}),
+    body: JSON.stringify({ data }),
     //What is being sent
-    })
+  })
     .then((response) => response.json())
     .then((data) => {
       //alert(JSON.stringify(data));
@@ -148,22 +146,22 @@ function sendx(x) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({x}),
+    body: JSON.stringify({ x }),
     //What is being sent
   })
     .then((response) => response.json())
     .then((data) => {
       //alert(JSON.stringify(data));
-      if(!data.verified){
-        alert("Account cannot be created. You must use your SCU email address.");
-      }
-      else{
+      if (!data.verified) {
+        alert(
+          "Account cannot be created. You must use your SCU email address."
+        );
+      } else {
         document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
         document.getElementById("gButton").style.display = "none";
         document.getElementById("note").style.display = "none";
         document.getElementById("loginHeader").style.display = "none";
       }
-
 
       //Alerting the response from server.js
     });
