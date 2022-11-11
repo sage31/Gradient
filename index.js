@@ -24,17 +24,15 @@ function login() {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = window.gap.credentialFromResult(result);
       const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      console.log(result);
-      sendEmail(result);
+      
+      sendx(result);
       /*
       
       if (user.email.substring(user.email.indexOf("@")) != "@scu.edu") {
         document.getElementById("note").style.color = "red";
         alert("You must use your SCU email");
       } else {
-        sendEmail(result);
+        sendx(result);
         const dbref = window.moduleRef(window.database);
         window
           .moduleGet(window.modChild(dbref, "users/" + user.uid))
@@ -94,60 +92,79 @@ function handleCredentialResponse(response) {
   }
 }
 
+
 function addUser() {
   //user id/email will be set to a global variable in server
-  function formValidation() {
-    var firstName = document.getElementById("firstName").value;
-    var lastName = document.getElementById("lastName").value;
-    var year = document.getElementById("year").value;
+  var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
+  var year = document.getElementById("year").value;
 
-    if (firstName == "" || lastName == "" || year == "") {
-      alert("Please fill out all fields");
-    } else {
-      addUserToDataBase();
-    }
+  if(firstName == "" || lastName == "" || year == "Select Year"){
+    alert("Please fill out all fields");
+  }else{
+      //send data here
+      let data = {
+        fName : firstName,
+        lName : lastName,
+        gradYear : year
+      };
+      sendData(data);
+  window.moduleSet(window.moduleRef(window.database, "users/" + id), {
+    userEmail: email,
+    firstName: fName,
+    lastName: lName,
+    year: userYear,
+  });
   }
+  
+}
 
-  function addUserToDataBase() {
-    //user id/email will be set to a global variable in server
-    var userYear = document.getElementById("year").value;
-    var fName = document.getElementById("firstName").value;
-    var lName = document.getElementById("lastName").value;
-    window.moduleSet(window.moduleRef(window.database, "users/" + id), {
-      userEmail: email,
-      firstName: fName,
-      lastName: lName,
-      year: userYear,
-    });
-  }
+function sendData(data){
+  fetch("https://Server-Test.ethancl.repl.co/sendData", {
+    //"channel it is being sent to"
 
-  function sendEmail(x) {
-    //variable that is being sent
-    fetch("https://Server-Test.ethancl.repl.co/sendEmail", {
-      //"channel it is being sent to"
-
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ x }),
-      //What is being sent
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({data}),
+    //What is being sent
     })
-      .then((response) => response.json())
-      .then((data) => {
-        //alert(JSON.stringify(data));
-        if (!data.verified) {
-          alert(
-            "Account cannot be created. You must use your SCU email address"
-          );
-        } else {
-          document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
-          document.getElementById("gButton").style.display = "none";
-          document.getElementById("note").style.display = "none";
-          document.getElementById("loginHeader").style.display = "none";
-        }
+    .then((response) => response.json())
+    .then((data) => {
+      //alert(JSON.stringify(data));
+      alert(data);
 
-        //Alerting the response from server.js
-      });
-  }
+      //Alerting the response from server.js
+    });
+}
+
+function sendx(x) {
+  //variable that is being sent
+  fetch("https://Server-Test.ethancl.repl.co/sendx", {
+    //"channel it is being sent to"
+
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({x}),
+    //What is being sent
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      //alert(JSON.stringify(data));
+      if(!data.verified){
+        alert("Account cannot be created. You must use your SCU email address.");
+      }
+      else{
+        document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
+        document.getElementById("gButton").style.display = "none";
+        document.getElementById("note").style.display = "none";
+        document.getElementById("loginHeader").style.display = "none";
+      }
+
+
+      //Alerting the response from server.js
+    });
 }
