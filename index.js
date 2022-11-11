@@ -24,7 +24,7 @@ function login() {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = window.gap.credentialFromResult(result);
       const token = credential.accessToken;
-      
+
       sendx(result);
       /*
       
@@ -99,27 +99,26 @@ function addUser() {
   var lastName = document.getElementById("lastName").value;
   var year = document.getElementById("year").value;
 
-  if(firstName == "" || lastName == "" || year == "Select Year"){
+  if (firstName == "" || lastName == "" || year == "Select Year") {
     alert("Please fill out all fields");
-  }else{
-      //send data here
-      let data = {
-        fName : firstName,
-        lName : lastName,
-        gradYear : year
-      };
-      sendData(data);
-  window.moduleSet(window.moduleRef(window.database, "users/" + id), {
-    userEmail: email,
-    firstName: fName,
-    lastName: lName,
-    year: userYear,
-  });
+  } else {
+    //send data here
+    let data = {
+      fName: firstName,
+      lName: lastName,
+      gradYear: year
+    };
+    sendData(data);
+    document.getElementById("accountForm").style.display = "none";
+    document.getElementById("gButton").style.display = "block";
+    document.getElementById("note").style.display = "block";
+    document.getElementById("loginHeader").style.display = "block";
+
   }
-  
+
 }
 
-function sendData(data){
+function sendData(data) {
   fetch("https://Server-Test.ethancl.repl.co/sendData", {
     //"channel it is being sent to"
 
@@ -127,9 +126,9 @@ function sendData(data){
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({data}),
+    body: JSON.stringify({ data }),
     //What is being sent
-    })
+  })
     .then((response) => response.json())
     .then((data) => {
       //alert(JSON.stringify(data));
@@ -148,18 +147,18 @@ function sendx(x) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({x}),
+    body: JSON.stringify({ x }),
     //What is being sent
   })
     .then((response) => response.json())
     .then((data) => {
       //alert(JSON.stringify(data));
-      if(!data.ver){
+      if (!data.ver) {
         alert("Account cannot be created. You must use your SCU email address.");
       }
 
-      else{
-        if(!data.accExists){
+      else {
+        if (!data.accExists) {
           document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
           document.getElementById("gButton").style.display = "none";
           document.getElementById("note").style.display = "none";
