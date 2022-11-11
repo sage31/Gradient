@@ -24,15 +24,17 @@ function login() {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = window.gap.credentialFromResult(result);
       const token = credential.accessToken;
-
-      sendx(result);
+      // The signed-in user info.
+      const user = result.user;
+      console.log(result);
+      sendEmail(result);
       /*
       
       if (user.email.substring(user.email.indexOf("@")) != "@scu.edu") {
         document.getElementById("note").style.color = "red";
         alert("You must use your SCU email");
       } else {
-        sendx(result);
+        sendEmail(result);
         const dbref = window.moduleRef(window.database);
         window
           .moduleGet(window.modChild(dbref, "users/" + user.uid))
@@ -92,82 +94,60 @@ function handleCredentialResponse(response) {
   }
 }
 
-
 function addUser() {
   //user id/email will be set to a global variable in server
-  var firstName = document.getElementById("firstName").value;
-  var lastName = document.getElementById("lastName").value;
-  var year = document.getElementById("year").value;
+  function formValidation() {
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var year = document.getElementById("year").value;
 
-  if (firstName == "" || lastName == "" || year == "Select Year") {
-    alert("Please fill out all fields");
-  } else {
-    //send data here
-    let data = {
-      fName: firstName,
-      lName: lastName,
-      gradYear: year
-    };
-    sendData(data);
-    document.getElementById("accountForm").style.display = "none";
-    document.getElementById("gButton").style.display = "inline";
-    document.getElementById("note").style.display = "block";
-    document.getElementById("loginHeader").style.display = "block";
-
+    if (firstName == "" || lastName == "" || year == "") {
+      alert("Please fill out all fields");
+    } else {
+      addUserToDataBase();
+    }
   }
 
-}
-
-function sendData(data) {
-  fetch("https://Server-Test.ethancl.repl.co/sendData", {
-    //"channel it is being sent to"
-
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ data }),
-    //What is being sent
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      //alert(JSON.stringify(data));
-      alert(data);
-
-      //Alerting the response from server.js
+  function addUserToDataBase() {
+    //user id/email will be set to a global variable in server
+    var userYear = document.getElementById("year").value;
+    var fName = document.getElementById("firstName").value;
+    var lName = document.getElementById("lastName").value;
+    window.moduleSet(window.moduleRef(window.database, "users/" + id), {
+      userEmail: email,
+      firstName: fName,
+      lastName: lName,
+      year: userYear,
     });
-}
+  }
 
-function sendx(x) {
-  //variable that is being sent
-  fetch("https://Server-Test.ethancl.repl.co/sendx", {
-    //"channel it is being sent to"
+  function sendEmail(x) {
+    //variable that is being sent
+    fetch("https://Server-Test.ethancl.repl.co/sendEmail", {
+      //"channel it is being sent to"
 
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ x }),
-    //What is being sent
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      //alert(JSON.stringify(data));
-      if (!data.ver) {
-        alert("Account cannot be created. You must use your SCU email address.");
-      }
-
-      else {
-        if (!data.accExists) {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ x }),
+      //What is being sent
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        //alert(JSON.stringify(data));
+        if (!data.verified) {
+          alert(
+            "Account cannot be created. You must use your SCU email address"
+          );
+        } else {
           document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
           document.getElementById("gButton").style.display = "none";
           document.getElementById("note").style.display = "none";
           document.getElementById("loginHeader").style.display = "none";
         }
-        else alert("Account already exists");
-      }
 
-
-      //Alerting the response from server.js
-    });
+        //Alerting the response from server.js
+      });
+  }
 }
