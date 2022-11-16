@@ -108,17 +108,11 @@ function addUser() {
       gradYear: year,
     };
     sendData(data);
-    window.moduleSet(window.moduleRef(window.database, "users/" + id), {
-      userEmail: email,
-      firstName: fName,
-      lastName: lName,
-      year: userYear,
-    });
   }
 }
 
 function sendData(data) {
-  fetch("https://Server-Test.ethancl.repl.co/sendData", {
+  fetch("https://SCUCrushes-Server.ethancl.repl.co/sendData", {
     //"channel it is being sent to"
 
     method: "POST",
@@ -137,9 +131,9 @@ function sendData(data) {
     });
 }
 
-function sendx(x) {
+function sendEmail(x) {
   //variable that is being sent
-  fetch("https://Server-Test.ethancl.repl.co/sendx", {
+  fetch("https://SCUCrushes-Server.ethancl.repl.co/sendEmail", {
     //"channel it is being sent to"
 
     method: "POST",

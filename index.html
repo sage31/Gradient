@@ -79,13 +79,7 @@
       measurementId: "G-CFJTYX3MYW"
     };
     window.app = initializeApp(firebaseConfig);
-    window.moduleGet = get;
-    window.moduleSet = set;
-    window.moduleRef = ref;
-    window.modChild = child;
-    window.database = getDatabase(app);
     window.auth = getAuth(window.app);
-    window.gap = GoogleAuthProvider;
     window.provider = new GoogleAuthProvider();
     window.signIn = signInWithPopup;
   </script>
