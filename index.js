@@ -25,7 +25,7 @@ function login() {
       const credential = window.gap.credentialFromResult(result);
       const token = credential.accessToken;
 
-      sendx(result);
+      sendEmail(result);
       /*
       
       if (user.email.substring(user.email.indexOf("@")) != "@scu.edu") {

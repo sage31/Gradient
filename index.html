@@ -80,6 +80,7 @@
     };
     window.app = initializeApp(firebaseConfig);
     window.auth = getAuth(window.app);
+    window.gap = GoogleAuthProvider;
     window.provider = new GoogleAuthProvider();
     window.signIn = signInWithPopup;
   </script>
