@@ -145,8 +145,9 @@ function sendEmail(x) {
   })
     .then((response) => response.json())
     .then((data) => {
-      //alert(JSON.stringify(data));
-      if (!data.verified) {
+      
+      
+      if (!data.ver) {
         alert(
           "Account cannot be created. You must use your SCU email address."
         );
