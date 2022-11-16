@@ -151,12 +151,12 @@ input {
   outline: none;
   color: black;
   caret-color: black;
-  font-family: "Roboto", sans-serif;
+  font-family: "Prompt", sans-serif;
 }
 input[type="text"]::placeholder {
   text-align: center;
   color: black;
-  font-family: "Roboto", sans-serif;
+  font-family: "Prompt", sans-serif;
 }
 .box {
   width: 120px;
@@ -167,6 +167,7 @@ input[type="text"]::placeholder {
   background-color: #eee;
   border-radius: 5px;
   box-shadow: 3px 3px #ccc;
+  font-family:"Prompt";
 }
 
 #loginHeader{
