@@ -152,10 +152,15 @@ function sendEmail(x) {
           "Account cannot be created. You must use your SCU email address."
         );
       } else {
-        document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
-        document.getElementById("gButton").style.display = "none";
-        document.getElementById("note").style.display = "none";
-        document.getElementById("loginHeader").style.display = "none";
+        if(data.accExists){
+          alert("You have an account. You will be signed in.")
+        }
+        else{
+          document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
+          document.getElementById("gButton").style.display = "none";
+          document.getElementById("note").style.display = "none";
+          document.getElementById("loginHeader").style.display = "none";
+        }
       }
 
       //Alerting the response from server.js
