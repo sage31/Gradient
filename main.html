@@ -15,7 +15,7 @@
   <body>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-      import { getAuth } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
       import { getFirestore } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
       import {
         getDatabase,
@@ -37,6 +37,16 @@
       window.moduleSet = set;
       window.moduleRef = ref;
       window.database = getDatabase(app);
+      const auth = getAuth(app);
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          alert(uid);
+        } else {
+          alert("no signed in user currently");
+        }
+      })
+
     </script>
     <script src="main.js"></script>
   </body>

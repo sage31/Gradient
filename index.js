@@ -153,7 +153,7 @@ function sendEmail(x) {
         );
       } else {
         if(data.accExists){
-          alert("You have an account. You will be signed in.")
+          alert("You have an account. You will be signed in.");
         }
         else{
           document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
