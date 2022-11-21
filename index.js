@@ -124,14 +124,11 @@ function sendData(data) {
   })
     .then((response) => response.json())
     .then((data) => {
-      //alert(JSON.stringify(data));
-      alert(data);
-
-      //Alerting the response from server.js
+      window.location.href = "main.html";
     });
 }
 
-function sendEmail(x) {
+function sendUID(x) {
   //variable that is being sent
   fetch("https://SCUCrushes-Server.ethancl.repl.co/sendEmail", {
     //"channel it is being sent to"
@@ -153,7 +150,7 @@ function sendEmail(x) {
         );
       } else {
         if(data.accExists){
-          alert("You have an account. You will be signed in.");
+          window.location.href="main.html";
         }
         else{
           document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;

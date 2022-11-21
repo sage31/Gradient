@@ -45,9 +45,22 @@
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        alert(uid);
+        fetch("https://SCUCrushes-Server.ethancl.repl.co/checkAC", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ uid }),
+        }).then((response) => response.json())
+          .then((data) => {
+            if(!data.verified){
+              alert("You must finish setting up your account before accessing this page.")
+              window.location.href = "index.html";
+            }
+            else{
+            }
+          });
       } else {
-        alert("no signed in user currently");
         //redirect to login page
         window.location.href = "index.html";
       }

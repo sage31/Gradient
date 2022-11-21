@@ -88,10 +88,9 @@
         if (user) {
           const uid = user.uid;
           alert(uid);
-          window.location.href = "main.html";
+          sendUID(uid);
         } else {
-          alert("no signed in user currently");
-          //redirect to login page
+          // User is signed out
         }
       })
 
