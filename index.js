@@ -25,7 +25,7 @@ function login() {
       const credential = window.gap.credentialFromResult(result);
       const token = credential.accessToken;
 
-      sendEmail(result);
+      sendUID(result);
       /*
       
       if (user.email.substring(user.email.indexOf("@")) != "@scu.edu") {
@@ -128,9 +128,10 @@ function sendData(data) {
     });
 }
 
+
 function sendUID(x) {
   //variable that is being sent
-  fetch("https://SCUCrushes-Server.ethancl.repl.co/sendEmail", {
+  fetch("https://SCUCrushes-Server.ethancl.repl.co/sendUID", {
     //"channel it is being sent to"
 
     method: "POST",

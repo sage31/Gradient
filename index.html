@@ -87,11 +87,10 @@
     onAuthStateChanged(auth, (user) => {
         if (user) {
           const uid = user.uid;
-          alert(uid);
           sendUID(uid);
           console.log(uid);
         } else {
-          // User is signed out
+          console.log("No user detected.");
         }
       })
 
