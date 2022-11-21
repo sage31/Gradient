@@ -10,7 +10,7 @@ function keeploggedin() {
   localStorage.setItem("UUID", "4848484848");
   //Retrieve the string "hello" from the local storage
   var x = localStorage.getItem("UUID");
-  alert(x);
+  //alert(x);
 }
 
 function opendata() {
