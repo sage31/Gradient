@@ -1,4 +1,3 @@
-var email = "";
 let year1 = new Date().getFullYear();
 let year2 = year1 + 1;
 let year3 = year2 + 1;
@@ -25,7 +24,6 @@ function login() {
       const credential = window.gap.credentialFromResult(result);
       const token = credential.accessToken;
 
-      sendUID(result);
       /*
       
       if (user.email.substring(user.email.indexOf("@")) != "@scu.edu") {
@@ -103,6 +101,7 @@ function addUser() {
   } else {
     //send data here
     let data = {
+      uid : window.uid,
       fName: firstName,
       lName: lastName,
       gradYear: year,

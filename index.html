@@ -88,6 +88,7 @@
         if (user) {
           const uid = user.uid;
           sendUID(uid);
+          window.uid = uid;
           console.log(uid);
         } else {
           console.log("No user detected.");
