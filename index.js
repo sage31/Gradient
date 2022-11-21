@@ -72,7 +72,7 @@ function sendData(data) {
         window.location.href = "main.html";
       }
       else{
-        alert("You must fill in all fields");
+        alert("Error creating account. Please try again or contact support.");
       }
     });
 }
