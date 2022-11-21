@@ -23,30 +23,6 @@ function login() {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = window.gap.credentialFromResult(result);
       const token = credential.accessToken;
-
-      /*
-      
-      if (user.email.substring(user.email.indexOf("@")) != "@scu.edu") {
-        document.getElementById("note").style.color = "red";
-        alert("You must use your SCU email");
-      } else {
-        sendx(result);
-        const dbref = window.moduleRef(window.database);
-        window
-          .moduleGet(window.modChild(dbref, "users/" + user.uid))
-          .then((snapshot) => {
-            if (snapshot.exists()) {
-              //sign them in
-            } else {
-              document.getElementById("accountForm").style.display = "block";
-              document.getElementById("gButton").style.display = "none";
-              document.getElementById("note").style.display = "none";
-            }
-          });
-
-        // ...
-      }
-      */
     })
     .catch((error) => {
       // Handle Errors here.
@@ -58,36 +34,6 @@ function login() {
       const credential = window.gap.credentialFromError(error);
       // ...
     });
-}
-
-function handleCredentialResponse(response) {
-  const dataToken = JSON.parse(atob(response.credential.split(".")[1]));
-  email = dataToken.email;
-  if (email.substring(email.indexOf("@")) != "@scu.edu") {
-    document.getElementById("emailErr").innerHTML +=
-      "You must use an SCU email to register an account.";
-    document.getElementById("emailErr").style.visibility = "visible";
-  } else {
-    document.getElementById("emailErr").style.visibility = "hidden";
-    const dbref = window.moduleRef(window.database);
-    window
-      .moduleGet(
-        window.modChild(
-          dbref,
-          "users/" + email.substring(0, email.indexOf("@"))
-        )
-      )
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          alert("You have an account");
-          //sign them in
-        } else {
-          document.getElementById("accountForm").style.display = "block";
-          document.getElementById("gButton").style.display = "none";
-          document.getElementById("note").style.display = "none";
-        }
-      });
-  }
 }
 
 function addUser() {
@@ -113,7 +59,6 @@ function addUser() {
 function sendData(data) {
   fetch("https://SCUCrushes-Server.ethancl.repl.co/sendData", {
     //"channel it is being sent to"
-
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -123,16 +68,19 @@ function sendData(data) {
   })
     .then((response) => response.json())
     .then((data) => {
-      window.location.href = "main.html";
+      if(data.success){
+        window.location.href = "main.html";
+      }
+      else{
+        alert("You must fill in all fields");
+      }
     });
 }
-
 
 function sendUID(x) {
   //variable that is being sent
   fetch("https://SCUCrushes-Server.ethancl.repl.co/sendUID", {
     //"channel it is being sent to"
-
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -142,8 +90,6 @@ function sendUID(x) {
   })
     .then((response) => response.json())
     .then((data) => {
-      
-      
       if (!data.ver) {
         alert(
           "Account cannot be created. You must use your SCU email address."
@@ -159,7 +105,5 @@ function sendUID(x) {
           document.getElementById("loginHeader").style.display = "none";
         }
       }
-
-      //Alerting the response from server.js
     });
 }
