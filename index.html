@@ -65,7 +65,7 @@
 
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
-    import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
     //import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
     import { getDatabase, ref, set, get, child } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js'
     const firebaseConfig = {
@@ -83,6 +83,19 @@
     window.gap = GoogleAuthProvider;
     window.provider = new GoogleAuthProvider();
     window.signIn = signInWithPopup;
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          alert(uid);
+          window.location.href = "main.html";
+        } else {
+          alert("no signed in user currently");
+          //redirect to login page
+          window.location.href = "index.html";
+        }
+      })
+
   </script>
   <script src="index.js"></script>
   <script type="text/javascript">
