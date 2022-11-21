@@ -30,7 +30,8 @@
       <p>Create Your Account</p>
       <form>
         <p style="margin-top:8px;margin-bottom:5px;">First Name</p>
-        <p style="font-weight:lighter;margin: 0px 0px 10px 0px;font-size:12px;">(by which you are most commonly known)</p>
+        <p style="font-weight:lighter;margin: 0px 0px 10px 0px;font-size:12px;">(by which you are most commonly known)
+        </p>
         <input id="firstName" placeholder="John" onfocus="this.placeholder=''" onblur="this.placeholder='John'">
         <br>
         <p style="margin-bottom: 10px;">Last Name</p>
@@ -48,7 +49,7 @@
       </form>
 
       <button id="submit" onclick="addUser()">
-      Submit</button>
+        Submit</button>
 
       <div class="container" style="display:none;">
         <button id="btn" class="continue" onclick="addUser()">
@@ -85,15 +86,15 @@
     window.signIn = signInWithPopup;
 
     onAuthStateChanged(auth, (user) => {
-        if (user) {
-          const uid = user.uid;
-          sendUID(uid);
-          window.uid = uid;
-          console.log(uid);
-        } else {
-          console.log("No user detected.");
-        }
-      })
+      if (user) {
+        const uid = user.uid;
+        sendUID(uid);
+        window.uid = uid;
+        console.log(uid);
+      } else {
+        console.log("No user detected.");
+      }
+    })
 
   </script>
   <script src="index.js"></script>
@@ -107,7 +108,7 @@
         btnText.innerHTML = "Submit";
         btn.style.backgroundColor = '#2f2f2f';
       }, 3000);
-      
+
     };
     function changeColor() {
       btn.style.backgroundColor = '#ff2b75';

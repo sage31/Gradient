@@ -15,7 +15,7 @@
 </head>
 
 <body>
-
+  </br>
   <button id="logout">Logout</button>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
@@ -53,11 +53,11 @@
           body: JSON.stringify({ uid }),
         }).then((response) => response.json())
           .then((data) => {
-            if(!data.verified){
+            if (!data.verified) {
               alert("You must finish setting up your account before accessing this page.")
               window.location.href = "index.html";
             }
-            else{
+            else {
               console.log("User is verified.");
             }
           });

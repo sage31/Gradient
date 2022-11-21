@@ -47,7 +47,7 @@ function addUser() {
   } else {
     //send data here
     let data = {
-      uid : window.uid,
+      uid: window.uid,
       fName: firstName,
       lName: lastName,
       gradYear: year,
@@ -68,10 +68,10 @@ function sendData(data) {
   })
     .then((response) => response.json())
     .then((data) => {
-      if(data.success){
+      if (data.success) {
         window.location.href = "main.html";
       }
-      else{
+      else {
         alert("Error creating account. Please try again or contact support.");
       }
     });
@@ -95,10 +95,10 @@ function sendUID(x) {
           "Account cannot be created. You must use your SCU email address."
         );
       } else {
-        if(data.accExists){
-          window.location.href="main.html";
+        if (data.accExists) {
+          window.location.href = "main.html";
         }
-        else{
+        else {
           document.getElementById("accountForm").style.display = "block"; //also change padding top 1-px;
           document.getElementById("gButton").style.display = "none";
           document.getElementById("note").style.display = "none";

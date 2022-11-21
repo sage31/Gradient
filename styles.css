@@ -1,4 +1,4 @@
-﻿html{
+﻿html {
   overflow: hidden;
   height: 100%;
   /* new stuff*/
@@ -9,6 +9,7 @@
   background-size: cover;
   height: 100%;
 }
+
 body {
   background-color: #faaca8;
   background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
@@ -16,6 +17,7 @@ body {
   overflow: auto;
   text-align: center;
 }
+
 footer {
   clear: both;
   height: auto;
@@ -24,11 +26,12 @@ footer {
   left: 50%;
   transform: translate(-50%);
   overflow: hidden;
-  width: 100%;      
+  width: 100%;
   background: #333;
   padding: 10px;
   color: #fff;
 }
+
 #login {
   position: relative;
   top: -50px;
@@ -47,8 +50,8 @@ footer {
   padding-bottom: 20px;
 }
 
-#loginHeader{
-  margin-bottom:0px;
+#loginHeader {
+  margin-bottom: 0px;
 }
 
 h5 {
@@ -64,8 +67,8 @@ h5 {
   -webkit-text-fill-color: transparent;
 }
 
-small{
-  font-size:12px;
+small {
+  font-size: 12px;
 }
 
 #title {
@@ -100,21 +103,21 @@ small{
   color: #484848;
 }
 
-#createAcc{
-  background:    #e9a6ce;
+#createAcc {
+  background: #e9a6ce;
   border: 0px;
   border-radius: 10px;
-  padding:       10px 45px;
+  padding: 10px 45px;
   font-family: "Prompt", sans-serif;
-  color:         #ffffff;
-  display:       inline-block;
-  font:          normal bold 17px/1 "Prompt", sans-serif;
-  text-align:    center;
+  color: #ffffff;
+  display: inline-block;
+  font: normal bold 17px/1 "Prompt", sans-serif;
+  text-align: center;
 }
+
 /* TODO: Add form styling */
 
-#submit
-{
+#submit {
   color: #ffffff;
   background-color: #ff94af;
   font-family: "Prompt";
@@ -124,6 +127,7 @@ small{
   padding: 15px 50px;
   cursor: pointer
 }
+
 #submit:hover {
   color: #ff94af;
   transition: 0.5s;
@@ -142,6 +146,7 @@ form {
   padding-top: 1px;
   padding-bottom: 20px;
 }
+
 input {
   margin-bottom: 3vh;
   border-right: none;
@@ -153,11 +158,13 @@ input {
   caret-color: black;
   font-family: "Prompt", sans-serif;
 }
+
 input[type="text"]::placeholder {
   text-align: center;
   color: black;
   font-family: "Prompt", sans-serif;
 }
+
 .box {
   width: 120px;
   height: 30px;
@@ -167,78 +174,79 @@ input[type="text"]::placeholder {
   background-color: #eee;
   border-radius: 5px;
   box-shadow: 3px 3px #ccc;
-  font-family:"Prompt";
+  font-family: "Prompt";
 }
 
-#loginHeader{
+#loginHeader {
   padding-top: 20px;
 }
-.container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#btn{
-    width: 270px;
-    height: 80px;
-    border: none;
-    outline: none;
-    background: #2f2f2f;
-    color: #fff;
-    font-size: 20px;
-    font-family: "Prompt", sans-serif;
-    border-radius: 40px;
-    text-align: center;
-    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
+#btn {
+  width: 270px;
+  height: 80px;
+  border: none;
+  outline: none;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 20px;
+  font-family: "Prompt", sans-serif;
+  border-radius: 40px;
+  text-align: center;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.check-box{
-    width: 80px;
-    height: 80px;
-    border-radius: 40px;
-    box-shadow: 0 0 12px -2px rgba(0,0,0,0.5);
-    position: absolute;
-    top: 0;
-    right: -40px;
-    opacity: 0;
+.check-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  box-shadow: 0 0 12px -2px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  right: -40px;
+  opacity: 0;
 }
 
-.check-box svg{
-    width: 40px;
-    margin: 20px;
+.check-box svg {
+  width: 40px;
+  margin: 20px;
 }
 
-svg path{
-    stroke-width: 3;
-    stroke: #fff;
-    stroke-dasharray: 34;
-    stroke-dashoffset: 34;
-    stroke-linecap: round;
+svg path {
+  stroke-width: 3;
+  stroke: #fff;
+  stroke-dasharray: 34;
+  stroke-dashoffset: 34;
+  stroke-linecap: round;
 }
 
-.active{
-    background: #ff2b75;
-    transition: 1s;
+.active {
+  background: #ff2b75;
+  transition: 1s;
 }
 
-.active .check-box{
-    right: 0;
-    opacity: 1;
-    transition: 1s;
+.active .check-box {
+  right: 0;
+  opacity: 1;
+  transition: 1s;
 }
 
-.active p{
-    margin-right: 69px;
-    transition: 1s;
+.active p {
+  margin-right: 69px;
+  transition: 1s;
 }
 
-.active svg path{
-    stroke-dashoffset: 0;
-    transition: 1s;
-    transition-delay: 1s;
+.active svg path {
+  stroke-dashoffset: 0;
+  transition: 1s;
+  transition-delay: 1s;
 }
