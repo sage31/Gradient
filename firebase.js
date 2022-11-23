@@ -18,9 +18,8 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         userID = user.uid;
         sendUID(userID);
-        console.log(userID);
     } else {
-        console.log("No user detected.");
+        // No user detected
     }
 })
 
