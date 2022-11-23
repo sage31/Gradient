@@ -25,10 +25,10 @@ onAuthStateChanged(auth, (user) => {
 })
 
 let loginButton = document.getElementById("gButton");
-loginButton.addEventListener("click", login)
+loginButton.addEventListener("click", signInWithPopup(auth, provider))
 
 let createButton = document.getElementById("submit");
-createButton.addEventListener("click", signInWithPopup(auth, provider))
+createButton.addEventListener("click", addUser)
 
 function login() {
     signInWithPopup(auth, provider)
