@@ -38,6 +38,22 @@ footer {
   font-size: 12px;
 }
 
+.logOut {
+  font-family: "Prompt";
+  font-weight: bold;
+  color: #ffffff;
+  position: fixed;
+  top: 25px;
+  right: 30px;
+}
+
+.logOut:hover {
+  color: rgb(0 0 255 / 1);
+  transition: 0s;
+  cursor: pointer;
+  text-decoration-line: underline;
+}
+
 #login {
   position: relative;
   top: -50px;

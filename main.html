@@ -9,14 +9,80 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
+  <span class="logOut" id="logout"><span class="glyphicon">%#xe163</span> logout</span>
+  <span class="inputHeader"> Crushes (2) </span>
+  <form>
+    <input style="margin:10px 0px 0px 20px;width:80px;" type="text" placeholder="first name"></input>
+    <input style="margin:10px 15px 0px 20px;width:80px;" type="text" placeholder="last name"></input>
+    <select style="width:130px;margin-right:10px;" class="box" name="gradClass" id="year">
+      <option id="none">Graduation Year</option>
+      <option id="y1"></option>
+      <option id="y2"></option>
+      <option id="y3"></option>
+      <option id="y4"></option>
+      <option id="y5"></option>
+    </select>
+    <button class="crushButton" value="">Add Crush</button>
+  </form>
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Year</th>
+    </tr>
+    <tr>
+      <td>Justin</td>
+      <td>Fan</td>
+      <td>2026</td>
+    </tr>
+    <tr>
+      <td>Your</td>
+      <td>Mom</td>
+      <td>2022</td>
+    </tr>
+  </table>
+
+
+  <span>Secret Admirers (1)</span>
   </br>
-  <a id="logout">Logout</a>
+  <img src="https://www.seekpng.com/png/full/414-4140251_you-profile-picture-question-mark.png" width="20px">
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Year</th>
+    </tr>
+    <tr>
+      <td>???</td>
+      <td>???</td>
+      <td>2026</td>
+    </tr>
+  </table>
+
+  <span> Matches (1) </span>
+  </br>
+  <img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f60d.png" width="20px">
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Year</th>
+    </tr>
+    <tr>
+      <td>Stevie</td>
+      <td>Dean</td>
+      <td>2026</td>
+    </tr>
+  </table>
+
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
