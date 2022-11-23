@@ -117,7 +117,7 @@ small {
 
 /* TODO: Add form styling */
 
-#submit {
+.submit {
   color: #ffffff;
   background-color: #ff94af;
   font-family: "Prompt";
@@ -128,13 +128,13 @@ small {
   cursor: pointer
 }
 
-#submit:hover {
+.submit:hover {
   color: #ff94af;
   transition: 0.5s;
   background-color: #ffffff;
 }
 
-form {
+.createForm {
   background: transparent;
   height: auto;
   width: auto;
