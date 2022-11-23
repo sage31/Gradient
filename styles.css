@@ -32,6 +32,12 @@ footer {
   color: #fff;
 }
 
+.smaller {
+  font-weight: lighter;
+  margin: 0px 0px 10px 0px;
+  font-size: 12px;
+}
+
 #login {
   position: relative;
   top: -50px;

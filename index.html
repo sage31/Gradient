@@ -19,7 +19,7 @@
   <div id="login">
     <p id="loginHeader">LOGIN/CREATE AN ACCOUNT*</p>
     <small id="note" style="font-weight:lighter">*You must use your SCU email address</small>
-    <button id="gButton" class="googleButton" onclick="login()">
+    <button id="gButton" class="googleButton">
       <img width="20px" alt="Google logo"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
         style="position:relative; right:10px; top:5px;" />
@@ -30,8 +30,7 @@
       <p>Create Your Account</p>
       <form class="createForm">
         <p style="margin-top:8px;margin-bottom:5px;">First Name</p>
-        <p style="font-weight:lighter;margin: 0px 0px 10px 0px;font-size:12px;">(by which you are most commonly known)
-        </p>
+        <p class="smaller">(by which you are most commonly known)</p>
         <input id="firstName" placeholder="John" onfocus="this.placeholder=''" onblur="this.placeholder='John'">
         <br>
         <p style="margin-bottom: 10px;">Last Name</p>
@@ -48,8 +47,7 @@
         </select>
       </form>
 
-      <button id="submit" class="submit" onclick="addUser()">
-        Submit</button>
+      <button id="submit" class="submit" onclick="addUser()">Submit</button>
 
       <div class="container" style="display:none;">
         <button id="btn" class="continue" onclick="addUser()">
@@ -79,22 +77,64 @@
       appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
       measurementId: "G-CFJTYX3MYW"
     };
-    window.app = initializeApp(firebaseConfig);
-    window.auth = getAuth(window.app);
-    window.gap = GoogleAuthProvider;
-    window.provider = new GoogleAuthProvider();
-    window.signIn = signInWithPopup;
-
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+    let userID;
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
-        sendUID(uid);
-        window.uid = uid;
-        console.log(uid);
+        userID = user.uid;
+        sendUID(userID);
+        console.log(userID);
       } else {
         console.log("No user detected.");
       }
     })
+
+    let loginButton = document.getElementById("gButton");
+    loginButton.addEventListener("click", login)
+
+    let createButton = document.getElementById("submit");
+    createButton.addEventListener("click", addUser)
+
+    function login() {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          //const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          // ...
+        });
+    }
+
+    function addUser() {
+      //user id/email will be set to a global variable in server
+      var firstName = document.getElementById("firstName").value;
+      var lastName = document.getElementById("lastName").value;
+      var year = document.getElementById("year").value;
+
+      if (firstName == "" || lastName == "" || year == "Select Year") {
+        alert("Please fill out all fields");
+      } else {
+        //send data here
+        let data = {
+          uid: userID,
+          fName: firstName,
+          lName: lastName,
+          gradYear: year,
+        };
+        sendData(data);
+      }
+    }
 
   </script>
   <script src="index.js"></script>
@@ -119,5 +159,4 @@
     <h5>Made by Stephen Dean, Anish Shanmuganathan, Ethan Clawsie, and Justin Fan</h5>
   </footer>
 </body>
-
 </html>
