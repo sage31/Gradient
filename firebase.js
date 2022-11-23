@@ -1,7 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js'
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js'
-//import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
-import { getDatabase, ref, set, get, child } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js'
 const firebaseConfig = {
     apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo",
     authDomain: "scucrushes-a9663.firebaseapp.com",
@@ -30,7 +28,7 @@ let loginButton = document.getElementById("gButton");
 loginButton.addEventListener("click", login)
 
 let createButton = document.getElementById("submit");
-createButton.addEventListener("click", addUser)
+createButton.addEventListener("click", signInWithPopup(auth, provider))
 
 function login() {
     signInWithPopup(auth, provider)
@@ -52,7 +50,6 @@ function login() {
 }
 
 function addUser() {
-    //user id/email will be set to a global variable in server
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var year = document.getElementById("year").value;
@@ -60,7 +57,6 @@ function addUser() {
     if (firstName == "" || lastName == "" || year == "Select Year") {
         alert("Please fill out all fields");
     } else {
-        //send data here
         let data = {
             uid: userID,
             fName: firstName,
