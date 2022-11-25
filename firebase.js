@@ -18,7 +18,7 @@ let userID;
 onAuthStateChanged(auth, (user) => {
     if (user) {
         userID = user.uid;
-        sendUID(userID);
+        sendUID(userID); 
     } else {
         // No user detected
     }

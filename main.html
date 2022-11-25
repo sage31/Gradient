@@ -33,7 +33,7 @@
         <option id="y4"></option>
         <option id="y5"></option>
       </select>
-      <button class="crushButton" value="">Add Crush</button>
+      <button class="crushButton" id="addCrush">Add Crush</button>
     </form>
   </div>
   <div>
@@ -149,6 +149,30 @@
     logoutBtn.addEventListener('click', e => {
       e.preventDefault();
       auth.signOut();
+    })
+
+    const crushButton = document.getElementById('addCrush');
+    crushButton.addEventListener('click', e => {
+      e.preventDefault();
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const year = document.getElementById('year').value;
+      const uid = auth.currentUser.uid;
+      fetch("https://SCUCrushes-Server.ethancl.repl.co/addCrush", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ firstName, lastName, year, uid }),
+      }).then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Crush added successfully!");
+          }
+          else {
+            alert("Error adding crush.");
+          }
+        });
     })
   </script>
   <script src="main.js"></script>
