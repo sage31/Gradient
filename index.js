@@ -53,6 +53,7 @@ function sendUID(x) {
         alert(
           "Account cannot be created. You must use your SCU email address."
         );
+        window.auth.signOut();
       } else {
         if (data.accExists) {
           window.location.href = "main.html";
