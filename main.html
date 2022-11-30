@@ -166,9 +166,9 @@
         body: JSON.stringify({ firstName, lastName, year, uid }),
       }).then((response) => response.json())
         .then((data) => {
-          alert(data);
-          alert(data.matches)
-          alert(data.matches[0]);
+          console.log(data);
+          console.log(data.matches)
+          console.log(data.matches[0]);
           if (data.success) {
             alert("Crush added successfully!");
           }
