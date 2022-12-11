@@ -138,7 +138,7 @@
                 .then((data) => {
                   console.log(data);
                   //add in the crushes
-                  for (crush of data.removeIDs)
+                  for (crush of data.crushes)
                     document.getElementById("crushesTables").innerHTML +=
                       `<tr>
                           <td>` + crush.firstName + `</td>
