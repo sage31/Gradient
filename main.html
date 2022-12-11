@@ -141,7 +141,7 @@
                     console.log(data.crushes);
                     for (let crush of data.crushes) {
                       console.log(document.getElementById("crushesTable").innerHTML);
-                      document.getElementById("crushesTable").innerHTML +=
+                      document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
                         `<tr>
                           <td>` + crush.firstName + `</td>
                           <td>` + crush.lastName + `</td>
