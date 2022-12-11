@@ -62,20 +62,14 @@
   </div>
 
   <div>
-    <span> Matches (0) </span>
+    <span> Matches (<span id="matchesNum">0</span>) </span>
     </br>
-    <table id="matches" class="container" style="border-collapse: separate;border-spacing: 10px;">
+    <table id="matchesTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
       <tr>
         <th></th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Year</th>
-      </tr>
-      <tr>
-        <td><img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f60d.png" width="20px"></td>
-        <td>Stevie</td>
-        <td>Dean</td>
-        <td>2026</td>
       </tr>
     </table>
   </div>
@@ -158,6 +152,19 @@
                   document.getElementById("admirerNum").innerHTML = data.admirers.length;
 
                   //add in any matches
+
+                  for (let match of data.matches) {
+                    document.getElementById("matchesTable").getElementsByTagName("tbody")[0].innerHTML +=
+                      `<tr>
+                          <td><img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f60d.png" width="20px"></td>
+                          <td>` + formatName(match.firstName) + `</td>
+                          <td>` + formatName(match.lastName) + `</td>
+                          <td>` + match.year + `</td>
+                      </tr>`;
+                  }
+
+                  document.getElementById("matchesNum").innerHTML = data.matches.length;
+
 
 
 
