@@ -37,7 +37,7 @@
     </form>
   </div>
   <div>
-    <span>Crushes (<span id = "crushesNum">0</span>)</span>
+    <span>Crushes (<span id="crushesNum">0</span>)</span>
     <table id="crushesTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
       <tr>
         <th>First Name</th>
@@ -48,7 +48,7 @@
     </table>
   </div>
   <div>
-    <span>Secret Admirers (0)</span>
+    <span>Secret Admirers (<span id="admirerNum">0</span>)</span>
     </br>
 
     <table id="admirersTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
@@ -57,13 +57,6 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Year</th>
-      </tr>
-      <tr>
-        <td><img src="https://www.seekpng.com/png/full/414-4140251_you-profile-picture-question-mark.png" width="20px">
-        </td>
-        <td>???</td>
-        <td>???</td>
-        <td>2026</td>
       </tr>
     </table>
   </div>
@@ -137,22 +130,32 @@
                 body: JSON.stringify({ uid }),
               }).then((response) => response.json())
                 .then((data) => {
-                    console.log(data);
-                    //add in the crushes
-                    console.log(data.crushes);
-                    for (let crush of data.crushes) {
-                      document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
-                        `<tr>
+                  console.log(data);
+                  //add in the crushes
+                  console.log(data.crushes);
+                  for (let crush of data.crushes) {
+                    document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
+                      `<tr>
                           <td>` + formatName(crush.firstName) + `</td>
                           <td>` + formatName(crush.lastName) + `</td>
                           <td>` + crush.year + `</td>
                           <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + "\`" + crush.removeID + "\`" + "," + "\`" + uid + "\`" + `)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
                       </tr>`;
-                    }
-                    document.getElementById("crushesNum").innerHTML = data.crushes.length;
+                  }
+                  document.getElementById("crushesNum").innerHTML = data.crushes.length;
 
 
                   //add in secret admirers
+                  for (let admirer of data.admirers) {
+                    document.getElementById("admirersTable").getElementsByTagName("tbody")[0].innerHTML +=
+                      `<tr>
+                          <td><img src="https://www.seekpng.com/png/full/414-4140251_you-profile-picture-question-mark.png" width="20px"></td>
+                          <td>???</td>
+                          <td>???</td>
+                          <td>` + admirer + `</td>
+                      </tr>`;
+                  }
+                  document.getElementById("admirerNum").innerHTML = data.admirers.length;
 
                   //add in any matches
 
