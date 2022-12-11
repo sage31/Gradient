@@ -136,7 +136,7 @@
                 body: JSON.stringify({ uid }),
               }).then((response) => response.json())
                 .then((data) => {
-                  window.onload = function () {
+                  setTimeout(function () {
                     console.log(data);
                     //add in the crushes
                     console.log(data.crushes);
@@ -149,11 +149,13 @@
                           <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + crush.removeID + "," + uid`)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
                       </tr>`;
                     }
+                  }, 1000);
 
-                    //add in secret admirers
 
-                    //add in any matches
-                  }
+                  //add in secret admirers
+
+                  //add in any matches
+
 
 
 
