@@ -26,8 +26,8 @@ function keeploggedin() {
 }
 
 function formatName(name) {
-  //first letter of each word is capitalized
-  return name.toLowerCase().replace(/\s+/g, "");
+  //only capitalize first letter of name, rest is lowercase
+  return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 }
 
 
