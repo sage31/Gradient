@@ -140,6 +140,7 @@
                     //add in the crushes
                     console.log(data.crushes);
                     for (let crush of data.crushes) {
+                      console.log(document.getElementById("crushesTable"));
                       document.getElementById("crushesTable").innerHTML +=
                         `<tr>
                           <td>` + crush.firstName + `</td>
