@@ -25,6 +25,21 @@ function keeploggedin() {
   //alert(x);
 }
 
+
+
+function removeCrush(removeID, uid) {
+  fetch("https://Server-Test.ethancl.repl.co/removeCrush", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ removeID, uid }),
+  });
+
+
+}
+
+
 function opendata() {
   x = "Opened main html";
   fetch("https://Server-Test.ethancl.repl.co/opendata", {

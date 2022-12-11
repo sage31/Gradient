@@ -38,21 +38,11 @@
   </div>
   <div>
     <span> Crushes (2) </span>
-    <table class="container" style="border-collapse: separate;border-spacing: 10px;">
+    <table id="crushesTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
       <tr>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Year</th>
-      </tr>
-      <tr>
-        <td>Justin</td>
-        <td>Fan</td>
-        <td>2026</td>
-      </tr>
-      <tr>
-        <td>Your</td>
-        <td>Mom</td>
-        <td>-69</td>
       </tr>
     </table>
   </div>
@@ -60,7 +50,7 @@
     <span>Secret Admirers (1)</span>
     </br>
 
-    <table class="container" style="border-collapse: separate;border-spacing: 10px;">
+    <table id="admirersTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
       <tr>
         <th></th>
         <th>First Name</th>
@@ -80,7 +70,7 @@
   <div>
     <span> Matches (1) </span>
     </br>
-    <table class="container" style="border-collapse: separate;border-spacing: 10px;">
+    <table id="matches" class="container" style="border-collapse: separate;border-spacing: 10px;">
       <tr>
         <th></th>
         <th>First Name</th>
@@ -147,6 +137,18 @@
               }).then((response) => response.json())
                 .then((data) => {
                   console.log(data);
+                  //add in the crushes
+                  for (crush of data.removeIDs)
+                    document.getElementById("crushesTables").innerHTML +=
+                      `<tr>
+                          <td>` + crush.firstName + `</td>
+                          <td>` + crush.lastName + `</td>
+                          <td>` + crush.year + `</td>
+                          <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + crush.removeID + "," + uid`)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
+                      </tr>`;
+                  //add in secret admirers
+
+                  //add in any matches
                 })
             }
           });
