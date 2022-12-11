@@ -136,12 +136,11 @@
                 body: JSON.stringify({ uid }),
               }).then((response) => response.json())
                 .then((data) => {
-                  setTimeout(function () {
                     console.log(data);
                     //add in the crushes
                     console.log(data.crushes);
                     for (let crush of data.crushes) {
-                      document.getElementById("crushesTables").innerHTML +=
+                      document.getElementById("crushesTable").innerHTML +=
                         `<tr>
                           <td>` + crush.firstName + `</td>
                           <td>` + crush.lastName + `</td>
@@ -149,7 +148,6 @@
                           <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + crush.removeID + "," + uid`)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
                       </tr>`;
                     }
-                  }, 1000);
 
 
                   //add in secret admirers
