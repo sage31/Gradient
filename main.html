@@ -37,17 +37,18 @@
     </form>
   </div>
   <div>
-    <span> Crushes (2) </span>
+    <span>Crushes (<span id = "crushesNum">0</span>)</span>
     <table id="crushesTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
       <tr>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Year</th>
+        <th></th>
       </tr>
     </table>
   </div>
   <div>
-    <span>Secret Admirers (1)</span>
+    <span>Secret Admirers (0)</span>
     </br>
 
     <table id="admirersTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
@@ -68,7 +69,7 @@
   </div>
 
   <div>
-    <span> Matches (1) </span>
+    <span> Matches (0) </span>
     </br>
     <table id="matches" class="container" style="border-collapse: separate;border-spacing: 10px;">
       <tr>
@@ -149,6 +150,7 @@
                           <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + crush.removeID + "," + uid + `)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
                       </tr>`;
                     }
+                    document.getElementById("crushesNum").innerHTML = data.crushes.length;
 
 
                   //add in secret admirers
