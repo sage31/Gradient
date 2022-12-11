@@ -25,6 +25,11 @@ function keeploggedin() {
   //alert(x);
 }
 
+function formatName(name) {
+  //first letter of each word is capitalized
+  return name.toLowerCase().replace(/\s+/g, "");
+}
+
 
 
 function removeCrush(removeID, uid) {
