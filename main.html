@@ -152,14 +152,14 @@
                   document.getElementById("admirerNum").innerHTML = data.admirers.length;
 
                   //add in any matches
-
+                  //console.log(data.matches);
                   for (let match of data.matches) {
                     document.getElementById("matchesTable").getElementsByTagName("tbody")[0].innerHTML +=
                       `<tr>
                           <td><img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f60d.png" width="20px"></td>
-                          <td>` + formatName(match.firstName) + `</td>
-                          <td>` + formatName(match.lastName) + `</td>
-                          <td>` + match.year + `</td>
+                          <td>` + formatName(match.fName) + `</td>
+                          <td>` + formatName(match.lName) + `</td>
+                          <td>` + match.gYear + `</td>
                       </tr>`;
                   }
 
