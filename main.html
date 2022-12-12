@@ -197,7 +197,35 @@
           console.log(data.matches)
           console.log(data.matches[0]);
           if (data.success) {
-            alert("Crush added successfully!");
+            for (let crush of data.removeIDs) {
+                    document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
+                      `<tr>
+                          <td>` + formatName(firstName) + `</td>
+                          <td>` + formatName(lastName) + `</td>
+                          <td>` + year + `</td>
+                          <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + "\`" + crush + "\`" + "," + "\`" + uid + "\`" + `)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
+                      </tr>`;
+                  }
+                  document.getElementById("crushesNum").innerHTML += data.removeIDs.length;
+            if(data.removeIDs.length == 0){
+              alert("You already have this crush.");
+            }
+            else{
+              if(data.removeIDs[0] == (firstName.toLowerCase() + lastName.toLowerCase() + year))
+                alert("Crush does not exist in databse.")
+              else alert("Crush added.");
+            }
+            for(let i = 0; i < data.matches.length; i++) {
+              document.getElementById("matchesTable").getElementsByTagName("tbody")[0].innerHTML +=
+                      `<tr>
+                          <td><img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f60d.png" width="20px"></td>
+                          <td>` + formatName(firstName) + `</td>
+                          <td>` + formatName(lastName) + `</td>
+                          <td>` + year + `</td>
+                      </tr>`;
+            }
+            document.getElementById("matchesNum").innerHTML += data.matches.length;
+           
           }
           else {
             alert("Error adding crush.");
