@@ -206,7 +206,7 @@
                           <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + "\`" + crush + "\`" + "," + "\`" + uid + "\`" + `)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
                       </tr>`;
                   }
-                  document.getElementById("crushesNum").innerHTML += data.removeIDs.length;
+                  document.getElementById("crushesNum").innerHTML = parseInt(document.getElementById("crushesNum").innerHTML) + data.removeIDs.length;
             if(data.removeIDs.length == 0){
               alert("You already have this crush.");
             }
@@ -224,7 +224,7 @@
                           <td>` + year + `</td>
                       </tr>`;
             }
-            document.getElementById("matchesNum").innerHTML += data.matches.length;
+            document.getElementById("matchesNum").innerHTML += parseInt(document.getElementById("matchesNum").innerHTML) + data.matches;
            
           }
           else {
