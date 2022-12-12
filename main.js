@@ -55,8 +55,7 @@ function removeCrush(removeID, uid, parent) {
 
           for(let i = 0; i < matches.rows.length; i++){
             let match = matches.rows[i];
-            console.log(match.cells[0].innerHTML + " " + match.cells[1].innerHTML + " " + match.cells[2].innerHTML);
-            if(match.cells[0].innerHTML == firstName && match.cells[1].innerHTML == lastName && match.cells[2].innerHTML == year){
+            if(match.cells[1].innerHTML == firstName && match.cells[2].innerHTML == lastName && match.cells[3].innerHTML == year){
               match.remove();
               break;
             }
