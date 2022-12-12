@@ -50,7 +50,8 @@ function removeCrush(removeID, uid, parent) {
           let lastName = parent.cells[1];
           let year =  parent.cells[2];
 
-          let matches = document.getElementById("matchesTable");
+          console.log(firstName + " " + lastName + " " + year);
+          let matches = document.getElementById("matchesTable").tbody[0];
 
           for(let i = 0; i < matches.rows.length; i++){
             let match = matches.rows[i];
@@ -61,6 +62,10 @@ function removeCrush(removeID, uid, parent) {
         }
         //remove crush from HTML table using removeID
         parent.remove();
+        //decrement crushesNum
+        let crushesNum = document.getElementById("crushesNum");
+        crushesNum.innerHTML = parseInt(crushesNum.innerHTML) - 1;
+
 
       }
       else{
