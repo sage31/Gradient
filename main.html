@@ -185,9 +185,9 @@
       const lastName = document.getElementById('lastName').value;
       const year = document.getElementById('year').value;
       //clear values once received
-      document.getElementByID("firstName").value = "";
-      document.getElementByID("lastName").value = "";
-      document.getElementByID("year").value = "";
+      document.getElementById("firstName").value = "";
+      document.getElementById("lastName").value = "";
+      document.getElementById("year").value = "";
       const uid = auth.currentUser.uid;
       fetch("https://SCUCrushes-Server.ethancl.repl.co/addCrush", {
         method: "POST",
