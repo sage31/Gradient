@@ -55,8 +55,10 @@ function removeCrush(removeID, uid, parent) {
 
           for(let i = 0; i < matches.rows.length; i++){
             let match = matches.rows[i];
+            console.log(match.cells[0].innerHTML + " " + match.cells[1].innerHTML + " " + match.cells[2].innerHTML);
             if(match.cells[0].innerHTML == firstName && match.cells[1].innerHTML == lastName && match.cells[2].innerHTML == year){
               match.remove();
+              break;
             }
           }
           //decrement matchesNum
@@ -94,4 +96,3 @@ function opendata() {
       alert(JSON.stringify(data));
     });
 }
-//https://stackoverflow.com/questions/1354999/keep-me-logged-in-the-best-approach
