@@ -46,6 +46,18 @@ function removeCrush(removeID, uid, parent) {
       if(data.success){
         if(data.match){
           //find match in HTML table and remove it
+          let firstName = parent.cells[0];
+          let lastName = parent.cells[1];
+          let year =  parent.cells[2];
+
+          let matches = document.getElementById("matchesTable");
+
+          for(let i = 0; i < matches.rows.length; i++){
+            let match = matches.rows[i];
+            if(match.cells[0] == firstName && match.cells[1] == lastName && match.cells[2] == year){
+              match.remove();
+            }
+          }
         }
         //remove crush from HTML table using removeID
         parent.remove();
