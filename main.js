@@ -39,7 +39,22 @@ function removeCrush(removeID, uid) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ removeID, uid }),
-  });
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if(data.success){
+        if(data.match){
+          //find match in HTML table and remove it
+        }
+        //remove crush from HTML table using removeID
+        document.getElementById(removeID).parentNode.remove();
+
+      }
+      else{
+        alert("Error removing crush.");
+      }
+    });
 
 
 }
