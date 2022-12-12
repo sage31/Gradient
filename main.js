@@ -46,12 +46,12 @@ function removeCrush(removeID, uid, parent) {
       if(data.success){
         if(data.match){
           //find match in HTML table and remove it
-          let firstName = parent.cells[0];
-          let lastName = parent.cells[1];
-          let year =  parent.cells[2];
+          let firstName = parent.cells[0].innerHTML;
+          let lastName = parent.cells[1].innerHTML;
+          let year =  parent.cells[2].innerHTML;
 
           console.log(firstName + " " + lastName + " " + year);
-          let matches = document.getElementById("matchesTable").tbody[0];
+          let matches = document.getElementById("matchesTable").getElementsByTagName("tbody")[0];
 
           for(let i = 0; i < matches.rows.length; i++){
             let match = matches.rows[i];
@@ -59,6 +59,9 @@ function removeCrush(removeID, uid, parent) {
               match.remove();
             }
           }
+          //decrement matchesNum
+          let matchesNum = document.getElementById("matchesNum");
+          matchesNum.innerHTML = parseInt(matchesNum.innerHTML) - 1;
         }
         //remove crush from HTML table using removeID
         parent.remove();
