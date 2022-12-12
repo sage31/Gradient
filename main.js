@@ -32,7 +32,7 @@ function formatName(name) {
 
 
 
-function removeCrush(removeID, uid) {
+function removeCrush(removeID, uid, parent) {
   fetch("https://Server-Test.ethancl.repl.co/removeCrush", {
     method: "POST",
     headers: {
@@ -48,7 +48,7 @@ function removeCrush(removeID, uid) {
           //find match in HTML table and remove it
         }
         //remove crush from HTML table using removeID
-        document.getElementById(removeID).parentNode.remove();
+        parent.remove();
 
       }
       else{
