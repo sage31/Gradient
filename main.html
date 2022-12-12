@@ -224,7 +224,7 @@
                           <td>` + year + `</td>
                       </tr>`;
             }
-            document.getElementById("matchesNum").innerHTML += parseInt(document.getElementById("matchesNum").innerHTML) + data.matches;
+            document.getElementById("matchesNum").innerHTML = parseInt(document.getElementById("matchesNum").innerHTML) + parseFloat(data.matches);
            
           }
           else {
