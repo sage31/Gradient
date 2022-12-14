@@ -92,7 +92,6 @@ table {
 /* TODO: Add form styling */
 
 .addCrush {
-    background: transparent;
     height: auto;
     width: 580px;
     -webkit-border-radius: 25px;
@@ -106,6 +105,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     clear: left;
+    background-color: white;
 }
 
 .crushButton {
@@ -126,18 +126,7 @@ table {
     margin: 10px 10px 0px 0px;
 }
 
-.submit {
-    color: #ffffff;
-    background-color: #ff94af;
-    font-family: "Prompt";
-    font-size: 15px;
-    border: 1px solid #ff94af;
-    border-radius: 12px;
-    padding: 15px 50px;
-    cursor: pointer
-}
-
-.submit:hover {
+.crushButton:hover {
     color: #ff94af;
     transition: 0.5s;
     background-color: #ffffff;
