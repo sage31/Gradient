@@ -19,12 +19,12 @@
     <h1 id="header">Gradient</h1>
   </div>
 
-  <span class="logOut" id="logout"><span class="glyphicon">&#xe163;</span> Log Out</span>
+  <span class="logOut" id="logout"><span class="glyphicon">&#xe163;</span> log out</span>
 
   <div class="container">
     <form class="addCrush">
-      <input style="margin:10px 0px 0px 20px;width:80px;" type="text" id="firstName" placeholder="First Name"></input>
-      <input style="margin:10px 15px 0px 20px;width:80px;" type="text" id="lastName" placeholder="Last Name"></input>
+      <input style="margin:10px 0px 0px 20px;width:80px;" type="text" id="firstName" placeholder="First Name"/>
+      <input style="margin:10px 15px 0px 20px;width:80px;" type="text" id="lastName" placeholder="Last Name"/>
       <select style="width:135px;margin-right:10px;" class="box" name="gradClass" id="year">
         <option id="none">Graduation Year</option>
         <option id="y1"></option>
@@ -35,6 +35,11 @@
       </select>
       <button class="crushButton" id="addCrush">Add Crush</button>
     </form>
+  </div>
+  <div style="margin-bottom:25px;">
+    <button class="clear-button">Crushes</button>
+    <button class="clear-button">Secret Admirers</button>
+    <button class="clear-button">Matches</button>
   </div>
   <div>
     <span>Crushes (<span id="crushesNum">0</span>)</span>
@@ -49,7 +54,7 @@
   </div>
   <div>
     <span>Secret Admirers (<span id="admirerNum">0</span>)</span>
-    </br>
+    <br>
 
     <table id="admirersTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
       <tr>
@@ -63,7 +68,7 @@
 
   <div>
     <span> Matches (<span id="matchesNum">0</span>) </span>
-    </br>
+    <br>
     <table id="matchesTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
       <tr>
         <th></th>

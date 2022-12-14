@@ -6,7 +6,9 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100%;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+
 }
 
 body {
@@ -180,4 +182,28 @@ input[type="text"]::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.clear-button{
+  font-family: "Prompt", sans-serif;
+  color: white;
+  display: inline-flex; 
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid rgba(255 255 255 / 10%);
+  border-radius: 2rem;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  background-color: rgba(0 0 0 / 15%);
+  border-color: rgba(255 255 255 / 15%);
+}
+
+.clear-button:hover {
+    color: #ff94af;
+    transition: 0.5s;
+    background-color: #ffffff;
 }
