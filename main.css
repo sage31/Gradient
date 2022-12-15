@@ -97,11 +97,8 @@ table {
 .addCrush {
   height: auto;
   width: auto;
-  -webkit-border-radius: 25px;
   border-radius: 25px;
-  -webkit-box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.1);
-  margin: 20px 20px 40px 20px;
   padding-top: 1px;
   padding-bottom: 20px;
   text-align: left;
@@ -109,6 +106,9 @@ table {
   margin-right: auto;
   clear: left;
   background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .crushButton {
@@ -169,10 +169,8 @@ input[type="text"]::placeholder {
 .box {
   width: auto;
   height: 30px;
-  margin-right: 10px;
+  margin: 20 10 10 0;
   border: 1px solid #999;
-  font-size: auto;
-  color: #000000;
   background-color: #eee;
   border-radius: 5px;
   box-shadow: 3px 3px #ccc;
@@ -221,6 +219,7 @@ span {
   flex-direction: row;
   margin: 0 100 0 100;
   font-family: "Prompt", sans-serif;
+  justify-content: center;
 }
 
 #list>.list-items>.list-item {
@@ -262,4 +261,57 @@ span {
   align-items: center;
   gap: 1rem;
   clear: both;
+}
+
+#list>.list-items>.list-item>.list-item-info>.tags {
+  width: auto;
+  clear: both;
+}
+
+#popup{
+  position:fixed;
+  top:0;
+  left:0;
+  background:rgba(0,0,0,0.6);
+  z-index:5;
+  width:100%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Prompt", sans-serif;
+}
+
+#popup-content{
+  position:relative;
+  background:rgb(0, 0, 0);
+  width:50%;
+  height:15%;
+  padding:20px;
+  border: 1px solid white;
+  border-radius:5px;
+  text-align:center;
+}
+
+#popup-close{
+  display:block;
+  position:absolute;
+  top:3px;
+  right:2px;
+  background:rgb(245,245,245);
+  color:black;
+  height:30px;
+  width:35px;
+  font-size:30px;
+  text-decoration:none;
+  text-align:center;
+  font-weight:bold;
+  margin-top: 10px;
+}
+
+#popup-header{
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  margin: 10px 0 30px 0;
 }

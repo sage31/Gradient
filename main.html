@@ -12,6 +12,7 @@
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
   <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -47,7 +48,8 @@
   <div id="list">
     <div id="main-content" class="list-items">
 
-      <a href="#" class="list-item"> <!--a element needs to be linked to chat-->
+      <a href="#" class="list-item" onclick="openPopup()">
+        <!--a element needs to be linked to chat-->
         <div class="list-item-info">
           <div class="title-wrapper section">
             <span class="name">Jo Mama</span>
@@ -63,7 +65,7 @@
         </div>
       </a>
 
-      <a href="#" class="list-item">
+      <a href="#" class="list-item" onclick="openPopup()">
         <div class="list-item-info">
           <div class="title-wrapper section">
             <span class="name">Yo Dada</span>
@@ -81,7 +83,22 @@
 
     </div>
   </div>
+  <div id="popup" style="display:flex">
+    <!--display a popup giving options to either chat or delete crush-->
+    <div id="popup-content">
+      <div id="popup-header">
+        <span id="popup-title">Delete <span id="popup-name">Jo Mama</span>?</span>
+        <!--name of crush in between delete and question mark-->
+        <!--<span id = "popup-close">X</span>-->
+      </div>
+      <div id="popup-body">
+        <button id="popup-cancel" class="clear-button" onclick="closePopup()">Cancel</button>
+        <button id="popup-delete" class="clear-button">Delete</button>
+      </div>
+    </div>
 
+  </div>
+  <!--
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
@@ -299,7 +316,7 @@
           }
         });
     })
-  </script>
+  </script>-->
   <script src="main.js"></script>
 </body>
 

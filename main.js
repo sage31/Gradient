@@ -43,19 +43,19 @@ function removeCrush(removeID, uid, parent) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      if(data.success){
-        if(data.match){
+      if (data.success) {
+        if (data.match) {
           //find match in HTML table and remove it
           let firstName = parent.cells[0].innerHTML;
           let lastName = parent.cells[1].innerHTML;
-          let year =  parent.cells[2].innerHTML;
+          let year = parent.cells[2].innerHTML;
 
           console.log(firstName + " " + lastName + " " + year);
           let matches = document.getElementById("matchesTable").getElementsByTagName("tbody")[0];
 
-          for(let i = 0; i < matches.rows.length; i++){
+          for (let i = 0; i < matches.rows.length; i++) {
             let match = matches.rows[i];
-            if(match.cells[1].innerHTML == firstName && match.cells[2].innerHTML == lastName && match.cells[3].innerHTML == year){
+            if (match.cells[1].innerHTML == firstName && match.cells[2].innerHTML == lastName && match.cells[3].innerHTML == year) {
               match.remove();
               break;
             }
@@ -72,14 +72,13 @@ function removeCrush(removeID, uid, parent) {
 
 
       }
-      else{
+      else {
         alert("Error removing crush.");
       }
     });
 
 
 }
-
 
 function opendata() {
   x = "Opened main html";
@@ -94,4 +93,23 @@ function opendata() {
     .then((data) => {
       alert(JSON.stringify(data));
     });
+}
+
+function openPopup() {
+  var firstName = $(".name").html();
+  var tag = $(".tag").html().toLowerCase();
+  console.log(firstName);
+  console.log(tag);
+  if (tag == "crush") {
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("popup-name").innerHTML = firstName;
+  }
+  else {
+
+  }
+
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
 }
