@@ -15,70 +15,55 @@
 </head>
 
 <body>
+  <span class="logOut" id="logout"><span class="glyphicon">&#xe163;</span> LOG OUT</span>
   <div>
-    <h1 id="header">Gradient</h1>
+    <h1 id="header">GRADIENT</h1>
   </div>
-
-  <span class="logOut" id="logout"><span class="glyphicon">&#xe163;</span> log out</span>
 
   <div class="container">
     <form class="addCrush">
-      <input style="margin:10px 0px 0px 20px;width:80px;" type="text" id="firstName" placeholder="First Name"/>
-      <input style="margin:10px 15px 0px 20px;width:80px;" type="text" id="lastName" placeholder="Last Name"/>
-      <select style="width:135px;margin-right:10px;" class="box" name="gradClass" id="year">
-        <option id="none">Graduation Year</option>
+      <input style="margin:10px 0px 0px 20px;width:100px;" type="text" id="firstName" placeholder="FIRST NAME"
+        onmouseover="this.placeholder=this.getAttribute('data-value');" data-value=""
+        onmouseout="this.placeholder='FIRST NAME'" />
+      <input style="margin:10px 15px 0px 20px;width:100px;" type="text" id="lastName" placeholder="LAST NAME"
+        onmouseover="this.placeholder=this.getAttribute('data-value');" data-value=""
+        onmouseout="this.placeholder='LAST NAME'" />
+      <select class="box" name="gradClass" id="year">
+        <option id="none">GRADUATION YEAR</option>
         <option id="y1"></option>
         <option id="y2"></option>
         <option id="y3"></option>
         <option id="y4"></option>
         <option id="y5"></option>
       </select>
-      <button class="crushButton" id="addCrush">Add Crush</button>
+      <button class="crushButton" id="addCrush">ADD CRUSH</button>
     </form>
   </div>
   <div style="margin-bottom:25px;">
-    <button class="clear-button">Crushes</button>
-    <button class="clear-button">Secret Admirers</button>
-    <button class="clear-button">Matches</button>
+    <button class="clear-button">Crushes <span id="crushesNum">0</span></button>
+    <button class="clear-button">Secret Admirers <span id="admirerNum">0</span></button>
+    <button class="clear-button">Matches <span id="matchesNum">0</span></button>
   </div>
-  <div>
-    <span>Crushes (<span id="crushesNum">0</span>)</span>
-    <table id="crushesTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Year</th>
-        <th></th>
-      </tr>
-    </table>
+  <div id="list">
+    <div class="list-items">
+      <a href="#" class="list-item">
+        <div class="list-item-info">
+          <div class="title-wrapper section">
+            <span class="title">Yo Mama</span>
+          </div>
+          <div class="tags section">
+            <span class="tag">Hiking</span>
+            <span class="dot">·</span>
+            <span class="tag">Casual</span>
+          </div>
+          <div class="numbers section">
+            <span class="rating">2026</span>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
-  <div>
-    <span>Secret Admirers (<span id="admirerNum">0</span>)</span>
-    <br>
-
-    <table id="admirersTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
-      <tr>
-        <th></th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Year</th>
-      </tr>
-    </table>
-  </div>
-
-  <div>
-    <span> Matches (<span id="matchesNum">0</span>) </span>
-    <br>
-    <table id="matchesTable" class="container" style="border-collapse: separate;border-spacing: 10px;">
-      <tr>
-        <th></th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Year</th>
-      </tr>
-    </table>
-  </div>
-
+<!--
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
@@ -240,7 +225,7 @@
           }
         });
     })
-  </script>
+  </script>-->
   <script src="main.js"></script>
 </body>
 

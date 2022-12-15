@@ -6,20 +6,19 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-
-}
-
-body {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  body {
     background-color: #faaca8;
     background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
     height: 100%;
     overflow: auto;
     text-align: center;
-}
-
-footer {
+  }
+  
+  footer {
     clear: both;
     height: auto;
     position: fixed;
@@ -31,26 +30,26 @@ footer {
     background: #333;
     padding: 10px;
     color: #fff;
-}
-
-.logOut {
+  }
+  
+  .logOut {
     font-family: "Prompt";
     font-weight: bold;
     font-size: 12px;
     color: #ffffff;
     position: relative;
     left: 300px;
-    bottom: 60px;
-}
-
-.logOut:hover {
+    top: 25px;
+  }
+  
+  .logOut:hover {
     color: rgb(158, 84, 143);
     transition: 0s;
     cursor: pointer;
     text-decoration-line: underline;
-}
-
-#login {
+  }
+  
+  #login {
     position: relative;
     top: -50px;
     box-shadow: 0px 0px 3px 0px;
@@ -66,22 +65,22 @@ footer {
     font-weight: 600;
     justify-content: center;
     padding-bottom: 20px;
-}
-
-h1 {
+  }
+  
+  h1 {
     font-family: "Prompt", sans-serif;
     font-size: 72px;
     background: -webkit-linear-gradient(rgb(255, 171, 241), rgb(251, 65, 201));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-table {
+  }
+  
+  table {
     margin-bottom: 50px;
-}
-
-#title {
+  }
+  
+  #title {
     font-family: "Prompt", sans-serif;
     background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
     -webkit-background-clip: text;
@@ -89,13 +88,13 @@ table {
     -webkit-text-fill-color: transparent;
     font-size: 8em;
     text-align: center;
-}
-
-/* TODO: Add form styling */
-
-.addCrush {
+  }
+  
+  /* TODO: Add form styling */
+  
+  .addCrush {
     height: auto;
-    width: 580px;
+    width: auto;
     -webkit-border-radius: 25px;
     border-radius: 25px;
     -webkit-box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.1);
@@ -108,16 +107,16 @@ table {
     margin-right: auto;
     clear: left;
     background-color: white;
-}
-
-.crushButton {
-    width: 190px;
-    height: 50px;
+  }
+  
+  .crushButton {
+    width: 150px;
+    height: 33px;
     border: none;
     outline: none;
     background: #2f2f2f;
     color: #fff;
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Prompt", sans-serif;
     border-radius: 40px;
     text-align: center;
@@ -125,16 +124,16 @@ table {
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    margin: 10px 10px 0px 0px;
-}
-
-.crushButton:hover {
+    margin: 15px 15px 0px 0px;
+  }
+  
+  .crushButton:hover {
     color: #ff94af;
     transition: 0.5s;
     background-color: #ffffff;
-}
-
-.createForm {
+  }
+  
+  .createForm {
     background: transparent;
     height: auto;
     width: auto;
@@ -145,9 +144,9 @@ table {
     margin: 10px 20px 20px 20px;
     padding-top: 1px;
     padding-bottom: 20px;
-}
-
-input {
+  }
+  
+  input {
     margin-bottom: 3vh;
     border-right: none;
     border-top: none;
@@ -157,17 +156,18 @@ input {
     color: black;
     caret-color: black;
     font-family: "Prompt", sans-serif;
-}
-
-input[type="text"]::placeholder {
+  }
+  
+  input[type="text"]::placeholder {
     text-align: center;
     color: black;
     font-family: "Prompt", sans-serif;
-}
-
-.box {
-    width: 120px;
+  }
+  
+  .box {
+    width: auto;
     height: 30px;
+    margin-right:10px;
     border: 1px solid #999;
     font-size: auto;
     color: #000000;
@@ -175,35 +175,73 @@ input[type="text"]::placeholder {
     border-radius: 5px;
     box-shadow: 3px 3px #ccc;
     font-family: "Prompt";
-}
-
-.container {
+  }
+  
+  .container {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.clear-button{
-  font-family: "Prompt", sans-serif;
-  color: white;
-  display: inline-flex; 
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  border: 1px solid rgba(255 255 255 / 10%);
-  border-radius: 2rem;
-  outline: none;
-  text-align: center;
-  cursor: pointer;
-  background-color: rgba(0 0 0 / 15%);
-  border-color: rgba(255 255 255 / 15%);
-}
-
-.clear-button:hover {
+  }
+  
+  .clear-button {
+    font-family: "Prompt", sans-serif;
+    color: white;
+    display: inline-flex;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: 1px solid rgba(255 255 255 / 10%);
+    border-radius: 2rem;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(0 0 0 / 15%);
+    border-color: rgba(255 255 255 / 15%);
+  }
+  
+  .clear-button:hover {
     color: #ff94af;
     transition: 0.5s;
     background-color: #ffffff;
-}
+  }
+  
+  span {
+    height: 20px;
+    line-height: 20px;
+  }
+  
+  #list > .list-items {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+  
+  #list > .list-items > .list-item {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid white;
+    background-color: rgba(0 0 0 / 15%);
+    border-radius: 5px;
+    gap: 1rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  #list > .list-items > .list-item:hover,
+  #list > .list-items > .list-item:focus {
+    background-color: rgba(255 255 255 / 15%);
+  }
+  #list > .list-items > .list-item > .list-item-info{
+    color:white;
+    width: calc(100% - 8rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.15rem;  
+    flex-shrink: 1;
+  }
