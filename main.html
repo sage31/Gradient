@@ -117,19 +117,19 @@
     const matchBtn = document.getElementById("status-matches");
 
     crushBtn.addEventListener("click", () => {
-      if (!status == "crushes") {
+      if (status != "crushes") {
         status = "crushes";
         document.getElementById("main-content").innerHTML = crushesHTML;
       }
     });
     admirerBtn.addEventListener("click", () => {
-      if (!status == "admirers") {
+      if (status != "admirers") {
         status = "admirers";
         document.getElementById("main-content").innerHTML = admirersHTML;
       }
     });
     matchBtn.addEventListener("click", () => {
-      if (!status == "matches") {
+      if (status != "matches") {
         status = "matches";
         document.getElementById("main-content").innerHTML = matchesHTML;
       }
