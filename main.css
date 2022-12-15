@@ -74,6 +74,7 @@ html {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    user-select: none;
   }
   
   table {
@@ -215,33 +216,48 @@ html {
   
   #list > .list-items {
     display: flex;
-    flex-direction: column;
     padding: 0.5rem;
+    flex-direction: row;
+    margin: 0 100 0 100;
+    font-family: "Prompt", sans-serif;
   }
   
   #list > .list-items > .list-item {
-    width: 25%;
+    width: auto;
     display: flex;
     justify-content: center;
     border: 1px solid white;
     background-color: rgba(0 0 0 / 15%);
     border-radius: 5px;
     gap: 1rem;
-    padding: 0.5rem;
+    padding: 1rem;
     text-decoration: none;
     cursor: pointer;
+    margin: 5px;
   }
   
   #list > .list-items > .list-item:hover,
   #list > .list-items > .list-item:focus {
-    background-color: rgba(255 255 255 / 15%);
+    transition: 0.5s;
+    background-color: rgba(269, 0, 169, 10%);
   }
   #list > .list-items > .list-item > .list-item-info{
     color:white;
-    width: calc(100% - 8rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.15rem;  
     flex-shrink: 1;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  #list > .list-items > .list-item > .list-item-info > .title-wrapper {
+    display:flex;
+    flex-wrap: nowrap;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    clear:both;
   }
