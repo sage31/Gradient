@@ -89,6 +89,7 @@ table {
   -webkit-text-fill-color: transparent;
   font-size: 8em;
   text-align: center;
+  font-weight: bold;
 }
 
 /* TODO: Add form styling */
