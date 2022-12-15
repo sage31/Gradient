@@ -181,20 +181,8 @@
                     </a>`;
                   }
                   document.getElementById("main-content").innerHTML = crushesHTML;
-                  /*
-                  for (let crush of data.crushes) {
-                    document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
-                      `<tr>
-                          <td>` + formatName(crush.firstName) + `</td>
-                          <td>` + formatName(crush.lastName) + `</td>
-                          <td>` + crush.year + `</td>
-                          <td><button id = "` + "\`" + crush.removeID + "\`" + `" style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + "\`" + crush.removeID + "\`" + "," + "\`" + uid + "\`" + "," + "this.parentNode.parentNode" + `)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
-                      </tr>`
-                      
-                      
-                      ;
-                  }*/
                   document.getElementById("crushesNum").innerHTML = data.crushes.length;
+                  //add in admirers
 
                   for (let admirer of data.admirers) {
                     admirersHTML +=
@@ -214,23 +202,9 @@
                         </div>
                       </a>`;
                   }
-
-                  //add in secret admirers
-                  /*
-                  for (let admirer of data.admirers) {
-                    document.getElementById("admirersTable").getElementsByTagName("tbody")[0].innerHTML +=
-                      `<tr>
-                          <td><img src="https://www.seekpng.com/png/full/414-4140251_you-profile-picture-question-mark.png" width="20px"></td>
-                          <td>???</td>
-                          <td>???</td>
-                          <td>` + admirer + `</td>
-                      </tr>`;
-                  }
-                  */
                   document.getElementById("admirerNum").innerHTML = data.admirers.length;
 
                   //add in any matches
-                  //console.log(data.matches);
 
                   for (let match of data.matches) {
                     matchesHTML +=
@@ -249,18 +223,6 @@
                         </div>
                       </a>`;
                   }
-                  /*
-                  for (let match of data.matches) {
-                    document.getElementById("matchesTable").getElementsByTagName("tbody")[0].innerHTML +=
-                      `<tr>
-                          <td><img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f60d.png" width="20px"></td>
-                          <td>` + formatName(match.fName) + `</td>
-                          <td>` + formatName(match.lName) + `</td>
-                          <td>` + match.gYear + `</td>
-                      </tr>`;
-                  }
-                  */
-
                   document.getElementById("matchesNum").innerHTML = data.matches.length;
                 });
             }
@@ -300,6 +262,10 @@
           console.log(data.matches[0]);
           if (data.success) {
             for (let crush of data.removeIDs) {
+              
+
+
+
               document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
                 `<tr>
                           <td>` + formatName(firstName) + `</td>
