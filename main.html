@@ -93,12 +93,12 @@
       </div>
       <div id="popup-body">
         <button id="popup-cancel" class="clear-button" onclick="closePopup()">Cancel</button>
-        <button id="popup-delete" class="clear-button">Delete</button>
+        <button id="popup-delete" class="clear-button" onclick="removeCrush()"">Delete</button>
       </div>
     </div>
 
   </div>
-  <!--
+  
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
@@ -279,10 +279,6 @@
           console.log(data.matches[0]);
           if (data.success) {
             for (let crush of data.removeIDs) {
-              
-
-
-
               document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
                 `<tr>
                           <td>` + formatName(firstName) + `</td>
@@ -316,7 +312,7 @@
           }
         });
     })
-  </script>-->
+  </script>
   <script src="main.js"></script>
 </body>
 
