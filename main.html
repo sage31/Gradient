@@ -17,7 +17,7 @@
 <body>
   <span class="logOut" id="logout"><span class="glyphicon">&#xe163;</span> LOG OUT</span>
   <div>
-    <h1 id="header">GRADIENT</h1>
+    <h1 id="title">GRADIENT</h1>
   </div>
 
   <div class="container">
@@ -40,12 +40,12 @@
     </form>
   </div>
   <div style="margin-bottom:25px;">
-    <button class="clear-button">Crushes <span id="crushesNum">0</span></button>
-    <button class="clear-button">Secret Admirers <span id="admirerNum">0</span></button>
-    <button class="clear-button">Matches <span id="matchesNum">0</span></button>
+    <button id="status-crushes" class="clear-button">Crushes <span id="crushesNum">0</span></button>
+    <button id="status-admirers" class="clear-button">Secret Admirers <span id="admirerNum">0</span></button>
+    <button id="status-matches" class="clear-button">Matches <span id="matchesNum">0</span></button>
   </div>
   <div id="list">
-    <div class="list-items">
+    <div id="main-content" class="list-items">
 
       <a href="#" class="list-item"> <!--a element needs to be linked to chat-->
         <div class="list-item-info">
@@ -58,12 +58,12 @@
             <span class="tag">Crush</span>
           </div>
           <div class="numbers section">
-            
+
           </div>
         </div>
       </a>
 
-      <a href="#" class="list-item"> 
+      <a href="#" class="list-item">
         <div class="list-item-info">
           <div class="title-wrapper section">
             <span class="name">Yo Dada</span>
@@ -74,7 +74,7 @@
             <span class="tag">Secret Admirer</span>
           </div>
           <div class="numbers section">
-            
+
           </div>
         </div>
       </a>
@@ -107,6 +107,33 @@
     window.moduleRef = ref;
     window.database = getDatabase(app);
     const auth = getAuth(app);
+    let crushesHTML = "";
+    let admirersHTML = "";
+    let matchesHTML = "";
+    let status = "crushes";
+
+    const crushBtn = document.getElementById("status-crushes");
+    const admirerBtn = document.getElementById("status-admirers");
+    const matchBtn = document.getElementById("status-matches");
+
+    crushBtn.addEventListener("click", () => {
+      if (!status == "crushes") {
+        status = "crushes";
+        document.getElementById("list").innerHTML = crushesHTML;
+      }
+    });
+    admirerBtn.addEventListener("click", () => {
+      if (!status == "admirers") {
+        status = "admirers";
+        document.getElementById("list").innerHTML = admirersHTML;
+      }
+    });
+    matchBtn.addEventListener("click", () => {
+      if (!status == "matches") {
+        status = "matches";
+        document.getElementById("list").innerHTML = matchesHTML;
+      }
+    });
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
@@ -136,18 +163,60 @@
                   //add in the crushes
                   console.log(data.crushes);
                   for (let crush of data.crushes) {
+                    crushesHTML +=
+                      `<a href="#" class="list-item">
+                      <div class="list-item-info">
+                        <div class="title-wrapper section">
+                          <span class="name">` + formatName(crush.firstName) + formatName(crush.lastName) + `</span>
+                          <span class="dot"> · </span>
+                          <span class="year">` + crush.year + `</span>
+                        </div>
+                        <div class="tags section">
+                          <span class="tag">Crush</span>
+                        </div>
+                        <div class="numbers section">
+                          
+                        </div>
+                      </div>
+                    </a>`;
+                  }
+                  document.getElementById("list").innerHTML = crushesHTML;
+                  /*
+                  for (let crush of data.crushes) {
                     document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
                       `<tr>
                           <td>` + formatName(crush.firstName) + `</td>
                           <td>` + formatName(crush.lastName) + `</td>
                           <td>` + crush.year + `</td>
                           <td><button id = "` + "\`" + crush.removeID + "\`" + `" style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + "\`" + crush.removeID + "\`" + "," + "\`" + uid + "\`" + "," + "this.parentNode.parentNode" + `)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
-                      </tr>`;
-                  }
+                      </tr>`
+                      
+                      
+                      ;
+                  }*/
                   document.getElementById("crushesNum").innerHTML = data.crushes.length;
 
+                  for (let admirer of data.admirers) {
+                    admirersHTML +=
+                      `<a href="#" class="list-item">
+                        <div class="list-item-info">
+                          <div class="title-wrapper section">
+                            <span class="name">???</span>
+                            <span class="dot"> · </span>
+                            <span class="year">` + admirer + `</span>
+                          </div>
+                          <div class="tags section">
+                            <span class="tag">Secret Admirer</span>
+                          </div>
+                          <div class="numbers section">
+                            
+                          </div>
+                        </div>
+                      </a>`;
+                  }
 
                   //add in secret admirers
+                  /*
                   for (let admirer of data.admirers) {
                     document.getElementById("admirersTable").getElementsByTagName("tbody")[0].innerHTML +=
                       `<tr>
@@ -157,10 +226,30 @@
                           <td>` + admirer + `</td>
                       </tr>`;
                   }
+                  */
                   document.getElementById("admirerNum").innerHTML = data.admirers.length;
 
                   //add in any matches
                   //console.log(data.matches);
+
+                  for (let match of data.matches) {
+                    matchesHTML +=
+                      `<a href="#" class="list-item">
+                        <div class="list-item-info">
+                          <div class="title-wrapper section">
+                            <span class="name">` + formatName(match.fName) + formatName(match.lName) + `</span>
+                            <span class="dot"> · </span>
+                            <span class="year">` + match.gYear + `</span>
+                          </div>
+                          <div class="tags section">
+                            <span class="tag">Match</span>
+                          </div>
+                          <div class="numbers section">
+                          </div>
+                        </div>
+                      </a>`;
+                  }
+                  /*
                   for (let match of data.matches) {
                     document.getElementById("matchesTable").getElementsByTagName("tbody")[0].innerHTML +=
                       `<tr>
@@ -170,6 +259,7 @@
                           <td>` + match.gYear + `</td>
                       </tr>`;
                   }
+                  */
 
                   document.getElementById("matchesNum").innerHTML = data.matches.length;
                 });
