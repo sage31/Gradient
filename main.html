@@ -41,9 +41,9 @@
     </form>
   </div>
   <div style="margin-bottom:25px;">
-    <button id="status-crushes" class="clear-button">Crushes <span id="crushesNum">0</span></button>
-    <button id="status-admirers" class="clear-button">Secret Admirers <span id="admirerNum">0</span></button>
-    <button id="status-matches" class="clear-button">Matches <span id="matchesNum">0</span></button>
+    <button id="status-crushes" class="clear-button"><span id="crushesNum">0</span> Crushes</button>
+    <button id="status-admirers" class="clear-button"><span id="admirerNum">0</span> Secret Admirers</button>
+    <button id="status-matches" class="clear-button"><span id="matchesNum">0</span> Matches</button>
   </div>
   <div id="list">
     <div id="main-content" class="list-items">
@@ -98,7 +98,7 @@
     </div>
 
   </div>
-  
+
   <script type="module">
     import { initializeApp } from " https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js"; import {
       getAuth,
@@ -165,7 +165,7 @@
                   console.log(data.crushes);
                   for (let crush of data.crushes) {
                     crushesHTML +=
-                      `<a href="#" class="list-item" onclick="openPopup(this.childNode)">
+                      `<a href="#" class="list-item" onclick="openPopup(this.childNodes[1])">
             <div class="list-item-info">
               <div class="title-wrapper section">
                 <span class="name">` + formatName(crush.firstName) + " " + formatName(crush.lastName) + `</span>

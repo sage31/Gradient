@@ -88,7 +88,7 @@ table {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 8em;
-  text-align: center;
+  text-align: center; 
   font-weight: bold;
 }
 
@@ -208,10 +208,12 @@ input[type="text"]::placeholder {
   background-color: #ffffff;
 }
 
+/*
 span {
   height: 20px;
   line-height: 20px;
 }
+*/
 
 #list>.list-items {
   display: flex;

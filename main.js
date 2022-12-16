@@ -96,18 +96,14 @@ function opendata() {
 }
 
 function openPopup(node) {
-  var firstName = node.getElementsByClassName("name")[0].html();
+  var firstName = node.children[0].children[0].innerHTML;
+  var removeID = node.children[2].children[0].innerHTML;
+  console.log(removeID);
   console.log(firstName);
-  console.log(tag);
-  if (tag == "crush") {
-    document.getElementById("popup").style.display = "flex";
-    document.getElementById("popup-name").innerHTML = firstName;
-    document.getElementById("popup-delete").onclick = "removeCrush("+ node.getElementsByClassName("removeID")[0].innerHTML + "," + window.uid + ")";
-  }
-  else {
 
-  }
-
+  document.getElementById("popup").style.display = "flex";
+  document.getElementById("popup-name").innerHTML = firstName;
+  document.getElementById("popup-delete").onclick = "removeCrush(" + node.getElementsByClassName("removeID")[0].innerHTML + "," + window.uid + ")";
 }
 
 function closePopup() {
