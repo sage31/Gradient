@@ -96,14 +96,13 @@ function opendata() {
 }
 
 function openPopup(node) {
-  var firstName = node.$(".name").html();
-  var tag = node.$(".tag").html().toLowerCase();
+  var firstName = node.getElementsByClassName("name")[0].html();
   console.log(firstName);
   console.log(tag);
   if (tag == "crush") {
     document.getElementById("popup").style.display = "flex";
     document.getElementById("popup-name").innerHTML = firstName;
-    document.getElementById("popup-delete").onclick = "removeCrush("+ node.getElementsByTagName("hidden")[0].innerHTML + "," + window.uid + ")";
+    document.getElementById("popup-delete").onclick = "removeCrush("+ node.getElementsByClassName("removeID")[0].innerHTML + "," + window.uid + ")";
   }
   else {
 
