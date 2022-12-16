@@ -165,7 +165,7 @@
                   console.log(data.crushes);
                   for (let crush of data.crushes) {
                     crushesHTML +=
-                      `<a href="#" class="list-item" onclick="openPopup(this.childNode)>
+                      `<a href="#" class="list-item" onclick="openPopup(this.childNode)">
             <div class="list-item-info">
               <div class="title-wrapper section">
                 <span class="name">` + formatName(crush.firstName) + " " + formatName(crush.lastName) + `</span>
@@ -176,7 +176,7 @@
                 <span class="tag">Crush</span>
               </div>
               <div class="numbers section">
-                <span class="removeID">`+ crush.removeID + `</span>
+                <span style="display:none" class="removeID">`+ crush.removeID + `</span>
               </div>
             </div>
           </a>`;
