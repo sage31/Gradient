@@ -95,14 +95,15 @@ function opendata() {
     });
 }
 
-function openPopup() {
-  var firstName = $(".name").html();
-  var tag = $(".tag").html().toLowerCase();
+function openPopup(node) {
+  var firstName = node.$(".name").html();
+  var tag = node.$(".tag").html().toLowerCase();
   console.log(firstName);
   console.log(tag);
   if (tag == "crush") {
     document.getElementById("popup").style.display = "flex";
     document.getElementById("popup-name").innerHTML = firstName;
+    document.getElementById("popup-delete").onclick = "removeCrush("+ node.getElementsByTagName("hidden")[0].innerHTML + "," + window.uid + ")";
   }
   else {
 

@@ -48,7 +48,7 @@
   <div id="list">
     <div id="main-content" class="list-items">
 
-      <a href="#" class="list-item" onclick="openPopup()">
+      <a href="#" class="list-item" onclick="openPopup(this.childNode)">
         <!--a element needs to be linked to chat-->
         <div class="list-item-info">
           <div class="title-wrapper section">
@@ -60,12 +60,12 @@
             <span class="tag">Crush</span>
           </div>
           <div class="numbers section">
-
+            <hidden>removeID_JoMama</hidden>
           </div>
         </div>
       </a>
 
-      <a href="#" class="list-item" onclick="openPopup()">
+      <a href="#" class="list-item" onclick="openPopup(this.childNode)">
         <div class="list-item-info">
           <div class="title-wrapper section">
             <span class="name">Yo Dada</span>
@@ -76,14 +76,14 @@
             <span class="tag">Secret Admirer</span>
           </div>
           <div class="numbers section">
-
+            <hidden>removeID_YoDada</hidden>
           </div>
         </div>
       </a>
 
     </div>
   </div>
-  <div id="popup" style="display:flex">
+  <div id="popup" style="display:none">
     <!--display a popup giving options to either chat or delete crush-->
     <div id="popup-content">
       <div id="popup-header">
@@ -93,52 +93,35 @@
       </div>
       <div id="popup-body">
         <button id="popup-cancel" class="clear-button" onclick="closePopup()">Cancel</button>
-        <button id="popup-delete" class="clear-button" onclick="removeCrush()"">Delete</button>
+        <button id="popup-delete" class="clear-button" onclick="">Delete</button>
       </div>
     </div>
 
   </div>
   
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
-    import {
-      getDatabase,
-      ref,
-      set,
-    } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo",
-      authDomain: "scucrushes-a9663.firebaseapp.com",
-      databaseURL: "https://scucrushes-a9663-default-rtdb.firebaseio.com",
-      projectId: "scucrushes-a9663",
-      storageBucket: "scucrushes-a9663.appspot.com",
-      messagingSenderId: "1027917905596",
-      appId: "1:1027917905596:web:54c1a478e31f4007c75ab9",
-      measurementId: "G-CFJTYX3MYW",
-    };
-    export const app = initializeApp(firebaseConfig);
-    window.moduleSet = set;
-    window.moduleRef = ref;
-    window.database = getDatabase(app);
-    const auth = getAuth(app);
-    let crushesHTML = "";
-    let admirersHTML = "";
-    let matchesHTML = "";
-    let status = "crushes";
-
-    const crushBtn = document.getElementById("status-crushes");
-    const admirerBtn = document.getElementById("status-admirers");
-    const matchBtn = document.getElementById("status-matches");
-
-    crushBtn.addEventListener("click", () => {
-      if (status != "crushes") {
-        status = "crushes";
-        document.getElementById("main-content").innerHTML = crushesHTML;
-      }
-    });
+    import { initializeApp } from " https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js"; import {
+      getAuth,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js"; import {
+      getFirestore
+    } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js"; import { getDatabase, ref, set, }
+      from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js"; const firebaseConfig = {
+        apiKey: "AIzaSyDQF_w0iISHkuR_2HJUkpQhz5v7LKmhjPo", authDomain: "scucrushes-a9663.firebaseapp.com",
+        databaseURL: "https://scucrushes-a9663-default-rtdb.firebaseio.com", projectId: "scucrushes-a9663",
+        storageBucket: "scucrushes-a9663.appspot.com", messagingSenderId: "1027917905596",
+        appId: "1:1027917905596:web:54c1a478e31f4007c75ab9", measurementId: "G-CFJTYX3MYW",
+      }; export const
+        app = initializeApp(firebaseConfig); window.moduleSet = set; window.moduleRef = ref;
+    window.database = getDatabase(app); const auth = getAuth(app); let crushesHTML = ""; let admirersHTML = ""; let
+      matchesHTML = ""; let status = "crushes"; const crushBtn = document.getElementById("status-crushes"); const
+        admirerBtn = document.getElementById("status-admirers"); const
+          matchBtn = document.getElementById("status-matches"); crushBtn.addEventListener("click", () => {
+            if (status != "crushes") {
+              status = "crushes";
+              document.getElementById("main-content").innerHTML = crushesHTML;
+            }
+          });
     admirerBtn.addEventListener("click", () => {
       if (status != "admirers") {
         status = "admirers";
@@ -154,6 +137,7 @@
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
+        window.uid = uid;
         fetch("https://SCUCrushes-Server.ethancl.repl.co/checkAC", {
           method: "POST",
           headers: {
@@ -181,21 +165,21 @@
                   console.log(data.crushes);
                   for (let crush of data.crushes) {
                     crushesHTML +=
-                      `<a href="#" class="list-item">
-                      <div class="list-item-info">
-                        <div class="title-wrapper section">
-                          <span class="name">` + formatName(crush.firstName) + " " + formatName(crush.lastName) + `</span>
-                          <span class="dot"> · </span>
-                          <span class="year">` + crush.year + `</span>
-                        </div>
-                        <div class="tags section">
-                          <span class="tag">Crush</span>
-                        </div>
-                        <div class="numbers section">
-                          
-                        </div>
-                      </div>
-                    </a>`;
+                      `<a href="#" class="list-item" onclick="openPopup(this.childNode)>
+            <div class="list-item-info">
+              <div class="title-wrapper section">
+                <span class="name">` + formatName(crush.firstName) + " " + formatName(crush.lastName) + `</span>
+                <span class="dot"> · </span>
+                <span class="year">` + crush.year + `</span>
+              </div>
+              <div class="tags section">
+                <span class="tag">Crush</span>
+              </div>
+              <div class="numbers section">
+                <hidden>`+ crush.removeID + `</hidden>
+              </div>
+            </div>
+          </a>`;
                   }
                   document.getElementById("main-content").innerHTML = crushesHTML;
                   document.getElementById("crushesNum").innerHTML = data.crushes.length;
@@ -204,20 +188,20 @@
                   for (let admirer of data.admirers) {
                     admirersHTML +=
                       `<a href="#" class="list-item">
-                        <div class="list-item-info">
-                          <div class="title-wrapper section">
-                            <span class="name">???</span>
-                            <span class="dot"> · </span>
-                            <span class="year">` + admirer + `</span>
-                          </div>
-                          <div class="tags section">
-                            <span class="tag">Secret Admirer</span>
-                          </div>
-                          <div class="numbers section">
-                            
-                          </div>
-                        </div>
-                      </a>`;
+            <div class="list-item-info">
+              <div class="title-wrapper section">
+                <span class="name">???</span>
+                <span class="dot"> · </span>
+                <span class="year">` + admirer + `</span>
+              </div>
+              <div class="tags section">
+                <span class="tag">Secret Admirer</span>
+              </div>
+              <div class="numbers section">
+
+              </div>
+            </div>
+          </a>`;
                   }
                   document.getElementById("admirerNum").innerHTML = data.admirers.length;
 
@@ -226,19 +210,19 @@
                   for (let match of data.matches) {
                     matchesHTML +=
                       `<a href="#" class="list-item">
-                        <div class="list-item-info">
-                          <div class="title-wrapper section">
-                            <span class="name">` + formatName(match.fName) + " " + formatName(match.lName) + `</span>
-                            <span class="dot"> · </span>
-                            <span class="year">` + match.gYear + `</span>
-                          </div>
-                          <div class="tags section">
-                            <span class="tag">Match</span>
-                          </div>
-                          <div class="numbers section">
-                          </div>
-                        </div>
-                      </a>`;
+            <div class="list-item-info">
+              <div class="title-wrapper section">
+                <span class="name">` + formatName(match.fName) + " " + formatName(match.lName) + `</span>
+                <span class="dot"> · </span>
+                <span class="year">` + match.gYear + `</span>
+              </div>
+              <div class="tags section">
+                <span class="tag">Match</span>
+              </div>
+              <div class="numbers section">
+              </div>
+            </div>
+          </a>`;
                   }
                   document.getElementById("matchesNum").innerHTML = data.matches.length;
                 });
@@ -281,13 +265,17 @@
             for (let crush of data.removeIDs) {
               document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
                 `<tr>
-                          <td>` + formatName(firstName) + `</td>
-                          <td>` + formatName(lastName) + `</td>
-                          <td>` + year + `</td>
-                          <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + "\`" + crush + "\`" + "," + "\`" + uid + "\`" + "," + "this.parentNode.parentNode" + `)"><img src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button></td>
-                      </tr>`;
+            <td>` + formatName(firstName) + `</td>
+            <td>` + formatName(lastName) + `</td>
+            <td>` + year + `</td>
+            <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + " \`" +
+                crush + "\`" + "," + "\`" + uid + "\`" + "," + "this.parentNode.parentNode" + `)"><img
+                  src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button>
+            </td>
+          </tr>`;
             }
-            document.getElementById("crushesNum").innerHTML = parseInt(document.getElementById("crushesNum").innerHTML) + data.removeIDs.length;
+            document.getElementById("crushesNum").innerHTML = parseInt(document.getElementById("crushesNum").innerHTML) +
+              data.removeIDs.length;
             if (data.removeIDs.length == 0) {
               alert("You already have this crush.");
             }
@@ -296,15 +284,15 @@
                 alert("Crush does not exist in databse.");
             }
             for (let i = 0; i < data.matches; i++) {
-              document.getElementById("matchesTable").getElementsByTagName("tbody")[0].innerHTML +=
-                `<tr>
-                          <td><img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f60d.png" width="20px"></td>
-                          <td>` + formatName(firstName) + `</td>
-                          <td>` + formatName(lastName) + `</td>
-                          <td>` + year + `</td>
-                      </tr>`;
+              document.getElementById("matchesTable").getElementsByTagName("tbody")[0].innerHTML += `<tr>
+            <td><img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f60d.png" width="20px"></td>
+            <td>` + formatName(firstName) + `</td>
+            <td>` + formatName(lastName) + `</td>
+            <td>` + year + `</td>
+            </tr>`;
             }
-            document.getElementById("matchesNum").innerHTML = parseInt(document.getElementById("matchesNum").innerHTML) + parseFloat(data.matches);
+            document.getElementById("matchesNum").innerHTML = parseInt(document.getElementById("matchesNum").innerHTML)
+              + parseFloat(data.matches);
 
           }
           else {
