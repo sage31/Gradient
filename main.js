@@ -32,7 +32,7 @@ function formatName(name) {
 
 
 
-function removeCrush(removeID, uid, parent) {
+function removeCrush(removeID, uid, parent, name, year) {
   fetch("https://Server-Test.ethancl.repl.co/removeCrush", {
     method: "POST",
     headers: {
@@ -44,11 +44,12 @@ function removeCrush(removeID, uid, parent) {
     .then((data) => {
       console.log(data);
       if (data.success) {
+        /*
         if (data.match) {
           //find match in HTML table and remove it
-          let firstName = parent.cells[0].innerHTML;
-          let lastName = parent.cells[1].innerHTML;
-          let year = parent.cells[2].innerHTML;
+
+          let firstName = name.substring(0, name.indexOf(" ")));
+          let lastName = name.substring(name.indexOf(" ") + 1);
 
           console.log(firstName + " " + lastName + " " + year);
           let matches = document.getElementById("matchesTable").getElementsByTagName("tbody")[0];
@@ -63,7 +64,7 @@ function removeCrush(removeID, uid, parent) {
           //decrement matchesNum
           let matchesNum = document.getElementById("matchesNum");
           matchesNum.innerHTML = parseInt(matchesNum.innerHTML) - 1;
-        }
+        }*/
         //remove crush from HTML table using removeID
         parent.remove();
         //decrement crushesNum
@@ -98,6 +99,7 @@ function opendata() {
 function openPopup(node) {
   var firstName = node.children[0].children[0].innerHTML;
   var removeID = node.children[2].children[0].innerHTML;
+  var year = node.children[0].children[2].innerHTML;
   console.log(removeID);
   console.log(firstName);
   console.log(node);
@@ -105,8 +107,7 @@ function openPopup(node) {
 
   document.getElementById("popup").style.display = "flex";
   document.getElementById("popup-name").innerHTML = firstName;
-  document.getElementById("popup-delete").onclick = "hi";
-  document.getElementById("popup-delete").onclick = removeCrush(removeID,window.uid,node.parentNode);
+  document.getElementById("popup-delete").onclick = removeCrush(removeID,window.uid,node.parentNode,firstName, year);
 }
 
 function closePopup() {
