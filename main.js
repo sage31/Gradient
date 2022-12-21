@@ -100,10 +100,6 @@ function openPopup(node) {
   var firstName = node.children[0].children[0].innerHTML;
   var removeID = node.children[2].children[0].innerHTML;
   var year = node.children[0].children[2].innerHTML;
-  console.log(removeID);
-  console.log(firstName);
-  console.log(node);
-  console.log(node.parentNode);
 
   document.getElementById("popup").style.display = "flex";
   document.getElementById("popup-name").innerHTML = firstName;
