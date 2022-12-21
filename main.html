@@ -263,16 +263,22 @@
           console.log(data.matches[0]);
           if (data.success) {
             for (let crush of data.removeIDs) {
-              document.getElementById("crushesTable").getElementsByTagName("tbody")[0].innerHTML +=
-                `<tr>
-            <td>` + formatName(firstName) + `</td>
-            <td>` + formatName(lastName) + `</td>
-            <td>` + year + `</td>
-            <td><button style="background-color:transparent;border-color:transparent;" onclick="removeCrush(` + " \`" +
-                crush + "\`" + "," + "\`" + uid + "\`" + "," + "this.parentNode.parentNode" + `)"><img
-                  src="https://icons.iconarchive.com/icons/vexels/office/1024/trash-icon.png" width="20px"></button>
-            </td>
-          </tr>`;
+              crushesHTML +=
+              `<a href="#" class="list-item" onclick="openPopup(this.childNodes[1])">
+            <div class="list-item-info">
+              <div class="title-wrapper section">
+                <span class="name">` + formatName(firstName) + " " + formatName(lastName) + `</span>
+                <span class="dot"> · </span>
+                <span class="year">` + crush.year + `</span>
+              </div>
+              <div class="tags section">
+                <span class="tag">Crush</span>
+              </div>
+              <div class="numbers section">
+                <span style="display:none" class="removeID">`+ crush + `</span>
+              </div>
+            </div>
+          </a>`;
             }
             document.getElementById("crushesNum").innerHTML = parseInt(document.getElementById("crushesNum").innerHTML) +
               data.removeIDs.length;
@@ -281,15 +287,23 @@
             }
             else {
               if (data.removeIDs[0] == (firstName.toLowerCase() + lastName.toLowerCase() + year))
-                alert("Crush does not exist in databse.");
+                alert("Note: crush does not yet exist in databse.");
             }
             for (let i = 0; i < data.matches; i++) {
-              document.getElementById("matchesTable").getElementsByTagName("tbody")[0].innerHTML += `<tr>
-            <td><img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f60d.png" width="20px"></td>
-            <td>` + formatName(firstName) + `</td>
-            <td>` + formatName(lastName) + `</td>
-            <td>` + year + `</td>
-            </tr>`;
+              matchesHTML += `<div class="list-item">
+            <div class="list-item-info">
+              <div class="title-wrapper section">
+                <span class="name">` + formatName(firstName) + " " + formatName(lastName) + `</span>
+                <span class="dot"> · </span>
+                <span class="year">` + year + `</span>
+              </div>
+              <div class="tags section">
+                <span class="tag">Match</span>
+              </div>
+              <div class="numbers section">
+              </div>
+            </div>
+          </div>`;
             }
             document.getElementById("matchesNum").innerHTML = parseInt(document.getElementById("matchesNum").innerHTML)
               + parseFloat(data.matches);
