@@ -69,7 +69,7 @@ function removeCrush(removeID, uid, parent, name, year) {
         parent.remove();
         //decrement crushesNum
         let crushesNum = document.getElementById("crushesNum");
-        crushesNum.innerHTML = parseInt(crushesNum.innerHTML)--;
+        crushesNum.innerHTML = parseInt(crushesNum.innerHTML)-1;
 
 
       }
