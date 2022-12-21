@@ -38,7 +38,7 @@ function removeCrush(removeID, uid, parent, name, year) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ removeID, uid }),
+    body: JSON.stringify({ removeID: removeID, uid: uid }),
   })
     .then((response) => response.json())
     .then((data) => {
