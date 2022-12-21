@@ -165,7 +165,7 @@
                   console.log(data.crushes);
                   for (let crush of data.crushes) {
                     crushesHTML +=
-                      `<a href="#" class="list-item" onclick="openPopup(this.childNodes[1])">
+                      `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
             <div class="list-item-info">
               <div class="title-wrapper section">
                 <span class="name">` + formatName(crush.firstName) + " " + formatName(crush.lastName) + `</span>
@@ -179,7 +179,7 @@
                 <span style="display:none" class="removeID">`+ crush.removeID + `</span>
               </div>
             </div>
-          </a>`;
+          </div>`;
                   }
                   document.getElementById("main-content").innerHTML = crushesHTML;
                   document.getElementById("crushesNum").innerHTML = data.crushes.length;
@@ -264,7 +264,7 @@
           if (data.success) {
             for (let crush of data.removeIDs) {
               crushesHTML +=
-              `<a href="#" class="list-item" onclick="openPopup(this.childNodes[1])">
+              `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
             <div class="list-item-info">
               <div class="title-wrapper section">
                 <span class="name">` + formatName(firstName) + " " + formatName(lastName) + `</span>
@@ -278,7 +278,7 @@
                 <span style="display:none" class="removeID">`+ crush + `</span>
               </div>
             </div>
-          </a>`;
+          </div>`;
             }
             document.getElementById("crushesNum").innerHTML = parseInt(document.getElementById("crushesNum").innerHTML) +
               data.removeIDs.length;
