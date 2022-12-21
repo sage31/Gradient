@@ -187,7 +187,7 @@
 
                   for (let admirer of data.admirers) {
                     admirersHTML +=
-                      `<a href="#" class="list-item">
+                      `<div class="list-item">
             <div class="list-item-info">
               <div class="title-wrapper section">
                 <span class="name">???</span>
@@ -201,7 +201,7 @@
 
               </div>
             </div>
-          </a>`;
+          </div>`;
                   }
                   document.getElementById("admirerNum").innerHTML = data.admirers.length;
 
@@ -209,7 +209,7 @@
 
                   for (let match of data.matches) {
                     matchesHTML +=
-                      `<a href="#" class="list-item">
+                      `<div class="list-item">
             <div class="list-item-info">
               <div class="title-wrapper section">
                 <span class="name">` + formatName(match.fName) + " " + formatName(match.lName) + `</span>
@@ -222,7 +222,7 @@
               <div class="numbers section">
               </div>
             </div>
-          </a>`;
+          </div>`;
                   }
                   document.getElementById("matchesNum").innerHTML = data.matches.length;
                 });
