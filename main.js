@@ -100,10 +100,13 @@ function openPopup(node) {
   var removeID = node.children[2].children[0].innerHTML;
   console.log(removeID);
   console.log(firstName);
+  console.log(node);
+  console.log(node.parentNode);
 
   document.getElementById("popup").style.display = "flex";
   document.getElementById("popup-name").innerHTML = firstName;
-  document.getElementById("popup-delete").onclick = "removeCrush(" + node.getElementsByClassName("removeID")[0].innerHTML + "," + window.uid + ")";
+  document.getElementById("popup-delete").onclick = "hi";
+  document.getElementById("popup-delete").onclick = removeCrush(removeID,window.uid,node.parentNode);
 }
 
 function closePopup() {

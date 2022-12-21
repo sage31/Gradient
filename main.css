@@ -38,8 +38,8 @@ footer {
   font-size: 15px;
   color: #ffffff;
   position: relative;
-  left: 800px;
-  top: 50px;
+  top:40px;
+  left:700px;
 }
 
 .logOut:hover {
