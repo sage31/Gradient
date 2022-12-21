@@ -224,7 +224,7 @@ span {
   justify-content: center;
 }
 
-#list>.list-items>.list-item {
+.list-item {
   width: auto;
   display: flex;
   justify-content: center;
@@ -237,13 +237,13 @@ span {
   margin: 5px;
 }
 
-#list>.list-items>.list-item:hover,
-#list>.list-items>.list-item:focus {
+.list-item:hover,
+.list-item:focus {
   transition: 0.5s;
   background-color: rgba(269, 0, 169, 10%);
 }
 
-#list>.list-items>.list-item>.list-item-info {
+.list-item>.list-item-info {
   color: white;
   display: flex;
   flex-direction: column;
@@ -254,7 +254,7 @@ span {
   align-content: center;
 }
 
-#list>.list-items>.list-item>.list-item-info>.title-wrapper {
+.list-item>.list-item-info>.title-wrapper {
   display: flex;
   flex-wrap: nowrap;
   width: auto;
@@ -264,7 +264,7 @@ span {
   clear: both;
 }
 
-#list>.list-items>.list-item>.list-item-info>.tags {
+.list-item>.list-item-info>.tags {
   width: auto;
   clear: both;
 }
