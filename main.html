@@ -277,8 +277,6 @@
       }).then((response) => response.json())
         .then((data) => {
           console.log(data);
-          console.log(data.matches)
-          console.log(data.matches[0]);
           if (data.success) {
             for (let crush of data.removeIDs) {
               document.getElementById("crushesHTML").innerHTML +=
