@@ -47,9 +47,20 @@
   </div>
   <div id="list">
     <div id="main-content" class="list-items">
+      <div id="crushesHTML">
+
+      </div>
+      <div id="admirersHTML" style="display:none">
+
+      </div>
+      <div id="matchesHTML" style="display:none">
+
+      </div>
+
+      <!--
+
 
       <a href="#" class="list-item" onclick="openPopup(this.childNode)">
-        <!--a element needs to be linked to chat-->
         <div class="list-item-info">
           <div class="title-wrapper section">
             <span class="name">Jo Mama</span>
@@ -80,6 +91,8 @@
           </div>
         </div>
       </a>
+    -->
+
 
     </div>
   </div>
@@ -113,25 +126,31 @@
         appId: "1:1027917905596:web:54c1a478e31f4007c75ab9", measurementId: "G-CFJTYX3MYW",
       }; export const
         app = initializeApp(firebaseConfig); window.moduleSet = set; window.moduleRef = ref;
-    window.database = getDatabase(app); const auth = getAuth(app); let crushesHTML = ""; let admirersHTML = ""; let
-      matchesHTML = ""; let status = "crushes"; const crushBtn = document.getElementById("status-crushes"); const
-        admirerBtn = document.getElementById("status-admirers"); const
-          matchBtn = document.getElementById("status-matches"); crushBtn.addEventListener("click", () => {
-            if (status != "crushes") {
-              status = "crushes";
-              document.getElementById("main-content").innerHTML = crushesHTML;
-            }
-          });
+    window.database = getDatabase(app); const auth = getAuth(app); let status = "crushes"; const crushBtn = document.getElementById("status-crushes"); const
+      admirerBtn = document.getElementById("status-admirers"); const
+        matchBtn = document.getElementById("status-matches");
+    crushBtn.addEventListener("click", () => {
+      if (status != "crushes") {
+        status = "crushes";
+        document.getElementById("crushesHTML").style.display = "block";
+        document.getElementById("admirersHTML").style.display = "none";
+        document.getElementById("matchesHTML").style.display = "none";
+      }
+    });
     admirerBtn.addEventListener("click", () => {
       if (status != "admirers") {
         status = "admirers";
-        document.getElementById("main-content").innerHTML = admirersHTML;
+        document.getElementById("admirersHTML").style.display = "block";
+        document.getElementById("crushesHTML").style.display = "none";
+        document.getElementById("matchesHTML").style.display = "none";
       }
     });
     matchBtn.addEventListener("click", () => {
       if (status != "matches") {
         status = "matches";
-        document.getElementById("main-content").innerHTML = matchesHTML;
+        document.getElementById("matchesHTML").style.display = "block";
+        document.getElementById("crushesHTML").style.display = "none";
+        document.getElementById("admirersHTML").style.display = "none";
       }
     });
     onAuthStateChanged(auth, (user) => {
@@ -164,7 +183,7 @@
                   //add in the crushes
                   console.log(data.crushes);
                   for (let crush of data.crushes) {
-                    crushesHTML +=
+                    document.getElementById("crushesHTML").innerHTML +=
                       `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
             <div class="list-item-info">
               <div class="title-wrapper section">
@@ -181,12 +200,11 @@
             </div>
           </div>`;
                   }
-                  document.getElementById("main-content").innerHTML = crushesHTML;
                   document.getElementById("crushesNum").innerHTML = data.crushes.length;
                   //add in admirers
 
                   for (let admirer of data.admirers) {
-                    admirersHTML +=
+                    document.getElementById("admirersHTML").innerHTML +=
                       `<div class="list-item">
             <div class="list-item-info">
               <div class="title-wrapper section">
@@ -208,7 +226,7 @@
                   //add in any matches
 
                   for (let match of data.matches) {
-                    matchesHTML +=
+                    document.getElementById("matchesHTML").innerHTML +=
                       `<div class="list-item">
             <div class="list-item-info">
               <div class="title-wrapper section">
@@ -263,7 +281,7 @@
           console.log(data.matches[0]);
           if (data.success) {
             for (let crush of data.removeIDs) {
-              crushesHTML +=
+              document.getElementById("crushesHTML").innerHTML +=
                 `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
             <div class="list-item-info">
               <div class="title-wrapper section">
@@ -290,7 +308,7 @@
                 alert("Note: crush does not yet exist in databse.");
             }
             for (let i = 0; i < data.matches; i++) {
-              matchesHTML += `<div class="list-item">
+              document.getElementById("matchesHTML").innerHTML += `<div class="list-item">
             <div class="list-item-info">
               <div class="title-wrapper section">
                 <span class="name">` + formatName(firstName) + " " + formatName(lastName) + `</span>
@@ -307,12 +325,6 @@
             }
             document.getElementById("matchesNum").innerHTML = parseInt(document.getElementById("matchesNum").innerHTML)
               + parseFloat(data.matches);
-            if(status == "crushes"){
-              document.getElementById("main-content").innerHTML = crushesHTML;
-            }
-            else if(status == "matches"){
-              document.getElementById("main-content").innerHTML = matchesHTML;
-            }
 
           }
           else {

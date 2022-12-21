@@ -44,28 +44,22 @@ function removeCrush(removeID, uid, parent, name, year) {
     .then((data) => {
       console.log(data);
       if (data.success) {
-        /*
         if (data.match) {
-          //find match in HTML table and remove it
-
-          let firstName = name.substring(0, name.indexOf(" ")));
-          let lastName = name.substring(name.indexOf(" ") + 1);
-
-          console.log(firstName + " " + lastName + " " + year);
-          let matches = document.getElementById("matchesTable").getElementsByTagName("tbody")[0];
-
-          for (let i = 0; i < matches.rows.length; i++) {
-            let match = matches.rows[i];
-            if (match.cells[1].innerHTML == firstName && match.cells[2].innerHTML == lastName && match.cells[3].innerHTML == year) {
-              match.remove();
+          //find match in matchesHTML and delete it 
+          let matchesHTML = document.getElementById("matchesHTML");
+          let matches = matchesHTML.children;
+          for (let i = 0; i < matches.length; i++) {
+            if (matches[i].children[0].children[0].innerHTML == name && matches[i].children[0].children[2].innerHTML == year) {
+              matches[i].remove();
               break;
             }
           }
+
           //decrement matchesNum
           let matchesNum = document.getElementById("matchesNum");
           matchesNum.innerHTML = parseInt(matchesNum.innerHTML) - 1;
-        }*/
-        //remove crush from HTML table using removeID
+        }
+        //remove crush from HTML
         parent.remove();
         //decrement crushesNum
         let crushesNum = document.getElementById("crushesNum");
