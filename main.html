@@ -264,7 +264,7 @@
           if (data.success) {
             for (let crush of data.removeIDs) {
               crushesHTML +=
-              `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
+                `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
             <div class="list-item-info">
               <div class="title-wrapper section">
                 <span class="name">` + formatName(firstName) + " " + formatName(lastName) + `</span>
@@ -307,6 +307,12 @@
             }
             document.getElementById("matchesNum").innerHTML = parseInt(document.getElementById("matchesNum").innerHTML)
               + parseFloat(data.matches);
+            if(status == "crushes"){
+              document.getElementById("main-content").innerHTML = crushesHTML;
+            }
+            else if(status == "matches"){
+              document.getElementById("main-content").innerHTML = matchesHTML;
+            }
 
           }
           else {
