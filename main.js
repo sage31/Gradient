@@ -69,7 +69,7 @@ function removeCrush(removeID, uid, parent, name, year) {
         parent.remove();
         //decrement crushesNum
         let crushesNum = document.getElementById("crushesNum");
-        crushesNum.innerHTML = parseInt(crushesNum.innerHTML) - 1;
+        crushesNum.innerHTML = parseInt(crushesNum.innerHTML)--;
 
 
       }
@@ -109,6 +109,7 @@ function openPopup(node) {
   document.getElementById("popup-name").innerHTML = firstName;
   document.getElementById("popup-delete").addEventListener("click", () => {
     removeCrush(removeID,window.uid,node.parentNode,firstName, year)
+    closePopup();
   });
 }
 
