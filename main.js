@@ -107,7 +107,7 @@ function openPopup(node) {
 
   document.getElementById("popup").style.display = "flex";
   document.getElementById("popup-name").innerHTML = firstName;
-  document.getElementById("popup-delete").onclick = removeCrush(removeID,window.uid,node.parentNode,firstName, year);
+  document.getElementById("popup-delete").addEventListener("click", removeCrush(removeID,window.uid,node.parentNode,firstName, year));
 }
 
 function closePopup() {
