@@ -47,9 +47,11 @@ function removeCrush(removeID, uid, parent, name, year) {
         if (data.match) {
           //find match in matchesHTML and delete it 
           let matchesHTML = document.getElementById("matchesHTML");
+          console.log(matchesHTML);
           let matches = matchesHTML.children;
+          console.log(matches.children);
           for (let i = 0; i < matches.length; i++) {
-            if (matches[i].children[0].children[0].innerHTML == name && matches[i].children[0].children[2].innerHTML == year) {
+            if (matches[i].children[0].children[0].children[0].innerHTML == name && matches[i].children[0].children[0].children[2].innerHTML == year) {
               matches[i].remove();
               break;
             }
