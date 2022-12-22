@@ -132,7 +132,7 @@
     crushBtn.addEventListener("click", () => {
       if (status != "crushes") {
         status = "crushes";
-        document.getElementById("crushesHTML").style.display = "block";
+        document.getElementById("crushesHTML").style.display = "flex";
         document.getElementById("admirersHTML").style.display = "none";
         document.getElementById("matchesHTML").style.display = "none";
       }
@@ -140,7 +140,7 @@
     admirerBtn.addEventListener("click", () => {
       if (status != "admirers") {
         status = "admirers";
-        document.getElementById("admirersHTML").style.display = "block";
+        document.getElementById("admirersHTML").style.display = "flex";
         document.getElementById("crushesHTML").style.display = "none";
         document.getElementById("matchesHTML").style.display = "none";
       }
@@ -148,7 +148,7 @@
     matchBtn.addEventListener("click", () => {
       if (status != "matches") {
         status = "matches";
-        document.getElementById("matchesHTML").style.display = "block";
+        document.getElementById("matchesHTML").style.display = "flex";
         document.getElementById("crushesHTML").style.display = "none";
         document.getElementById("admirersHTML").style.display = "none";
       }
@@ -170,7 +170,7 @@
               window.location.href = "index.html";
             }
             else {
-              console.log("User is verified.");
+              //User is verified
               fetch('https://SCUCrushes-Server.ethancl.repl.co/loadData', {
                 method: "POST",
                 headers: {
@@ -179,9 +179,7 @@
                 body: JSON.stringify({ uid }),
               }).then((response) => response.json())
                 .then((data) => {
-                  console.log(data);
                   //add in the crushes
-                  console.log(data.crushes);
                   for (let crush of data.crushes) {
                     document.getElementById("crushesHTML").innerHTML +=
                       `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
@@ -276,7 +274,6 @@
         body: JSON.stringify({ firstName, lastName, year, uid }),
       }).then((response) => response.json())
         .then((data) => {
-          console.log(data);
           if (data.success) {
             for (let crush of data.removeIDs) {
               document.getElementById("crushesHTML").innerHTML +=
