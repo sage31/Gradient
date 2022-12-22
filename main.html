@@ -43,7 +43,7 @@
   <div style="margin-bottom:25px;">
     <button id="status-crushes" class="clear-button"><span id="crushesNum">0</span> Crushes</button>
     <button id="status-admirers" class="clear-button"><span id="admirerNum">0</span> Secret Admirers</button>
-    <button id="status-matches" class="clear-button"><span id="matchesNum">0</span> Matches</button>
+    <button id="status-matches" class="clear-button"><span id="matchesNum">0</span> <span id="matchText">Matches</span></button>
   </div>
   <div id="list">
     <div id="main-content" class="list-items">
@@ -241,6 +241,9 @@
           </div>`;
                   }
                   document.getElementById("matchesNum").innerHTML = data.matches.length;
+                  if(data.matches.length == 1){
+                    document.getElementById("matchText").innerHTML = "Match";
+                  }
                 });
             }
           });
@@ -320,6 +323,12 @@
             }
             document.getElementById("matchesNum").innerHTML = parseInt(document.getElementById("matchesNum").innerHTML)
               + parseFloat(data.matches);
+            if(document.getElementById("matchesNum").innerHTML == 1){
+              document.getElementById("matchText").innerHTML = "Match";
+            }
+            else{
+              document.getElementById("matchText").innerHTML = "Matches";
+            }
 
           }
           else {

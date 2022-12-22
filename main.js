@@ -57,6 +57,12 @@ function removeCrush(removeID, uid, parent, name, year) {
           //decrement matchesNum
           let matchesNum = document.getElementById("matchesNum");
           matchesNum.innerHTML = parseInt(matchesNum.innerHTML) - 1;
+          if(document.getElementById("matchesNum").innerHTML == 1){
+            document.getElementById("matchText").innerHTML = "Match";
+          }
+          else{
+            document.getElementById("matchText").innerHTML = "Matches";
+          }
         }
         //remove crush from HTML
         parent.remove();
