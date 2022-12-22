@@ -38,13 +38,7 @@ function login() {
             const token = credential.accessToken;
         })
         .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            // const email = error.customData.email;
-            // The AuthCredential type that was used.
-            //const credential = GoogleAuthProvider.credentialFromError(error);
+            console.log(error);
         });
 }
 

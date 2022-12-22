@@ -1,5 +1,3 @@
-//onload call opendata
-window.onload = keeploggedin;
 let year1 = new Date().getFullYear();
 let year2 = year1 + 1;
 let year3 = year2 + 1;
@@ -16,21 +14,10 @@ y4.innerHTML = year4;
 y5 = document.getElementById("y5");
 y5.innerHTML = year5;
 
-
-function keeploggedin() {
-  //Store the string "hello" in the local storage
-  localStorage.setItem("UUID", "4848484848");
-  //Retrieve the string "hello" from the local storage
-  var x = localStorage.getItem("UUID");
-  //alert(x);
-}
-
 function formatName(name) {
   //only capitalize first letter of name, rest is lowercase
   return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 }
-
-
 
 function removeCrush(removeID, uid, parent, name, year) {
   fetch("https://Server-Test.ethancl.repl.co/removeCrush", {
@@ -57,10 +44,10 @@ function removeCrush(removeID, uid, parent, name, year) {
           //decrement matchesNum
           let matchesNum = document.getElementById("matchesNum");
           matchesNum.innerHTML = parseInt(matchesNum.innerHTML) - 1;
-          if(document.getElementById("matchesNum").innerHTML == 1){
+          if (document.getElementById("matchesNum").innerHTML == 1) {
             document.getElementById("matchText").innerHTML = "Match";
           }
-          else{
+          else {
             document.getElementById("matchText").innerHTML = "Matches";
           }
         }
@@ -68,12 +55,11 @@ function removeCrush(removeID, uid, parent, name, year) {
         parent.remove();
         //decrement crushesNum
         let crushesNum = document.getElementById("crushesNum");
-        crushesNum.innerHTML = parseInt(crushesNum.innerHTML)-1;
-        if(document.getElementById("crushesNum").innerHTML == 1){
+        crushesNum.innerHTML = parseInt(crushesNum.innerHTML) - 1;
+        if (document.getElementById("crushesNum").innerHTML == 1) {
           document.getElementById("crushText").innerHTML = "Crush";
         }
-        else
-        {
+        else {
           document.getElementById("crushText").innerHTML = "Crushes";
         }
 
@@ -85,21 +71,6 @@ function removeCrush(removeID, uid, parent, name, year) {
     });
 
 
-}
-
-function opendata() {
-  x = "Opened main html";
-  fetch("https://Server-Test.ethancl.repl.co/opendata", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ x }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      alert(JSON.stringify(data));
-    });
 }
 
 function openPopup(node) {
@@ -115,8 +86,6 @@ function openPopup(node) {
     closePopup();
   }
 
-
-  
 }
 
 function closePopup() {
