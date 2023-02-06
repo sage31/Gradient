@@ -20,7 +20,7 @@ function formatName(name) {
 }
 
 function removeCrush(removeID, uid, parent, name, year) {
-  fetch("https://Server-Test.ethancl.repl.co/removeCrush", {
+  fetch("https://SCUCrushes-Server.ethancl.repl.co/removeCrush", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
