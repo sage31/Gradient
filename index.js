@@ -31,7 +31,7 @@ function sendData(data) {
         window.location.href = "main.html";
       }
       else {
-        alert("Error creating account. Please try again or contact support.");
+        alert("Error creating account. Please try again or contact stephenwdean@gmail.com.");
       }
     });
 }
@@ -51,7 +51,7 @@ function sendUID(x) {
     .then((data) => {
       if (!data.ver) {
         alert(
-          "Account cannot be created. You must use your SCU email address."
+          "Account cannot be created. You must use your school (.edu) email address."
         );
         window.auth.signOut();
       } else {

@@ -54,7 +54,7 @@ onAuthStateChanged(auth, (user) => {
                     window.location.href = "index.html";
                 }
                 else {
-                    //User is verified
+                    // User is verified.
                     fetch('https://SCUCrushes-Server.ethancl.repl.co/loadData', {
                         method: "POST",
                         headers: {
@@ -63,7 +63,7 @@ onAuthStateChanged(auth, (user) => {
                         body: JSON.stringify({ uid }),
                     }).then((response) => response.json())
                         .then((data) => {
-                            //add in the crushes
+                            // Add in the crushes.
                             for (let crush of data.crushes) {
                                 document.getElementById("crushesHTML").innerHTML +=
                                     `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
@@ -87,7 +87,7 @@ onAuthStateChanged(auth, (user) => {
                                 document.getElementById("crushText").innerHTML = "Crush";
                             }
 
-                            //add in admirers
+                            // Add in admirers.
 
                             for (let admirer of data.admirers) {
                                 document.getElementById("admirersHTML").innerHTML +=
@@ -112,7 +112,7 @@ onAuthStateChanged(auth, (user) => {
                                 document.getElementById("admirerText").innerHTML = "Secret Admirer";
                             }
 
-                            //add in any matches
+                            // Add in any matches.
 
                             for (let match of data.matches) {
                                 document.getElementById("matchesHTML").innerHTML +=
@@ -139,10 +139,11 @@ onAuthStateChanged(auth, (user) => {
                 }
             });
     } else {
-        //redirect to login page
+        // Redirect to login page.
         window.location.href = "index.html";
     }
 })
+
 const logoutBtn = document.getElementById('logout');
 logoutBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -155,7 +156,7 @@ crushButton.addEventListener('click', e => {
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
     const year = document.getElementById('year').value;
-    //clear values once received
+    // Clear values once received.
     document.getElementById("firstName").value = "";
     document.getElementById("lastName").value = "";
     document.getElementById("year").value = "GRADUATION YEAR";
