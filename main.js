@@ -25,7 +25,7 @@ function removeCrush(removeID, uid, parent, name, year) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ removeID: removeID, uid: uid, community: localStorage.getItem("community") }),
+    body: JSON.stringify({ removeID: removeID, uid: window.uid, community: localStorage.getItem("community") }),
   })
     .then((response) => response.json())
     .then((data) => {

@@ -40,6 +40,7 @@ matchBtn.addEventListener("click", () => {
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const uid = user.uid;
+        window.uid = uid;
         fetch("https://SCUCrushes-Server.ethancl.repl.co/checkAccountAndLoadData", {
             method: "POST",
             headers: {
