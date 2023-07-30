@@ -38,6 +38,8 @@ matchBtn.addEventListener("click", () => {
     }
 });
 onAuthStateChanged(auth, (user) => {
+    console.log(community);
+    console.log(window.community);
     if (user) {
         const uid = user.uid;
         window.uid = uid;
@@ -51,7 +53,7 @@ onAuthStateChanged(auth, (user) => {
             .then((data) => {
                 if (!data.verified) {
                     alert("You must finish setting up your account before accessing this page.")
-                    window.location.href = "index.html";
+                    //window.location.href = "index.html";
                 }
                 else {
                     // User is verified.
