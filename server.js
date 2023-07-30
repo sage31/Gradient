@@ -235,12 +235,12 @@ app.post("/removeCrush", async (req, res) => {
     database.ref(`users/${community}/${uid}`).update({ crushes: newCrushes });
 
     // Remove it from the crush's admirers list.
-    let admirerQuery = await database.ref(`query/${community}/${removeID}`).once('value');
+    let admirerQuery = await database.ref(`users/${community}/${removeID}`).once('value');
     let admirerData = admirerQuery.val();
     let admirerPath = null;
     for (let i = 0; i < admirerData.admirers.length; i++) {
       if (admirerData.admirers[i].uid == uid) {
-        admirerPath = database.ref(`query/${community}/${removeID}/admirers/${i}`);
+        admirerPath = database.ref(`users/${community}/${removeID}/admirers/${i}`);
         break;
       }
     }
@@ -277,7 +277,7 @@ app.post("/addCrush", async (req, res) => {
   myData = myData.val();
   let myYear = myData.year;
   // Check if user exists.
-  let userList = database.ref(`query/${community}/${queryString}/userIDs`).once("value");
+  let userList = await database.ref(`query/${community}/${queryString}/userIDs`).once("value");
   // If user exists, see if they like them back.
   if (userList.exists()) {
     let people = userList.val();
