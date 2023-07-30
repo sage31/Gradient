@@ -278,7 +278,6 @@ app.post("/addCrush", async (req, res) => {
   let community = req.body.community;
   let queryString = `${fName}${lName}${year}`;
   let matches = 0;
-  let userExists = false;
   let removeIDs = [];
   if (fName == "" || lName == "" || year == "" || year == "GRADUATION YEAR" || uid == "" || community == "") {
     res.send(JSON.stringify({ success: false }));
@@ -286,19 +285,17 @@ app.post("/addCrush", async (req, res) => {
   }
 
   let myData = await database.ref(`users/${community}/${uid}`).once('value');
-  myData = await myData.val(); 
+  myData = await myData.val();
   let myYear = myData.year;
   // Check if user exists.
   let userQuery = database.ref(`query/${community}/${queryString}/userIDs`);
   let userData = await userQuery.once("value");
   // If user exists, see if they like them back.
   if (userData.exists()) {
-    userExists = true;
     let people = await userData.val();
     for (person of people) {
-      let personDataQuery = database.ref(`users/${community}/${person}`);
-      let theirSnapshot = await personDataQuery.once('value');
-      let personData = await theirSnapshot.val();
+      let personDataQuery = await database.ref(`users/${community}/${person}`).once('value');
+      let personData = await personDataQuery.val();
       if (personData.crushes != null) {
         // If they do, send back a match.
         for (crush of personData.crushes) {
@@ -310,92 +307,74 @@ app.post("/addCrush", async (req, res) => {
           }
         }
       }
+
       // Add them to the other person's admirers.
-      
-      let adList;
-      if (personData.admirers != null) {
-        adList = personData.admirers;
-        let includes = false
-        for (admirer of adList) {
-          if (admirer.uid == uid) {
-            includes = true;
-            break;
-          }
-        }
-        if (!includes)
-          adList.push({ uid: uid, year: myYear });
-      }
-      else {
-        adList = [{ uid: uid, year: myYear }];
-      }
-      // Update the other person's admirers.
-      database.ref(`users/${community}/${person}`).update({ admirers: adList })
-      // Add to current person's crushes.
-      if (myData.crushes != null) {
-        crushesList = myData.crushes;
-        let crushAlreadyExists = false;
-        for (crush of crushesList) {
-          if (crush.uid == person) {
-            crushAlreadyExists = true;
-            break;
-          }
-        }
-        if (!crushAlreadyExists) {
-          crushesList.push({ uid: person, firstName: personData.firstName, lastName: personData.lastName, year: personData.year });
-          removeIDs.push(encryptStringData(person));
-        }
-      }
-      else {
-        crushesList = [{ uid: person, firstName: personData.firstName, lastName: personData.lastName, year: personData.year }];
-        removeIDs.push(encryptStringData(person));
-      }
-      await database.ref(`users/${community}/${uid}`).update({ crushes: crushesList });
-    }
-  }
-  // If the user does not exist, create a temporary admirer list for them and add current uid to it. 
-  else {
-    // Get current temporary entry, if it exists.
-    let admirerQuery = database.ref(`query/${queryString}/admirers`);
-    let tempList = await admirerQuery.once('value');
-    if (tempList.exists()) {
-      tempList = await tempList.val();
+      let admirerList = personData.admirers != null ? personData.admirers : [];
       let admirerAlreadyExists = false;
-      for (admirer of tempList) {
+      for (admirer of admirerList) {
         if (admirer.uid == uid) {
           admirerAlreadyExists = true;
           break;
         }
       }
       if (!admirerAlreadyExists) {
-        tempList.push({ uid: uid, year: myYear });
+        // Update the other person's admirers.
+        adList.push({ uid: uid, year: myYear });
+        database.ref(`users/${community}/${person}`).update({ admirers: adList })
       }
-    }
-    else {
-      tempList = [{ uid: uid, year: myYear }];
-    }
-    await database.ref(`query/${queryString}`).update({
-      admirers: list
-    })
 
-    if (myData.crushes != null) {
-      crushesList = myData.crushes;
-      let tempCrushExists = false;
+      // Add to current person's crushes.
+      let crushesList = myData.crushes != null ? myData.crushes : [];
+      let crushAlreadyExists = false;
       for (crush of crushesList) {
-        if (crush.uid == queryString) {
-          tempCrushExists = true;
+        if (crush.uid == person) {
+          crushAlreadyExists = true;
           break;
         }
       }
-      if (!tempCrushExists) {
-        crushesList.push({ uid: queryString, firstName: fName, lastName: lName, year: year });
-        removeIDs.push(queryString);
+      if (!crushAlreadyExists) {
+        crushesList.push({ uid: person, firstName: fName, lastName: lName, year: year });
+        removeIDs.push(encryptStringData(person));
+        await database.ref(`users/${community}/${uid}`).update({ crushes: crushesList });
       }
     }
-    else {
-      crushesList = [{ uid: queryString, firstName: personData.firstName, lastName: personData.lastName, year: personData.year }];
-      removeIDs.push(queryString);
+  }
+  // If the user does not exist, create a temporary admirer list for them and add current uid to it. 
+  else {
+    // Get current temporary entry, if it exists.
+    let tempList = await database.ref(`query/${queryString}/admirers`).once('value');
+    tempList = tempList.exists() ? await tempList.val() : [];
+    let admirerAlreadyExists = false;
+    for (admirer of tempList) {
+      if (admirer.uid == uid) {
+        admirerAlreadyExists = true;
+        break;
+      }
     }
-    await database.ref(`users/${community}/${uid}`).update({ crushes: crushesList });
+    if (!admirerAlreadyExists) {
+      tempList.push({ uid: uid, year: myYear });
+      await database.ref(`query/${community}/${queryString}`).update({
+        admirers: tempList
+      });
+    }
+
+    // Add to current person's crushes.
+    crushesList = myData.crushes;
+    if (crushesList == null)
+      crushesList = [];
+    let tempCrushExists = false;
+    for (crush of crushesList) {
+      if (crush.uid == queryString) {
+        tempCrushExists = true;
+        break;
+      }
+    }
+    if (!tempCrushExists) {
+      crushesList.push({ uid: queryString, firstName: fName, lastName: lName, year: year });
+      removeIDs.push(queryString);
+      await database.ref(`users/${community}/${uid}`).update({ crushes: crushesList });
+    }
+
   }
   res.send(JSON.stringify({ success: true, matches: matches, removeIDs: removeIDs }));
 });
