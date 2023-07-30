@@ -14,7 +14,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 window.auth = auth;
 const provider = new GoogleAuthProvider();
-let userID;
+var userID;
 onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log(user.uid);

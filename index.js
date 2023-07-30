@@ -15,8 +15,7 @@ y4.innerHTML = year4;
 y5 = document.getElementById("y5");
 y5.innerHTML = year5;
 
-let community;
-let userID
+var community;
 
 function addUser() {
   var firstName = document.getElementById("firstName").value;
@@ -78,7 +77,6 @@ function sendUID(uid) {
         );
         window.auth.signOut();
       } else {
-        window.community = data.community;
         community = data.community;
         if (data.accExists) {
           window.location.href = "main.html";
