@@ -15,6 +15,27 @@ y4.innerHTML = year4;
 y5 = document.getElementById("y5");
 y5.innerHTML = year5;
 
+let community;
+
+function addUser() {
+  var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
+  var year = document.getElementById("year").value;
+
+  if (firstName == "" || lastName == "" || year == "Select Year") {
+      alert("Please fill out all fields");
+  } else {
+      let data = {
+          uid: userID,
+          community: community,
+          fName: firstName,
+          lName: lastName,
+          gradYear: year,
+      };
+      sendData(data);
+  }
+}
+
 function sendData(data) {
   fetch("https://SCUCrushes-Server.ethancl.repl.co/sendData", {
     //"channel it is being sent to"
@@ -55,6 +76,7 @@ function sendUID(x) {
         );
         window.auth.signOut();
       } else {
+        community = data.community;
         if (data.accExists) {
           window.location.href = "main.html";
         }

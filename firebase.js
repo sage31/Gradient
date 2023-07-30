@@ -41,21 +41,3 @@ function login() {
             console.log(error);
         });
 }
-
-function addUser() {
-    var firstName = document.getElementById("firstName").value;
-    var lastName = document.getElementById("lastName").value;
-    var year = document.getElementById("year").value;
-
-    if (firstName == "" || lastName == "" || year == "Select Year") {
-        alert("Please fill out all fields");
-    } else {
-        let data = {
-            uid: userID,
-            fName: firstName,
-            lName: lastName,
-            gradYear: year,
-        };
-        sendData(data);
-    }
-}

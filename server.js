@@ -30,16 +30,18 @@ app.post("/sendUID", (req, res) => {
     .then(async (userRecord) => {
 
       var email = userRecord.email;
-      if (email.substring(email.indexOf('@')) == "@scu.edu") {
+      if (email.substring(email.length - 4) == ".edu") {
         verified = true;
       }
-      let snapshotQuery = database.ref('users/' + uid);
+      var atSymbolIndex = email.indexOf('@');
+      var community = (email.substring(atSymbolIndex + 1, email.indexOf('.', atSymbolIndex))).toLowerCase();
+      let snapshotQuery = database.ref(`users/${community}/${uid}`);
       let snapshot = await snapshotQuery.once("value");
       if (snapshot.exists()) {
-        res.send(JSON.stringify({ ver: verified, accExists: true }));
+        res.send(JSON.stringify({ ver: verified, accExists: true, community: community }));
       }
       else {
-        res.send(JSON.stringify({ ver: verified, accExists: false }));
+        res.send(JSON.stringify({ ver: verified, accExists: false, community: community }));
       }
     })
     .catch((error) => {
@@ -49,12 +51,13 @@ app.post("/sendUID", (req, res) => {
 
 app.post("/sendData", (req, res) => {
   var uid = req.body.data.uid;
+  var community = req.body.data.community;
   var fName = req.body.data.fName.toLowerCase();
   var lName = req.body.data.lName.toLowerCase();
   var gradYear = req.body.data.gradYear;
 
 
-  if (fName == "" || lName == "" || gradYear == "" || uid == "") {
+  if (community == "" || fName == "" || lName == "" || gradYear == "" || uid == "") {
     res.send(JSON.stringify({ success: false }));
     return;
   }
@@ -62,34 +65,31 @@ app.post("/sendData", (req, res) => {
     admin.auth().getUser(uid)
       .then(async (userRecord) => {
         var email = userRecord.email;
-        /*
-        if (email.substring(email.indexOf('@')) != "@scu.edu") {
+        if (email.substring(email.length - 4) == ".edu") {
           res.send(JSON.stringify({ success: false }));
           return;
         }
-        */
         //add the user to the general database
-        database.ref('users/' + uid).set({
+        database.ref(`users/${community}/${uid}`).set({
           userEmail: email,
           firstName: fName,
           lastName: lName,
           year: gradYear
         });
-        
+
         //if they have existing admirers, add them to their user 
-        let queryString = fName + lName + gradYear;
-        let adList = await getAdmirers(queryString);
+        let queryString = `${community}/${fName}${lName}${gradYear}`;
+        let adList = await getAndRemoveAdmirers(queryString);
         //for each existing admirer, make sure to update their crushes so that includes the real ID
         if (adList != null) {
           for (admirer of adList) {
 
             //add the new ID to the list
-            admirerQuery = database.ref('users/' + admirer.uid);
+            admirerQuery = database.ref(`users/${community}/${admirer.uid}`);
             data = await admirerQuery.once('value');
             let userInfo = await data.val();
             let currentCrushes = userInfo.crushes;
             for (crush of currentCrushes) {
-
               if (crush != null) {
                 if (crush.uid == queryString) {
                   crush.uid = uid;
@@ -98,24 +98,18 @@ app.post("/sendData", (req, res) => {
               }
             }
             //remove old ID from their list
-            await database.ref('users/' + admirer.uid).update({ crushes: currentCrushes });
+            await database.ref(`users/${community}/${admirer.uid}`).update({ crushes: currentCrushes });
 
           }
-          await database.ref('users/' + uid).update({ admirers: adList });
+          await database.ref(`users/${community}/${uid}`).update({ admirers: adList });
         }
         //add them to the ID query 
-        let existingQuery = await database.ref('query/' + queryString).once('value');
+        let existingQuery = await database.ref(`query/${queryString}`).once('value');
         let existingIDs = await existingQuery.val();
-        let mod = true;
-        if (existingIDs == null) {
-          existingIDs = [uid];
-          mod = false;
-        }
-        else
-          existingIDs.userIDs.push(uid);
-
-        database.ref('query/' + queryString).set({
-          userIDs: (mod ? existingIDs.userIDs : existingIDs)
+        let newID = [uid];
+        let hasExistingIDs = existingIDs != null;
+        database.ref(`query/${queryString}`).set({
+          userIDs: (hasExistingIDs ? existingIDs.userIDs.concat(newID) : newID)
         })
         res.send(JSON.stringify({ success: true }));
       })
@@ -127,7 +121,7 @@ app.post("/sendData", (req, res) => {
 });
 
 
-async function getAdmirers(queryString) {
+async function getAndRemoveAdmirers(queryString) {
   const admirersRef = database.ref('query/' + queryString + '/admirers');
   let data = await admirersRef.once('value');
   if (data.exists()) {
