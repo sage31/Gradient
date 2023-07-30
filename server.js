@@ -35,9 +35,8 @@ app.post("/sendUID", (req, res) => {
       }
       var atSymbolIndex = email.indexOf('@');
       var community = (email.substring(atSymbolIndex + 1, email.indexOf('.', atSymbolIndex))).toLowerCase();
-      let snapshotQuery = database.ref(`users/${community}/${uid}`);
-      let snapshot = await snapshotQuery.once("value");
-      if (snapshot.exists()) {
+      let account = database.ref(`users/${community}/${uid}`).once("value");
+      if (account.exists()) {
         res.send(JSON.stringify({ ver: verified, accExists: true, community: community }));
       }
       else {
@@ -76,19 +75,18 @@ app.post("/sendData", (req, res) => {
           year: gradYear
         });
 
-        //if they have existing admirers, add them to their user 
+        // If they have existing admirers, add them to their account.
         let queryString = `${community}/${fName}${lName}${gradYear}`;
-        let adList = await getAndRemoveAdmirers(queryString);
-        //for each existing admirer, make sure to update their crushes so that includes the real ID
-        if (adList != null) {
-          for (admirer of adList) {
+        let admirerList = await getAndRemoveAdmirers(queryString);
+        // For each existing admirer, make sure to update their crushes so that includes the real ID.
+        if (admirerList != null) {
+          for (admirer of admirerList) {
 
-            //add the new ID to the list
-            admirerQuery = database.ref(`users/${community}/${admirer.uid}`);
-            data = await admirerQuery.once('value');
-            let userInfo = data.val();
-            let currentCrushes = userInfo.crushes;
-            for (crush of currentCrushes) {
+            // Add the new ID to the list.
+            admirerQuery = await database.ref(`users/${community}/${admirer.uid}`).once('value');
+            let admirerInfo = admirerQuery.val();
+            let admirerCrushes = admirerInfo.crushes;
+            for (crush of admirerCrushes) {
               if (crush != null) {
                 if (crush.uid == queryString) {
                   crush.uid = uid;
@@ -96,11 +94,10 @@ app.post("/sendData", (req, res) => {
                 }
               }
             }
-            //remove old ID from their list
-            await database.ref(`users/${community}/${admirer.uid}`).update({ crushes: currentCrushes });
-
+            // Replace old ID with new ID in their list.
+            database.ref(`users/${community}/${admirer.uid}`).update({ crushes: admirerCrushes });
           }
-          await database.ref(`users/${community}/${uid}`).update({ admirers: adList });
+          database.ref(`users/${community}/${uid}`).update({ admirers: admirerList });
         }
         //add them to the ID query 
         let existingQuery = await database.ref(`query/${queryString}`).once('value');
@@ -121,11 +118,10 @@ app.post("/sendData", (req, res) => {
 
 
 async function getAndRemoveAdmirers(queryString) {
-  const admirersRef = database.ref(`query/${queryString}/admirers`);
-  let data = await admirersRef.once('value');
-  if (data.exists()) {
-    let val = data.val();
-    admirersRef.remove()
+  const admirers = await database.ref(`query/${queryString}/admirers`).once('value');
+  if (admirers.exists()) {
+    let val = admirers.val();
+    admirers.remove();
     return val;
   }
   return null;
@@ -139,14 +135,13 @@ app.post("/checkAccountAndLoadData", async (req, res) => {
   let atSymbolIndex = email.indexOf('@');
   let community = (email.substring(atSymbolIndex + 1, email.indexOf('.', atSymbolIndex))).toLowerCase();
 
-  let userQuery = database.ref(`users/${community}/${uid}`);
-  let userData = await userQuery.once("value");
-
+  let userData= await database.ref(`users/${community}/${uid}`).once("value");
   if (!userData.exists()) {
     res.send(JSON.stringify({ verified: false }));
     return;
   }
   else {
+    userData = userData.val();
     let crushes = userData.crushes == null ? [] : userData.crushes;
     let crushesToSend = [];
     let admirers = userData.admirers == null ? [] : userData.admirers;
@@ -193,14 +188,14 @@ app.post("/checkAccountAndLoadData", async (req, res) => {
 
 app.post("/removeCrush", async (req, res) => {
   let uid = req.body.uid;
+  let community = req.body.community;
   let removeID = decryptData(req.body.removeID);
-  let myQuery = await database.ref('users/' + uid).once('value');
+  let myQuery = await database.ref(`users/${community}/${uid}`).once('value');
   let myData = myQuery.val();
   let match = false;
   if (removeID.length < 1) {
     removeID = req.body.removeID;
-    //locate removeID in crushes
-
+    // Locate removeID in crushes.
     let newCrushes = [];
     for (let i = 0; i < myData.crushes.length; i++) {
       if (myData.crushes[i].uid != removeID) {
@@ -208,56 +203,52 @@ app.post("/removeCrush", async (req, res) => {
       }
     }
 
-    //update crushes
-    await database.ref('users/' + uid).update({ crushes: newCrushes });
+    // Update crushes.
+    database.ref(`users/${community}/${uid}`).update({ crushes: newCrushes });
 
-
-    //remove it from the query admirers
-    let admirerQuery = await database.ref('query/' + removeID).once('value');
+    // Remove it from the temp admirers list.
+    let admirerQuery = await database.ref(`query/${community}/${removeID}`).once('value');
     let admirerData = admirerQuery.val();
-    let adPath = null;
+    let admirerPath = null;
     for (let i = 0; i < admirerData.admirers.length; i++) {
       if (admirerData.admirers[i].uid == uid) {
-        adPath = database.ref('query/' + removeID + '/admirers/' + i);
+        admirerPath = database.ref(`query/${community}/${removeID}/admirers/${i}`);
         break;
       }
     }
-    if (adPath == null) {
+    if (admirerPath == null) 
       res.send(JSON.stringify({ success: false, match: match }));
-    }
     else
-      adPath.remove();
+      admirerPath.remove();
   }
   else {
-    //process is the same except you remove from the
-    //person's admirers, not query
-    //locate removeID in crushes
+    // Process is the same except you remove from the
+    // person's admirers, not query.
+    // Locate removeID in crushes
     let newCrushes = [];
     for (let i = 0; i < myData.crushes.length; i++) {
       if (myData.crushes[i].uid != removeID) {
         newCrushes.push(myData.crushes[i]);
       }
     }
+    // Update crushes.
+    database.ref(`users/${community}/${uid}`).update({ crushes: newCrushes });
 
-    //update crushes
-    await database.ref('users/' + uid).update({ crushes: newCrushes });
-
-    //remove it from the crush's admirers
-    let admirerQuery = await database.ref('users/' + removeID).once('value');
+    // Remove it from the crush's admirers list.
+    let admirerQuery = await database.ref(`query/${community}/${removeID}`).once('value');
     let admirerData = admirerQuery.val();
-    let adPath = null;
+    let admirerPath = null;
     for (let i = 0; i < admirerData.admirers.length; i++) {
       if (admirerData.admirers[i].uid == uid) {
-        adPath = database.ref('users/' + removeID + '/admirers/' + i);
+        admirerPath = database.ref(`query/${community}/${removeID}/admirers/${i}`);
         break;
       }
     }
-    if (adPath == null) {
+    if (admirerPath == null)
       res.send(JSON.stringify({ success: false, match: match }));
-    }
     else
-      adPath.remove();
-    //see if they were a match
+      admirerPath.remove();
+    // See if they were a match.
     for (let i = 0; i < admirerData.crushes.length; i++) {
       if (admirerData.crushes[i].uid == uid) {
         match = true;
@@ -265,9 +256,7 @@ app.post("/removeCrush", async (req, res) => {
       }
     }
   }
-
   res.send(JSON.stringify({ success: true, match: match }));
-
 });
 
 app.post("/addCrush", async (req, res) => {
@@ -288,11 +277,10 @@ app.post("/addCrush", async (req, res) => {
   myData = myData.val();
   let myYear = myData.year;
   // Check if user exists.
-  let userQuery = database.ref(`query/${community}/${queryString}/userIDs`);
-  let userData = await userQuery.once("value");
+  let userList = database.ref(`query/${community}/${queryString}/userIDs`).once("value");
   // If user exists, see if they like them back.
-  if (userData.exists()) {
-    let people = userData.val();
+  if (userList.exists()) {
+    let people = userList.val();
     for (person of people) {
       let personDataQuery = await database.ref(`users/${community}/${person}`).once('value');
       let personData = personDataQuery.val();
@@ -334,7 +322,7 @@ app.post("/addCrush", async (req, res) => {
       if (!crushAlreadyExists) {
         crushesList.push({ uid: person, firstName: fName, lastName: lName, year: year });
         removeIDs.push(encryptStringData(person));
-        await database.ref(`users/${community}/${uid}`).update({ crushes: crushesList });
+        database.ref(`users/${community}/${uid}`).update({ crushes: crushesList });
       }
     }
   }
@@ -352,7 +340,7 @@ app.post("/addCrush", async (req, res) => {
     }
     if (!admirerAlreadyExists) {
       tempList.push({ uid: uid, year: myYear });
-      await database.ref(`query/${community}/${queryString}`).update({
+      database.ref(`query/${community}/${queryString}`).update({
         admirers: tempList
       });
     }
@@ -371,7 +359,7 @@ app.post("/addCrush", async (req, res) => {
     if (!tempCrushExists) {
       crushesList.push({ uid: queryString, firstName: fName, lastName: lName, year: year });
       removeIDs.push(queryString);
-      await database.ref(`users/${community}/${uid}`).update({ crushes: crushesList });
+      database.ref(`users/${community}/${uid}`).update({ crushes: crushesList });
     }
 
   }
