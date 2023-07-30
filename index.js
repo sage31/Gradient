@@ -23,16 +23,16 @@ function addUser() {
   var year = document.getElementById("year").value;
 
   if (firstName == "" || lastName == "" || year == "Select Year") {
-      alert("Please fill out all fields");
+    alert("Please fill out all fields");
   } else {
-      let data = {
-          uid: userID,
-          community: community,
-          fName: firstName,
-          lName: lastName,
-          gradYear: year,
-      };
-      sendData(data);
+    let data = {
+      uid: userID,
+      community: community,
+      fName: firstName,
+      lName: lastName,
+      gradYear: year,
+    };
+    sendData(data);
   }
 }
 
@@ -59,7 +59,6 @@ function sendData(data) {
 
 function sendUID(uid) {
   //variable that is being sent
-  userID = uid;
   fetch("https://SCUCrushes-Server.ethancl.repl.co/sendUID", {
     //"channel it is being sent to"
     method: "POST",
@@ -78,6 +77,7 @@ function sendUID(uid) {
         window.auth.signOut();
       } else {
         community = data.community;
+        localStorage.setItem("community", community);
         if (data.accExists) {
           window.location.href = "main.html";
         }

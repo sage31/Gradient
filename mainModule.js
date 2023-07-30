@@ -38,8 +38,6 @@ matchBtn.addEventListener("click", () => {
     }
 });
 onAuthStateChanged(auth, (user) => {
-    console.log(community);
-    console.log(window.community);
     if (user) {
         const uid = user.uid;
         window.uid = uid;
@@ -48,7 +46,7 @@ onAuthStateChanged(auth, (user) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ uid: uid, community: window.community, }),
+            body: JSON.stringify({ uid: uid, community: localStorage.getItem("community"), }),
         }).then((response) => response.json())
             .then((data) => {
                 if (!data.verified) {

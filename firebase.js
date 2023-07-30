@@ -12,9 +12,10 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-window.auth = auth;
 const provider = new GoogleAuthProvider();
 var userID;
+window.auth = auth;
+localStorage.setItem("userID", userID);
 onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log(user.uid);

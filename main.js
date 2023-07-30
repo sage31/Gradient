@@ -82,7 +82,7 @@ function openPopup(node) {
   document.getElementById("popup-name").innerHTML = firstName;
   //if they press popup-delete, remove crush
   document.getElementById("popup-delete").onclick = function () {
-    removeCrush(removeID, window.userID, node.parentNode, firstName, year);
+    removeCrush(removeID, localStorage.getItem("userID"), node.parentNode, firstName, year);
     closePopup();
   }
 
