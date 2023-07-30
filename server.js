@@ -275,27 +275,28 @@ app.post("/addCrush", async (req, res) => {
   let lName = req.body.lastName.toLowerCase();
   let year = req.body.year;
   let uid = req.body.uid;
-  let queryString = fName + lName + year;
+  let community = req.body.community;
+  let queryString = `${community}/${fName}${lName}${year}`;
   let matches = 0;
   let userExists = false;
   let removeIDs = [];
-  if (fName == "" || lName == "" || year == "" || year == "GRADUATION YEAR" || uid == "") {
+  if (fName == "" || lName == "" || year == "" || year == "GRADUATION YEAR" || uid == "" || community == "") {
     res.send(JSON.stringify({ success: false }));
     return;
   }
-  // check if user exists
-  let userQuery = database.ref('query/' + queryString + '/userIDs');
+  // Check if user exists.
+  let userQuery = database.ref(`query/${queryString}/userIDs`);
   let userData = await userQuery.once("value");
-  // if user exists, see if they like them back
+  // If user exists, see if they like them back.
   if (userData.exists()) {
     userExists = true;
     let people = await userData.val();
     for (person of people) {
-      let personDataQuery = database.ref('users/' + person);
+      let personDataQuery = database.ref(`users/${community}/${person}`);
       let theirSnapshot = await personDataQuery.once('value');
       let personData = await theirSnapshot.val();
       if (personData.crushes != null) {
-        // if they do, send back a match
+        // If they do, send back a match.
         for (crush of personData.crushes) {
           if (crush != null) {
             if (crush.uid == uid) {
@@ -305,7 +306,7 @@ app.post("/addCrush", async (req, res) => {
           }
         }
       }
-      // add them to the other persons admirers
+      // Add them to the other person's admirers.
       let adList;
       let myData = await database.ref('users/' + uid).once('value');
       let myYear = myData.val().year;
@@ -324,22 +325,22 @@ app.post("/addCrush", async (req, res) => {
       else {
         adList = [{ uid: uid, year: myYear }];
       }
-      //update the other persons admirers
-      database.ref('users/' + person).update({ admirers: adList })
-      //add to current persons crushes
-      let crushesQuery = database.ref('users/' + uid);
-      let crushData = await crushesQuery.once('value');
-      let me = await crushData.val();
+      // Update the other person's admirers.
+      database.ref(`users/${community}/${person}`).update({ admirers: adList })
+      // Add to current person's crushes.
+      let myQuery = database.ref(`users/${community}/${uid}`);
+      let mySnapshot = await myQuery.once('value');
+      let me = await mySnapshot.val();
       if (me.crushes != null) {
         crushesList = me.crushes;
-        let includes = false;
+        let crushAlreadyExists = false;
         for (crush of crushesList) {
           if (crush.uid == person) {
-            includes = true;
+            crushAlreadyExists = true;
             break;
           }
         }
-        if (!includes) {
+        if (!crushAlreadyExists) {
           crushesList.push({ uid: person, firstName: personData.firstName, lastName: personData.lastName, year: personData.year });
           removeIDs.push(encryptStringData(person));
         }
@@ -352,47 +353,44 @@ app.post("/addCrush", async (req, res) => {
       await database.ref('users/' + uid).update({ crushes: crushesList });
     }
   }
-  //else, add userID to temp admirers
+  // If the user does not exist, create a temporary admirer list for them and add current uid to it. 
   else {
-    //get current temp list
-    let adQuery = database.ref('query/' + queryString + '/admirers');
-    let list;
-    let tempList = await adQuery.once('value');
-    let myData = await database.ref('users/' + uid).once('value');
-    let myYear = myData.val().year;
+    // Get current temporary entry, if it exists.
+    let admirerQuery = database.ref(`query/${queryString}/admirers`);
+    let tempList = await admirerQuery.once('value');
+    let myData = await database.ref(`users/${community}/${uid}`).once('value');
+    myData = await myData.val();
+    let myYear = myData.year;
     if (tempList.exists()) {
-      list = await tempList.val();
-      let includes = false;
-      for (admirer of list) {
+      tempList = await tempList.val();
+      let admirerAlreadyExists = false;
+      for (admirer of tempList) {
         if (admirer.uid == uid) {
-          includes = true;
+          admirerAlreadyExists = true;
           break;
         }
       }
-      if (!includes) {
-        list.push({ uid: uid, year: myYear });
+      if (!admirerAlreadyExists) {
+        tempList.push({ uid: uid, year: myYear });
       }
     }
     else {
-      list = [{ uid: uid, year: myYear }];
+      tempList = [{ uid: uid, year: myYear }];
     }
-    await database.ref('query/' + queryString).update({
+    await database.ref(`query/${queryString}`).update({
       admirers: list
     })
 
-    let crushesQuery = database.ref('users/' + uid);
-    let crushData = await crushesQuery.once('value');
-    let me = crushData.val();
-    if (me.crushes != null) {
-      crushesList = me.crushes;
-      let tempExists = false;
+    if (myData.crushes != null) {
+      crushesList = myData.crushes;
+      let tempCrushExists = false;
       for (crush of crushesList) {
         if (crush.uid == queryString) {
-          tempExists = true;
+          tempCrushExists = true;
           break;
         }
       }
-      if (!tempExists) {
+      if (!tempCrushExists) {
         crushesList.push({ uid: queryString, firstName: fName, lastName: lName, year: year });
         removeIDs.push(queryString);
       }
@@ -401,7 +399,7 @@ app.post("/addCrush", async (req, res) => {
       crushesList = [{ uid: queryString, firstName: personData.firstName, lastName: personData.lastName, year: personData.year }];
       removeIDs.push(queryString);
     }
-    await database.ref('users/' + uid).update({ crushes: crushesList });
+    await database.ref(`users/${community}/${uid}`).update({ crushes: crushesList });
   }
   res.send(JSON.stringify({ success: true, matches: matches, removeIDs: removeIDs }));
 });
