@@ -136,14 +136,13 @@ app.post("/checkAccountAndLoadData", async (req, res) => {
   let community;
   admin.auth().getUser(uid)
     .then(async (userRecord) => {
-
-      var community = (email.substring(atSymbolIndex + 1, email.indexOf('.', atSymbolIndex))).toLowerCase();
-    }
-    );
+      let email = userRecord.email;
+      community = (email.substring(atSymbolIndex + 1, email.indexOf('.', atSymbolIndex))).toLowerCase();
+    });
   let userQuery = database.ref(`users/${community}/uid`);
   let userData = await userQuery.once("value");
 
-  if (!acData.exists()) {
+  if (!userData.exists()) {
     res.send(JSON.stringify({ verified: false }));
     return;
   }
