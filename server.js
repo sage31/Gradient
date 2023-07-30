@@ -133,13 +133,13 @@ async function getAndRemoveAdmirers(queryString) {
 
 app.post("/checkAccountAndLoadData", async (req, res) => {
   const uid = req.body.uid;
-  let community;
-  admin.auth().getUser(uid)
-    .then(async (userRecord) => {
-      let email = userRecord.email;
-      community = (email.substring(atSymbolIndex + 1, email.indexOf('.', atSymbolIndex))).toLowerCase();
-    });
-  let userQuery = database.ref(`users/${community}/uid`);
+  // Get email and community.
+  let userRecord = await admin.auth().getUser(uid);
+  let email = userRecord.email;
+  let atSymbolIndex = email.indexOf('@');
+  let community = (email.substring(atSymbolIndex + 1, email.indexOf('.', atSymbolIndex))).toLowerCase();
+
+  let userQuery = database.ref(`users/${community}/${uid}`);
   let userData = await userQuery.once("value");
 
   if (!userData.exists()) {
@@ -186,16 +186,10 @@ app.post("/checkAccountAndLoadData", async (req, res) => {
         }
       }
     }
-    //send back all the necessary data
+    // Send back all the necessary data.
     res.send(JSON.stringify({ verified: true, crushes: crushesToSend, admirers: admirersToSend, matches: matches }));
   }
-
 });
-
-app.post("/loadData", async (req, res) => {
-
-
-})
 
 app.post("/removeCrush", async (req, res) => {
   let uid = req.body.uid;
