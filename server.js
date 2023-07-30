@@ -302,7 +302,6 @@ app.post("/addCrush", async (req, res) => {
           if (crush != null) {
             if (crush.uid == uid) {
               matches++;
-              break;
             }
           }
         }
@@ -319,8 +318,8 @@ app.post("/addCrush", async (req, res) => {
       }
       if (!admirerAlreadyExists) {
         // Update the other person's admirers.
-        adList.push({ uid: uid, year: myYear });
-        database.ref(`users/${community}/${person}`).update({ admirers: adList })
+        admirerList.push({ uid: uid, year: myYear });
+        database.ref(`users/${community}/${person}`).update({ admirers: admirerList })
       }
 
       // Add to current person's crushes.

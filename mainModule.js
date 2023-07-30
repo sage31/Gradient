@@ -53,7 +53,7 @@ onAuthStateChanged(auth, (user) => {
                     window.location.href = "index.html";
                 }
                 else {
-                    localStorage.setItem("community", community);
+                    localStorage.setItem("community", data.community);
                     // Add in the crushes.
                     for (let crush of data.crushes) {
                         document.getElementById("crushesHTML").innerHTML +=
