@@ -187,7 +187,7 @@ app.post("/checkAccountAndLoadData", async (req, res) => {
       }
     }
     // Send back all the necessary data.
-    res.send(JSON.stringify({ verified: true, crushes: crushesToSend, admirers: admirersToSend, matches: matches }));
+    res.send(JSON.stringify({ verified: true, community: community, crushes: crushesToSend, admirers: admirersToSend, matches: matches }));
   }
 });
 

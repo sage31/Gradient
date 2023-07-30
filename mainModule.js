@@ -53,6 +53,7 @@ onAuthStateChanged(auth, (user) => {
                     window.location.href = "index.html";
                 }
                 else {
+                    localStorage.setItem("community", community);
                     // Add in the crushes.
                     for (let crush of data.crushes) {
                         document.getElementById("crushesHTML").innerHTML +=
@@ -150,12 +151,13 @@ crushButton.addEventListener('click', e => {
     document.getElementById("lastName").value = "";
     document.getElementById("year").value = "GRADUATION YEAR";
     const uid = auth.currentUser.uid;
+    const community = localStorage.getItem("community");
     fetch("https://SCUCrushes-Server.ethancl.repl.co/addCrush", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ firstName, lastName, year, uid }),
+        body: JSON.stringify({ firstName, lastName, year, uid, community }),
     }).then((response) => response.json())
         .then((data) => {
             if (data.success) {
