@@ -46,7 +46,7 @@ onAuthStateChanged(auth, (user) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ uid }),
+            body: JSON.stringify({ uid: uid, community: window.community, }),
         }).then((response) => response.json())
             .then((data) => {
                 if (!data.verified) {

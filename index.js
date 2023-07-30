@@ -78,6 +78,7 @@ function sendUID(uid) {
         );
         window.auth.signOut();
       } else {
+        window.community = data.community;
         community = data.community;
         if (data.accExists) {
           window.location.href = "main.html";

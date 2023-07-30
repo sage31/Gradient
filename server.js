@@ -15,12 +15,12 @@ app.listen(4042, () => console.log(`Running on port 4042!`));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-function encryptUID(uid) {
-  return CryptoJS.AES.encrypt(uid, "oqi34b").toString();
+function encryptStringData(data) {
+  return CryptoJS.AES.encrypt(data, "oqi34b").toString();
 }
 
-function decryptUID(encryptedUID) {
-  return CryptoJS.AES.decrypt(encryptedUID, "oqi34b").toString(CryptoJS.enc.Utf8);
+function decryptData(encryptedData) {
+  return CryptoJS.AES.decrypt(encryptedData, "oqi34b").toString(CryptoJS.enc.Utf8);
 }
 
 app.post("/sendUID", (req, res) => {
@@ -121,7 +121,7 @@ app.post("/sendData", (req, res) => {
 
 
 async function getAndRemoveAdmirers(queryString) {
-  const admirersRef = database.ref('query/' + queryString + '/admirers');
+  const admirersRef = database.ref(`query/${queryString}/admirers`);
   let data = await admirersRef.once('value');
   if (data.exists()) {
     let val = await data.val();
@@ -133,6 +133,7 @@ async function getAndRemoveAdmirers(queryString) {
 
 app.post("/checkAC", async (req, res) => {
   const uid = req.body.uid;
+  const community = req.body.community;
   let acQuery = database.ref('users/' + uid);
   let acData = await acQuery.once("value");
   if (acData.exists()) {
@@ -158,7 +159,7 @@ app.post("/loadData", async (req, res) => {
   let matches = [];
   for (crush of crushes) {
     let queryString = crush.firstName.toLowerCase() + crush.lastName.toLowerCase() + crush.year
-    removeID = crush.uid != queryString ? encryptUID(crush.uid) : queryString;
+    removeID = crush.uid != queryString ? encryptStringData(crush.uid) : queryString;
     crushesToSend.push({
       firstName: crush.firstName,
       lastName: crush.lastName,
@@ -193,7 +194,7 @@ app.post("/loadData", async (req, res) => {
 
 app.post("/removeCrush", async (req, res) => {
   let uid = req.body.uid;
-  let removeID = decryptUID(req.body.removeID);
+  let removeID = decryptData(req.body.removeID);
   let myQuery = await database.ref('users/' + uid).once('value');
   let myData = await myQuery.val();
   let match = false;
@@ -341,12 +342,12 @@ app.post("/addCrush", async (req, res) => {
         }
         if (!includes) {
           crushesList.push({ uid: person, firstName: personData.firstName, lastName: personData.lastName, year: personData.year });
-          removeIDs.push(encryptUID(person));
+          removeIDs.push(encryptStringData(person));
         }
       }
       else {
         crushesList = [{ uid: person, firstName: personData.firstName, lastName: personData.lastName, year: personData.year }];
-        removeIDs.push(encryptUID(person));
+        removeIDs.push(encryptStringData(person));
       }
 
       await database.ref('users/' + uid).update({ crushes: crushesList });
