@@ -40,8 +40,7 @@ matchBtn.addEventListener("click", () => {
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const uid = user.uid;
-        window.uid = uid;
-        fetch("https://SCUCrushes-Server.ethancl.repl.co/checkAC", {
+        fetch("checkAccountAndLoadData", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -51,22 +50,13 @@ onAuthStateChanged(auth, (user) => {
             .then((data) => {
                 if (!data.verified) {
                     alert("You must finish setting up your account before accessing this page.")
-                    //window.location.href = "index.html";
+                    window.location.href = "index.html";
                 }
                 else {
-                    // User is verified.
-                    fetch('https://SCUCrushes-Server.ethancl.repl.co/loadData', {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ uid }),
-                    }).then((response) => response.json())
-                        .then((data) => {
-                            // Add in the crushes.
-                            for (let crush of data.crushes) {
-                                document.getElementById("crushesHTML").innerHTML +=
-                                    `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
+                    // Add in the crushes.
+                    for (let crush of data.crushes) {
+                        document.getElementById("crushesHTML").innerHTML +=
+                            `<div style="cursor:pointer" class="list-item" onclick="openPopup(this.childNodes[1])">
                                         <div class="list-item-info">
                                         <div class="title-wrapper section">
                                             <span class="name">` + formatName(crush.firstName) + " " + formatName(crush.lastName) + `</span>
@@ -81,17 +71,17 @@ onAuthStateChanged(auth, (user) => {
                                         </div>
                                         </div>
                                     </div>`;
-                            }
-                            document.getElementById("crushesNum").innerHTML = data.crushes.length;
-                            if (document.getElementById("crushesNum").innerHTML == 1) {
-                                document.getElementById("crushText").innerHTML = "Crush";
-                            }
+                    }
+                    document.getElementById("crushesNum").innerHTML = data.crushes.length;
+                    if (document.getElementById("crushesNum").innerHTML == 1) {
+                        document.getElementById("crushText").innerHTML = "Crush";
+                    }
 
-                            // Add in admirers.
+                    // Add in admirers.
 
-                            for (let admirer of data.admirers) {
-                                document.getElementById("admirersHTML").innerHTML +=
-                                    `<div class="list-item">
+                    for (let admirer of data.admirers) {
+                        document.getElementById("admirersHTML").innerHTML +=
+                            `<div class="list-item">
                                         <div class="list-item-info">
                                         <div class="title-wrapper section">
                                             <span class="name">???</span>
@@ -106,17 +96,17 @@ onAuthStateChanged(auth, (user) => {
                                         </div>
                                         </div>
                                     </div>`;
-                            }
-                            document.getElementById("admirerNum").innerHTML = data.admirers.length;
-                            if (document.getElementById("admirerNum").innerHTML == 1) {
-                                document.getElementById("admirerText").innerHTML = "Secret Admirer";
-                            }
+                    }
+                    document.getElementById("admirerNum").innerHTML = data.admirers.length;
+                    if (document.getElementById("admirerNum").innerHTML == 1) {
+                        document.getElementById("admirerText").innerHTML = "Secret Admirer";
+                    }
 
-                            // Add in any matches.
+                    // Add in any matches.
 
-                            for (let match of data.matches) {
-                                document.getElementById("matchesHTML").innerHTML +=
-                                    `<div class="list-item">
+                    for (let match of data.matches) {
+                        document.getElementById("matchesHTML").innerHTML +=
+                            `<div class="list-item">
                                         <div class="list-item-info">
                                         <div class="title-wrapper section">
                                             <span class="name">` + formatName(match.fName) + " " + formatName(match.lName) + `</span>
@@ -130,12 +120,11 @@ onAuthStateChanged(auth, (user) => {
                                         </div>
                                         </div>
                                     </div>`;
-                            }
-                            document.getElementById("matchesNum").innerHTML = data.matches.length;
-                            if (data.matches.length == 1) {
-                                document.getElementById("matchText").innerHTML = "Match";
-                            }
-                        });
+                    }
+                    document.getElementById("matchesNum").innerHTML = data.matches.length;
+                    if (data.matches.length == 1) {
+                        document.getElementById("matchText").innerHTML = "Match";
+                    }
                 }
             });
     } else {

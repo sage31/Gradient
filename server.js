@@ -131,65 +131,71 @@ async function getAndRemoveAdmirers(queryString) {
   return null;
 }
 
-app.post("/checkAC", async (req, res) => {
+app.post("/checkAccountAndLoadData", async (req, res) => {
   const uid = req.body.uid;
-  const community = req.body.community;
-  let acQuery = database.ref('users/' + uid);
-  let acData = await acQuery.once("value");
-  if (acData.exists()) {
-    res.send(JSON.stringify({ verified: true }));
+  let community;
+  admin.auth().getUser(uid)
+    .then(async (userRecord) => {
+
+      var community = (email.substring(atSymbolIndex + 1, email.indexOf('.', atSymbolIndex))).toLowerCase();
+    }
+    );
+  let userQuery = database.ref(`users/${community}/uid`);
+  let userData = await userQuery.once("value");
+
+  if (!acData.exists()) {
+    res.send(JSON.stringify({ verified: false }));
+    return;
   }
   else {
-    res.send(JSON.stringify({ verified: false }));
+    let crushes = userData.crushes == null ? [] : userData.crushes;
+    let crushesToSend = [];
+    let admirers = userData.admirers == null ? [] : userData.admirers;
+    let admirersToSend = [];
+    for (admirer of admirers) {
+      admirersToSend.push(admirer.year);
+    }
+    let matches = [];
+    for (crush of crushes) {
+      let queryString = crush.firstName.toLowerCase() + crush.lastName.toLowerCase() + crush.year
+      removeID = crush.uid != queryString ? encryptStringData(crush.uid) : queryString;
+      crushesToSend.push({
+        firstName: crush.firstName,
+        lastName: crush.lastName,
+        year: crush.year,
+        removeID: removeID
+      });
+      if (crush.uid != queryString) {
+        crushQuery = await database.ref(`users/${community}/${crush.uid}`).once('value');
+        crushData = await crushQuery.val();
+        if (crushData.crushes != null) {
+          let match = false;
+          for (theirCrush of crushData.crushes) {
+            if (theirCrush != null) {
+              if (theirCrush.uid == uid)
+                match = true;
+            }
+
+          }
+          if (match) {
+            matches.push({
+              fName: crushData.firstName,
+              lName: crushData.lastName,
+              gYear: crushData.year
+            })
+          }
+        }
+      }
+    }
+    //send back all the necessary data
+    res.send(JSON.stringify({ verified: true, crushes: crushesToSend, admirers: admirersToSend, matches: matches }));
   }
 
 });
 
 app.post("/loadData", async (req, res) => {
-  uid = req.body.uid;
-  let userQuery = await database.ref('users/' + uid).once('value');
-  let userData = await userQuery.val();
-  let crushes = userData.crushes == null ? [] : userData.crushes;
-  let crushesToSend = [];
-  let admirers = userData.admirers == null ? [] : userData.admirers;
-  let admirersToSend = [];
-  for (admirer of admirers) {
-    admirersToSend.push(admirer.year);
-  }
-  let matches = [];
-  for (crush of crushes) {
-    let queryString = crush.firstName.toLowerCase() + crush.lastName.toLowerCase() + crush.year
-    removeID = crush.uid != queryString ? encryptStringData(crush.uid) : queryString;
-    crushesToSend.push({
-      firstName: crush.firstName,
-      lastName: crush.lastName,
-      year: crush.year,
-      removeID: removeID
-    });
-    if (crush.uid != queryString) {
-      crushQuery = await database.ref('users/' + crush.uid).once('value');
-      crushData = await crushQuery.val();
-      if (crushData.crushes != null) {
-        let match = false;
-        for (theirCrush of crushData.crushes) {
-          if (theirCrush != null) {
-            if (theirCrush.uid == uid)
-              match = true;
-          }
 
-        }
-        if (match) {
-          matches.push({
-            fName: crushData.firstName,
-            lName: crushData.lastName,
-            gYear: crushData.year
-          })
-        }
-      }
-    }
-  }
-  res.send(JSON.stringify({ crushes: crushesToSend, admirers: admirersToSend, matches: matches }));
-  //send back all the necessary data
+
 })
 
 app.post("/removeCrush", async (req, res) => {
