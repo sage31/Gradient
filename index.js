@@ -16,6 +16,7 @@ y5 = document.getElementById("y5");
 y5.innerHTML = year5;
 
 let community;
+let userID
 
 function addUser() {
   var firstName = document.getElementById("firstName").value;
@@ -57,15 +58,16 @@ function sendData(data) {
     });
 }
 
-function sendUID(x) {
+function sendUID(uid) {
   //variable that is being sent
+  userID = uid;
   fetch("https://SCUCrushes-Server.ethancl.repl.co/sendUID", {
     //"channel it is being sent to"
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ x }),
+    body: JSON.stringify({ uid }),
     //What is being sent
   })
     .then((response) => response.json())

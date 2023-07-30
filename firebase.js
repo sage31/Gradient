@@ -17,6 +17,7 @@ const provider = new GoogleAuthProvider();
 let userID;
 onAuthStateChanged(auth, (user) => {
     if (user) {
+        console.log(user.uid);
         userID = user.uid;
         sendUID(userID); 
     } else {
