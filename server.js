@@ -24,7 +24,7 @@ function decryptUID(encryptedUID) {
 }
 
 app.post("/sendUID", (req, res) => {
-  var uid = req.body.x.user == null ? req.body.x : req.body.x.user.uid;
+  var uid = req.body.uid;
   var verified = false;
   admin.auth().getUser(uid)
     .then(async (userRecord) => {
@@ -56,7 +56,6 @@ app.post("/sendData", (req, res) => {
   var lName = req.body.data.lName.toLowerCase();
   var gradYear = req.body.data.gradYear;
 
-
   if (community == "" || fName == "" || lName == "" || gradYear == "" || uid == "") {
     res.send(JSON.stringify({ success: false }));
     return;
@@ -65,7 +64,7 @@ app.post("/sendData", (req, res) => {
     admin.auth().getUser(uid)
       .then(async (userRecord) => {
         var email = userRecord.email;
-        if (email.substring(email.length - 4) == ".edu") {
+        if (email.substring(email.length - 4) != ".edu") {
           res.send(JSON.stringify({ success: false }));
           return;
         }
